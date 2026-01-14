@@ -219,7 +219,7 @@ const Contact = () => {
                 className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 flex items-center gap-3"
               >
                 <CheckCircle className="text-green-600" size={20} />
-                <p className="text-green-700">Thank you! Your message has been sent successfully.</p>
+                <p className="text-black">Thank you! Your message has been sent successfully.</p>
               </motion.div>
             )}
 
@@ -231,7 +231,7 @@ const Contact = () => {
                 className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-center gap-3"
               >
                 <AlertCircle className="text-red-600" size={20} />
-                <p className="text-red-700">Sorry, there was an error sending your message. Please try again.</p>
+                <p className="text-black">Sorry, there was an error sending your message. Please try again.</p>
               </motion.div>
             )}
 
@@ -248,7 +248,7 @@ const Contact = () => {
                     required
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-beige-300 rounded-lg focus:ring-2 focus:ring-beige-500 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 border border-beige-300 rounded-lg focus:ring-2 focus:ring-beige-500 focus:border-transparent transition-all duration-300 text-black"
                     placeholder="Your Name"
                   />
                 </div>
@@ -263,7 +263,7 @@ const Contact = () => {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-beige-300 rounded-lg focus:ring-2 focus:ring-beige-500 focus:border-transparent transition-all duration-300"
+                    className="w-full px-4 py-3 border border-beige-300 rounded-lg focus:ring-2 focus:ring-beige-500 focus:border-transparent transition-all duration-300 text-black"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -280,7 +280,7 @@ const Contact = () => {
                   required
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-beige-300 rounded-lg focus:ring-2 focus:ring-beige-500 focus:border-transparent transition-all duration-300"
+                  className="w-full px-4 py-3 border border-beige-300 rounded-lg focus:ring-2 focus:ring-beige-500 focus:border-transparent transition-all duration-300 text-black"
                   placeholder="Project Discussion"
                 />
               </div>
@@ -296,7 +296,7 @@ const Contact = () => {
                   rows={6}
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-beige-300 rounded-lg focus:ring-2 focus:ring-beige-500 focus:border-transparent transition-all duration-300 resize-vertical"
+                  className="w-full px-4 py-3 border border-beige-300 rounded-lg focus:ring-2 focus:ring-beige-500 focus:border-transparent transition-all duration-300 resize-vertical text-black"
                   placeholder="Tell me about your project or how we can work together..."
                 ></textarea>
               </div>
