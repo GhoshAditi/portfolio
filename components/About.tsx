@@ -89,20 +89,20 @@ const About = () => {
 
             <div className="space-y-4 text-slate-300 leading-relaxed">
               <p>
-                I'm a passionate full-stack developer with a love for creating innovative and 
+                I&apos;m a passionate full-stack developer with a love for creating innovative and 
                 user-friendly web applications. My journey in technology started during my freshman year in 
                 college years, where I discovered the power of code to solve real-world problems.
               </p>
               
               <p>
                 With a strong foundation in both frontend and backend technologies, I enjoy 
-                building complete solutions from concept to deployment. I'm particularly 
+                building complete solutions from concept to deployment. I&apos;m particularly 
                 interested in modern web frameworks, cloud technologies, and creating 
                 seamless user experiences.
               </p>
 
               <p>
-                When I'm not coding, you'll find me exploring new technologies, contributing 
+                When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing 
                 to open-source projects, or sharing my knowledge with the developer community. 
                 I believe in continuous learning and staying up-to-date with the latest industry trends.
               </p>
@@ -140,7 +140,6 @@ const About = () => {
                   initial={{ y: 50, opacity: 0 }}
                   animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
                   transition={{ delay: index * 0.2 }}
-                  className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
                   className="bg-slate-800/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-700">
                   <div className="flex items-start gap-4">
                     <div className="flex-shrink-0 w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center">

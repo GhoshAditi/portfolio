@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
@@ -129,8 +130,8 @@ const Contact = () => {
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto mb-6"></div>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? I'd love to hear from you. 
-            Let's create something amazing together!
+            Have a project in mind or want to collaborate? I&apos;d love to hear from you. 
+            Let&apos;s create something amazing together!
           </p>
         </motion.div>
 
@@ -144,10 +145,10 @@ const Contact = () => {
           >
             <div>
               <h3 className="text-2xl font-semibold text-slate-100 mb-6">
-                Let's Talk
+                Let&apos;s Talk
               </h3>
               <p className="text-slate-300 leading-relaxed mb-8">
-                I'm always excited to work on new projects and collaborate with 
+                I&apos;m always excited to work on new projects and collaborate with 
                 amazing people. Whether you have a specific project in mind or 
                 just want to explore possibilities, feel free to reach out!
               </p>

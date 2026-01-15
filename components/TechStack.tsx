@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Code, Database, Globe, Cloud, Cpu, Layers, Zap } from 'lucide-react'
+import { Code, Database, Cloud, Zap } from 'lucide-react'
 
 const TechStack = () => {
   const ref = useRef(null)

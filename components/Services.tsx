@@ -159,8 +159,8 @@ const Services = () => {
             Ready to Start Your Project?
           </h3>
           <p className="text-slate-300 mb-8 max-w-lg mx-auto">
-            Let's discuss your ideas and create something amazing together. 
-            I'm here to help you achieve your goals.
+            Let&apos;s discuss your ideas and create something amazing together. 
+            I&apos;m here to help you achieve your goals.
           </p>
           <motion.a
             href="#contact"

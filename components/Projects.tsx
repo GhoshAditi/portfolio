@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
@@ -137,9 +138,11 @@ const Projects = () => {
                 <div className="relative overflow-hidden">
                   <div className="w-full h-48 bg-gradient-to-br from-slate-700 to-darkBlue-800 flex items-center justify-center">
                     {project.image ? (
-                      <img 
+                      <Image 
                         src={project.image} 
                         alt={project.title}
+                        width={300}
+                        height={200}
                         className="w-full h-full object-contain p-2"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;

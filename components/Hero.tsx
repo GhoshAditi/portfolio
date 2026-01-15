@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowDown, Download } from 'lucide-react'
 
@@ -65,7 +66,7 @@ const Hero = () => {
               variants={slideFromLeft}
               className="mb-6"
             >
-              <span className="text-slate-400 text-lg font-medium">Hello, I'm</span>
+              <span className="text-slate-400 text-lg font-medium">Hello, I&apos;m</span>
               <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-slate-100 to-accent-blue bg-clip-text text-transparent mt-2">
                 Aditi Ghosh
               </h1>
@@ -127,9 +128,11 @@ const Hero = () => {
               {/* Image Container */}
               <div className="relative bg-slate-800 p-4 rounded-full shadow-2xl border border-slate-700">
                 <div className="w-80 h-80 bg-slate-700 rounded-full flex items-center justify-center border-4 border-accent-blue/30 overflow-hidden">
-                  <img 
+                  <Image 
                     src="/pfp.jpg" 
                     alt="Aditi Ghosh" 
+                    width={320}
+                    height={320}
                     className="w-full h-full object-cover rounded-full scale-110"
                   /> 
                 </div>

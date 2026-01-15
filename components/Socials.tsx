@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Linkedin, Github, Twitter, Instagram, Youtube, Mail, ExternalLink } from 'lucide-react'
+import { Linkedin, Github, Mail, ExternalLink } from 'lucide-react'
 
 const Socials = () => {
   const ref = useRef(null)
