@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-gradient-to-br from-beige-50 to-beige-100 min-h-screen`}>
+      <body className={`${inter.className} bg-gradient-to-br from-slate-900 via-darkBlue-900 to-slate-800 min-h-screen text-slate-100`}>
         {children}
       </body>
     </html>

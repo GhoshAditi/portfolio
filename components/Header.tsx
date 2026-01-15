@@ -33,7 +33,7 @@ const Header = () => {
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-beige-50/95 backdrop-blur-md shadow-lg border-b border-beige-200' 
+          ? 'bg-slate-900/95 backdrop-blur-md shadow-lg border-b border-slate-700' 
           : 'bg-transparent'
       }`}
     >
@@ -42,7 +42,7 @@ const Header = () => {
           {/* Logo */}
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold text-beige-900 cursor-pointer"
+            className="text-2xl font-bold bg-gradient-to-r from-accent-blue to-accent-purple bg-clip-text text-transparent cursor-pointer"
           >
             Aditi Ghosh
           </motion.div>
@@ -57,7 +57,7 @@ const Header = () => {
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: index * 0.1 }}
                 whileHover={{ y: -2 }}
-                className="text-beige-800 hover:text-beige-600 transition-colors duration-300 font-medium"
+                className="text-slate-300 hover:text-accent-blue transition-colors duration-300 font-medium"
               >
                 {item.label}
               </motion.a>
@@ -66,7 +66,7 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-beige-900 p-2"
+            className="md:hidden text-slate-100 p-2"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -82,7 +82,7 @@ const Header = () => {
             exit={{ height: 0, opacity: 0 }}
             className="md:hidden mt-4 pb-4"
           >
-            <div className="flex flex-col space-y-4 bg-beige-100/90 backdrop-blur-sm rounded-lg p-6">
+            <div className="flex flex-col space-y-4 bg-slate-800/90 backdrop-blur-sm rounded-lg p-6 border border-slate-700">
               {navItems.map((item, index) => (
                 <motion.a
                   key={item.href}
@@ -90,7 +90,7 @@ const Header = () => {
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: index * 0.05 }}
-                  className="text-beige-800 hover:text-beige-600 transition-colors duration-300 font-medium py-2"
+                  className="text-slate-300 hover:text-accent-blue transition-colors duration-300 font-medium py-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {item.label}

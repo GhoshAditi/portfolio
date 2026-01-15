@@ -85,7 +85,7 @@ const Services = () => {
   ]
 
   return (
-    <section id="services" ref={ref} className="py-20 px-6 bg-gradient-to-r from-beige-50 to-cream">
+    <section id="services" ref={ref} className="py-20 px-6 bg-gradient-to-r from-slate-900 via-darkBlue-900 to-slate-800">
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <motion.div
@@ -94,11 +94,11 @@ const Services = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-beige-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
             My Services
           </h2>
-          <div className="w-24 h-1 bg-beige-600 mx-auto mb-6"></div>
-          <p className="text-lg text-beige-600 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto mb-6"></div>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             I offer comprehensive web development services to help bring your ideas to life
           </p>
         </motion.div>
@@ -113,19 +113,19 @@ const Services = () => {
               variants={index % 2 === 0 ? slideFromLeft : slideFromRight}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 group"
+              className="bg-slate-900/40 backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:shadow-accent-blue/30 transition-all duration-300 group border border-white/10"
             >
-              <div className="w-16 h-16 bg-beige-100 rounded-xl flex items-center justify-center mb-6 group-hover:bg-beige-200 transition-colors duration-300">
-                <div className="text-beige-600 group-hover:text-beige-700 transition-colors duration-300">
+              <div className="w-16 h-16 bg-orange-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-500/30 transition-colors duration-300">
+                <div className="text-orange-500 group-hover:text-orange-400 transition-colors duration-300">
                   {service.icon}
                 </div>
               </div>
 
-              <h3 className="text-xl font-semibold text-beige-900 mb-4">
+              <h3 className="text-xl font-semibold text-slate-100 mb-4">
                 {service.title}
               </h3>
 
-              <p className="text-beige-600 mb-6 leading-relaxed">
+              <p className="text-slate-300 mb-6 leading-relaxed">
                 {service.description}
               </p>
 
@@ -136,9 +136,9 @@ const Services = () => {
                     initial={{ x: -20, opacity: 0 }}
                     animate={isInView ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
                     transition={{ delay: (index * 0.1) + (featureIndex * 0.05) }}
-                    className="flex items-center gap-2 text-beige-700"
+                    className="flex items-center gap-2 text-slate-300"
                   >
-                    <div className="w-1.5 h-1.5 bg-beige-400 rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
                     <span className="text-sm">{feature}</span>
                   </motion.div>
                 ))}
@@ -155,10 +155,10 @@ const Services = () => {
           transition={{ delay: 0.8 }}
           className="text-center mt-16"
         >
-          <h3 className="text-2xl font-semibold text-beige-900 mb-4">
+          <h3 className="text-2xl font-semibold text-slate-100 mb-4">
             Ready to Start Your Project?
           </h3>
-          <p className="text-beige-600 mb-8 max-w-lg mx-auto">
+          <p className="text-slate-300 mb-8 max-w-lg mx-auto">
             Let's discuss your ideas and create something amazing together. 
             I'm here to help you achieve your goals.
           </p>
@@ -166,7 +166,7 @@ const Services = () => {
             href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-block bg-beige-600 hover:bg-beige-700 text-white px-8 py-3 rounded-full font-medium transition-colors duration-300"
+            className="inline-block bg-accent-blue hover:bg-blue-600 text-white px-8 py-3 rounded-full font-medium transition-colors duration-300"
           >
             Get In Touch
           </motion.a>

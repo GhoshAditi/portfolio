@@ -115,7 +115,7 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" ref={ref} className="py-20 px-6 bg-gradient-to-r from-cream to-beige-100">
+    <section id="contact" ref={ref} className="py-20 px-6 bg-gradient-to-r from-slate-900 via-darkBlue-900 to-slate-800">
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <motion.div
@@ -124,11 +124,11 @@ const Contact = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-beige-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
             Get In Touch
           </h2>
-          <div className="w-24 h-1 bg-beige-600 mx-auto mb-6"></div>
-          <p className="text-lg text-beige-600 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto mb-6"></div>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             Have a project in mind or want to collaborate? I'd love to hear from you. 
             Let's create something amazing together!
           </p>
@@ -143,10 +143,10 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-semibold text-beige-900 mb-6">
+              <h3 className="text-2xl font-semibold text-slate-100 mb-6">
                 Let's Talk
               </h3>
-              <p className="text-beige-600 leading-relaxed mb-8">
+              <p className="text-slate-300 leading-relaxed mb-8">
                 I'm always excited to work on new projects and collaborate with 
                 amazing people. Whether you have a specific project in mind or 
                 just want to explore possibilities, feel free to reach out!
@@ -161,22 +161,22 @@ const Contact = () => {
                   initial={{ x: -50, opacity: 0 }}
                   animate={isInView ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300"
+                  className="flex items-center gap-4 p-4 bg-slate-900/20 backdrop-blur-md rounded-xl shadow-sm hover:shadow-md hover:shadow-accent-blue/30 transition-shadow duration-300 border border-white/10"
                 >
-                  <div className="w-12 h-12 bg-beige-100 rounded-lg flex items-center justify-center text-beige-600">
+                  <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-500">
                     {info.icon}
                   </div>
                   <div>
-                    <p className="text-beige-500 text-sm font-medium">{info.label}</p>
+                    <p className="text-slate-400 text-sm font-medium">{info.label}</p>
                     {info.href ? (
                       <a
                         href={info.href}
-                        className="text-beige-800 font-medium hover:text-beige-600 transition-colors duration-300"
+                        className="text-slate-200 font-medium hover:text-accent-blue transition-colors duration-300"
                       >
                         {info.value}
                       </a>
                     ) : (
-                      <p className="text-beige-800 font-medium">{info.value}</p>
+                      <p className="text-slate-200 font-medium">{info.value}</p>
                     )}
                   </div>
                 </motion.div>
@@ -188,12 +188,12 @@ const Contact = () => {
               initial={{ y: 30, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
               transition={{ delay: 0.5 }}
-              className="bg-beige-200 rounded-xl p-6"
+              className="bg-slate-900/40 backdrop-blur-md rounded-xl p-6 border border-white/10"
             >
-              <h4 className="text-beige-900 font-semibold mb-2">
+              <h4 className="text-slate-100 font-semibold mb-2">
                 Quick Response
               </h4>
-              <p className="text-beige-700 text-sm">
+              <p className="text-slate-300 text-sm">
                 I typically respond to emails within 24 hours. For urgent matters, 
                 feel free to call or connect via LinkedIn.
               </p>
@@ -205,7 +205,7 @@ const Contact = () => {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={slideFromRight}
-            className="bg-white rounded-2xl p-8 shadow-lg"
+            className="bg-slate-900/40 backdrop-blur-md rounded-2xl p-8 shadow-lg border border-white/10"
           >
             <h3 className="text-2xl font-semibold text-beige-900 mb-6">
               Send Message
@@ -238,7 +238,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-beige-700 font-medium mb-2">
+                  <label htmlFor="name" className="block text-slate-300 font-medium mb-2">
                     Name *
                   </label>
                   <input
@@ -248,12 +248,12 @@ const Contact = () => {
                     required
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-beige-300 rounded-lg focus:ring-2 focus:ring-beige-500 focus:border-transparent transition-all duration-300 text-black"
+                    className="w-full px-4 py-3 border border-slate-600 bg-slate-800 rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-all duration-300 text-slate-100 placeholder-slate-500"
                     placeholder="Your Name"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-beige-700 font-medium mb-2">
+                  <label htmlFor="email" className="block text-slate-300 font-medium mb-2">
                     Email *
                   </label>
                   <input
@@ -263,14 +263,14 @@ const Contact = () => {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-beige-300 rounded-lg focus:ring-2 focus:ring-beige-500 focus:border-transparent transition-all duration-300 text-black"
+                    className="w-full px-4 py-3 border border-slate-600 bg-slate-800 rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-all duration-300 text-slate-100 placeholder-slate-500"
                     placeholder="your.email@example.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="subject" className="block text-beige-700 font-medium mb-2">
+                <label htmlFor="subject" className="block text-slate-300 font-medium mb-2">
                   Subject *
                 </label>
                 <input
@@ -280,13 +280,13 @@ const Contact = () => {
                   required
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-beige-300 rounded-lg focus:ring-2 focus:ring-beige-500 focus:border-transparent transition-all duration-300 text-black"
+                  className="w-full px-4 py-3 border border-slate-600 bg-slate-800 rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-all duration-300 text-slate-100 placeholder-slate-500"
                   placeholder="Project Discussion"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-beige-700 font-medium mb-2">
+                <label htmlFor="message" className="block text-slate-300 font-medium mb-2">
                   Message *
                 </label>
                 <textarea
@@ -296,7 +296,7 @@ const Contact = () => {
                   rows={6}
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-beige-300 rounded-lg focus:ring-2 focus:ring-beige-500 focus:border-transparent transition-all duration-300 resize-vertical text-black"
+                  className="w-full px-4 py-3 border border-slate-600 bg-slate-800 rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-all duration-300 resize-vertical text-slate-100 placeholder-slate-500"
                   placeholder="Tell me about your project or how we can work together..."
                 ></textarea>
               </div>
@@ -308,8 +308,8 @@ const Contact = () => {
                 whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
                 className={`w-full flex items-center justify-center gap-2 px-8 py-3 rounded-lg font-medium transition-all duration-300 ${
                   isSubmitting
-                    ? 'bg-beige-400 cursor-not-allowed'
-                    : 'bg-beige-600 hover:bg-beige-700'
+                    ? 'bg-blue-500 cursor-not-allowed'
+                    : 'bg-accent-blue hover:bg-blue-600'
                 } text-white`}
               >
                 {isSubmitting ? (
@@ -334,12 +334,12 @@ const Contact = () => {
           animate={isInView ? "visible" : "hidden"}
           variants={fadeInUp}
           transition={{ delay: 1 }}
-          className="text-center mt-16 pt-8 border-t border-beige-300"
+          className="text-center mt-16 pt-8 border-t border-slate-700"
         >
-          <p className="text-beige-600">
+          <p className="text-slate-300">
             © 2026 Aditi Ghosh. Built with Next.js and Tailwind CSS.
           </p>
-          <p className="text-beige-500 text-sm mt-2">
+          <p className="text-slate-400 text-sm mt-2">
             Designed with ❤️ for meaningful connections and collaborations.
           </p>
         </motion.div>

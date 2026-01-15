@@ -56,7 +56,7 @@ const About = () => {
   ]
 
   return (
-    <section id="about" ref={ref} className="py-20 px-6 bg-gradient-to-r from-beige-50 to-cream">
+    <section id="about" ref={ref} className="py-20 px-6 bg-gradient-to-br from-slate-900 via-darkBlue-900 to-slate-800">
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <motion.div
@@ -65,11 +65,11 @@ const About = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-beige-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
             About Me
           </h2>
-          <div className="w-24 h-1 bg-beige-600 mx-auto mb-6"></div>
-          <p className="text-lg text-beige-600 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto mb-6"></div>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             Get to know more about my journey, education, and what drives my passion for development
           </p>
         </motion.div>
@@ -83,11 +83,11 @@ const About = () => {
             className="space-y-6"
           >
             <div className="flex items-center gap-3 mb-6">
-              <User className="text-beige-600" size={28} />
-              <h3 className="text-2xl font-semibold text-beige-900">Who I Am</h3>
+              <User className="text-accent-blue" size={28} />
+              <h3 className="text-2xl font-semibold text-slate-100">Who I Am</h3>
             </div>
 
-            <div className="space-y-4 text-beige-700 leading-relaxed">
+            <div className="space-y-4 text-slate-300 leading-relaxed">
               <p>
                 I'm a passionate full-stack developer with a love for creating innovative and 
                 user-friendly web applications. My journey in technology started during my freshman year in 
@@ -110,13 +110,13 @@ const About = () => {
 
             {/* Personal Stats */}
             <div className="grid grid-cols-2 gap-6 mt-8">
-              <div className="text-center p-4 bg-white rounded-lg shadow-sm">
-                <div className="text-2xl font-bold text-beige-600">8+</div>
-                <div className="text-beige-700">Projects Completed</div>
+              <div className="text-center p-4 bg-slate-800/50 rounded-lg shadow-sm border border-slate-700">
+                <div className="text-2xl font-bold text-accent-blue">8+</div>
+                <div className="text-slate-300">Projects Completed</div>
               </div>
-              <div className="text-center p-4 bg-white rounded-lg shadow-sm">
-                <div className="text-2xl font-bold text-beige-600">2+</div>
-                <div className="text-beige-700">Years Experience</div>
+              <div className="text-center p-4 bg-slate-800/50 rounded-lg shadow-sm border border-slate-700">
+                <div className="text-2xl font-bold text-accent-blue">2+</div>
+                <div className="text-slate-300">Years Experience</div>
               </div>
             </div>
           </motion.div>
@@ -129,8 +129,8 @@ const About = () => {
             className="space-y-6"
           >
             <div className="flex items-center gap-3 mb-6">
-              <GraduationCap className="text-beige-600" size={28} />
-              <h3 className="text-2xl font-semibold text-beige-900">Education</h3>
+              <GraduationCap className="text-accent-blue" size={28} />
+              <h3 className="text-2xl font-semibold text-slate-100">Education</h3>
             </div>
 
             <div className="space-y-6">
@@ -141,26 +141,26 @@ const About = () => {
                   animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
                   transition={{ delay: index * 0.2 }}
                   className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
-                >
+                  className="bg-slate-800/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-700">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-beige-100 rounded-lg flex items-center justify-center">
-                      <Calendar className="text-beige-600" size={20} />
+                    <div className="flex-shrink-0 w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center">
+                      <Calendar className="text-accent-blue" size={20} />
                     </div>
                     
                     <div className="flex-grow">
-                      <h4 className="text-lg font-semibold text-beige-900 mb-1">
+                      <h4 className="text-lg font-semibold text-slate-100 mb-1">
                         {edu.degree}
                       </h4>
-                      <p className="text-beige-600 font-medium mb-2">
+                      <p className="text-accent-blue font-medium mb-2">
                         {edu.institution}
                       </p>
-                      <p className="text-sm text-beige-500 mb-3">
+                      <p className="text-sm text-slate-400 mb-3">
                         {edu.year}
                       </p>
-                      <p className="text-beige-700 text-sm mb-2">
+                      <p className="text-slate-300 text-sm mb-2">
                         {edu.description}
                       </p>
-                      <div className="inline-block bg-beige-100 text-beige-700 text-sm px-3 py-1 rounded-full">
+                      <div className="inline-block bg-accent-blue/20 text-accent-blue text-sm px-3 py-1 rounded-full border border-accent-blue/30">
                         {edu.grade}
                       </div>
                     </div>

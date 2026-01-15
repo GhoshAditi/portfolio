@@ -108,7 +108,7 @@ const Experience = () => {
   ]
 
   return (
-    <section id="experience" ref={ref} className="py-20 px-6 bg-gradient-to-r from-cream to-beige-100">
+    <section id="experience" ref={ref} className="py-20 px-6 bg-gradient-to-r from-slate-900 via-darkBlue-900 to-slate-800">
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <motion.div
@@ -117,11 +117,11 @@ const Experience = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-beige-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
             Work Experience & Achievements
           </h2>
-          <div className="w-24 h-1 bg-beige-600 mx-auto mb-6"></div>
-          <p className="text-lg text-beige-600 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto mb-6"></div>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             My professional journey and the experiences that have shaped my career in web development
           </p>
         </motion.div>
@@ -129,7 +129,7 @@ const Experience = () => {
         {/* Experience Timeline */}
         <div className="relative mb-16">
           {/* Timeline Line */}
-          <div className="absolute left-8 top-0 w-0.5 h-full bg-beige-300 hidden md:block"></div>
+          <div className="absolute left-8 top-0 w-0.5 h-full bg-orange-500 hidden md:block"></div>
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
@@ -142,33 +142,33 @@ const Experience = () => {
                 className="relative"
               >
                 {/* Timeline Dot */}
-                <div className="absolute left-6 top-8 w-4 h-4 bg-beige-600 rounded-full border-4 border-white shadow-lg hidden md:block"></div>
+                <div className="absolute left-6 top-8 w-4 h-4 bg-orange-500 rounded-full border-4 border-slate-800 shadow-lg hidden md:block"></div>
 
                 {/* Experience Card */}
-                <div className="md:ml-20 bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <div className="md:ml-20 bg-slate-900/40 backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-xl hover:shadow-accent-blue/30 transition-shadow duration-300 border border-white/10">
                   <div className="flex flex-wrap items-start justify-between mb-6">
                     <div className="flex-grow">
                       <div className="flex items-center gap-2 mb-2">
-                        <h3 className="text-xl font-semibold text-beige-900">
+                        <h3 className="text-xl font-semibold text-slate-100">
                           {exp.position}
                         </h3>
                         
                       </div>
                       
-                      <h4 className="text-lg text-beige-700 font-medium mb-3">
+                      <h4 className="text-lg text-slate-200 font-medium mb-3">
                         {exp.company}
                       </h4>
 
                       <div className="flex flex-wrap gap-4 text-sm text-beige-600 mb-4">
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 text-slate-300">
                           <Calendar size={16} />
                           {exp.duration}
                         </div>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 text-slate-300">
                           <MapPin size={16} />
                           {exp.location}
                         </div>
-                        <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1 text-slate-300">
                           <Briefcase size={16} />
                           {exp.type}
                         </div>
@@ -176,13 +176,13 @@ const Experience = () => {
                     </div>
                   </div>
 
-                  <p className="text-beige-700 mb-6 leading-relaxed">
+                  <p className="text-slate-300 mb-6 leading-relaxed">
                     {exp.description}
                   </p>
 
                   {/* Achievements */}
                   <div className="mb-6">
-                    <h5 className="text-beige-900 font-medium mb-3 flex items-center gap-2">
+                    <h5 className="text-slate-100 font-medium mb-3 flex items-center gap-2">
                       <Award size={16} />
                       Key Achievements
                     </h5>
@@ -193,9 +193,9 @@ const Experience = () => {
                           initial={{ x: -20, opacity: 0 }}
                           animate={isInView ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
                           transition={{ delay: (index * 0.3) + (achIndex * 0.1) }}
-                          className="text-beige-600 text-sm flex items-start gap-2"
+                          className="text-slate-300 text-sm flex items-start gap-2"
                         >
-                          <div className="w-1.5 h-1.5 bg-beige-400 rounded-full mt-2 flex-shrink-0"></div>
+                          <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
                           {achievement}
                         </motion.li>
                       ))}
@@ -204,7 +204,7 @@ const Experience = () => {
 
                   {/* Technologies */}
                   <div>
-                    <h5 className="text-beige-900 font-medium mb-3">Technologies Used</h5>
+                    <h5 className="text-slate-100 font-medium mb-3">Technologies Used</h5>
                     <div className="flex flex-wrap gap-2">
                       {exp.technologies.map((tech, techIndex) => (
                         <motion.span
@@ -212,7 +212,7 @@ const Experience = () => {
                           initial={{ scale: 0, opacity: 0 }}
                           animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
                           transition={{ delay: (index * 0.3) + (techIndex * 0.05) }}
-                          className="bg-beige-100 text-beige-700 px-3 py-1 rounded-full text-sm font-medium"
+                          className="bg-accent-blue/20 text-accent-blue border border-accent-blue/30 px-3 py-1 rounded-full text-sm font-medium"
                         >
                           {tech}
                         </motion.span>

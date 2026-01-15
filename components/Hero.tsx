@@ -65,8 +65,8 @@ const Hero = () => {
               variants={slideFromLeft}
               className="mb-6"
             >
-              <span className="text-beige-600 text-lg font-medium">Hello, I'm</span>
-              <h1 className="text-4xl md:text-6xl font-bold text-beige-900 mt-2">
+              <span className="text-slate-400 text-lg font-medium">Hello, I'm</span>
+              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-slate-100 to-accent-blue bg-clip-text text-transparent mt-2">
                 Aditi Ghosh
               </h1>
             </motion.div>
@@ -75,14 +75,14 @@ const Hero = () => {
               variants={slideFromLeft}
               className="mb-6"
             >
-              <h2 className="text-2xl md:text-3xl text-beige-700 font-semibold">
+              <h2 className="text-2xl md:text-3xl text-slate-300 font-semibold">
                 Full Stack Developer
               </h2>
             </motion.div>
 
             <motion.p
               variants={slideFromLeft}
-              className="text-lg text-beige-600 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0"
+              className="text-lg text-slate-300 mb-8 leading-relaxed max-w-lg mx-auto lg:mx-0"
             >
               I create beautiful, responsive web applications with modern technologies. 
               Passionate about clean code, user experience, and innovative solutions.
@@ -98,7 +98,7 @@ const Hero = () => {
                 onClick={() => {
                   window.open('/Aditi_Ghosh_Resume.pdf', '_blank')
                 }}
-                className="bg-beige-600 hover:bg-beige-700 text-white px-8 py-3 rounded-full font-medium transition-colors duration-300 flex items-center justify-center gap-2"
+                className="bg-accent-blue hover:bg-blue-700 text-white px-8 py-3 rounded-full font-medium transition-colors duration-300 flex items-center justify-center gap-2"
               >
                 <Download size={18} />
               Open CV
@@ -108,7 +108,7 @@ const Hero = () => {
                 href="#contact"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="border-2 border-beige-600 text-beige-600 hover:bg-beige-600 hover:text-white px-8 py-3 rounded-full font-medium transition-all duration-300 text-center"
+                className="border-2 border-accent-blue text-accent-blue hover:bg-accent-blue hover:text-white px-8 py-3 rounded-full font-medium transition-all duration-300 text-center"
               >
                 Get In Touch
               </motion.a>
@@ -122,11 +122,11 @@ const Hero = () => {
           >
             <div className="relative">
               {/* Background Decoration */}
-              <div className="absolute inset-0 bg-gradient-to-br from-beige-200 to-beige-300 rounded-full transform rotate-6"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-accent-blue to-accent-purple rounded-full transform rotate-6 opacity-20"></div>
               
               {/* Image Container */}
-              <div className="relative bg-white p-4 rounded-full shadow-2xl">
-                <div className="w-80 h-80 bg-beige-100 rounded-full flex items-center justify-center border-4 border-beige-200 overflow-hidden">
+              <div className="relative bg-slate-800 p-4 rounded-full shadow-2xl border border-slate-700">
+                <div className="w-80 h-80 bg-slate-700 rounded-full flex items-center justify-center border-4 border-accent-blue/30 overflow-hidden">
                   <img 
                     src="/pfp.jpg" 
                     alt="Aditi Ghosh" 
@@ -139,12 +139,12 @@ const Hero = () => {
               <motion.div
                 animate={{ y: [-10, 10, -10] }}
                 transition={{ repeat: Infinity, duration: 4 }}
-                className="absolute -top-4 -right-4 w-12 h-12 bg-beige-400 rounded-full opacity-70"
+                className="absolute -top-4 -right-4 w-12 h-12 bg-accent-blue rounded-full opacity-40"
               ></motion.div>
               <motion.div
                 animate={{ y: [10, -10, 10] }}
                 transition={{ repeat: Infinity, duration: 3 }}
-                className="absolute -bottom-6 -left-6 w-8 h-8 bg-beige-500 rounded-full opacity-60"
+                className="absolute -bottom-6 -left-6 w-8 h-8 bg-accent-purple rounded-full opacity-50"
               ></motion.div>
             </div>
           </motion.div>
@@ -160,7 +160,7 @@ const Hero = () => {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ repeat: Infinity, duration: 2 }}
-            className="flex flex-col items-center text-beige-600"
+            className="flex flex-col items-center text-slate-400"
           >
             <span className="text-sm mb-2">Scroll Down</span>
             <ArrowDown size={20} />

@@ -103,7 +103,7 @@ const Projects = () => {
   ]
 
   return (
-    <section id="projects" ref={ref} className="py-20 px-6 bg-gradient-to-r from-beige-50 to-cream">
+    <section id="projects" ref={ref} className="py-20 px-6 bg-gradient-to-br from-slate-900 via-darkBlue-900 to-slate-800">
       <div className="container mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div
@@ -112,11 +112,11 @@ const Projects = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-beige-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
             My Projects
           </h2>
-          <div className="w-24 h-1 bg-beige-600 mx-auto mb-6"></div>
-          <p className="text-lg text-beige-600 max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto mb-6"></div>
+          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
             Here are some of my recent projects that showcase my skills and experience in web development
           </p>
         </motion.div>
@@ -132,10 +132,10 @@ const Projects = () => {
                 animate={isInView ? "visible" : "hidden"}
                 variants={index % 2 === 0 ? slideFromLeft : slideFromRight}
                 transition={{ delay: index * 0.2 }}
-                className="group bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300"
+                className="group bg-slate-900/40 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-white/10 hover:border-accent-blue/50"
               >
                 <div className="relative overflow-hidden">
-                  <div className="w-full h-48 bg-gradient-to-br from-beige-200 to-beige-300 flex items-center justify-center">
+                  <div className="w-full h-48 bg-gradient-to-br from-slate-700 to-darkBlue-800 flex items-center justify-center">
                     {project.image ? (
                       <img 
                         src={project.image} 
@@ -146,20 +146,20 @@ const Projects = () => {
                           target.style.display = 'none';
                           target.parentElement!.innerHTML = `
                             <div class="text-center">
-                              <div class="w-16 h-16 text-beige-600 mx-auto mb-2 flex items-center justify-center">
+                              <div class="w-16 h-16 text-accent-blue mx-auto mb-2 flex items-center justify-center">
                                 <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                               </div>
-                              <p class="text-beige-600 font-medium">Project Screenshot</p>
-                              <p class="text-beige-500 text-sm">Add your project image here</p>
+                              <p class="text-slate-200 font-medium">Project Screenshot</p>
+                              <p class="text-slate-400 text-sm">Add your project image here</p>
                             </div>
                           `;
                         }}
                       />
                     ) : (
                       <div className="text-center">
-                        <Eye className="w-16 h-16 text-beige-600 mx-auto mb-2" />
-                        <p className="text-beige-600 font-medium">Project Screenshot</p>
-                        <p className="text-beige-500 text-sm">Add your project image here</p>
+                        <Eye className="w-16 h-16 text-accent-blue mx-auto mb-2" />
+                        <p className="text-slate-200 font-medium">Project Screenshot</p>
+                        <p className="text-slate-400 text-sm">Add your project image here</p>
                       </div>
                     )}
                   </div>
@@ -173,7 +173,7 @@ const Projects = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
-                        className="bg-beige-600 text-white p-3 rounded-full hover:bg-beige-700 transition-colors duration-300"
+                        className="bg-accent-blue text-white p-3 rounded-full hover:bg-blue-600 transition-colors duration-300"
                       >
                         <ExternalLink size={20} />
                       </motion.a>
@@ -192,10 +192,10 @@ const Projects = () => {
                 </div>
 
                 <div className="p-6">
-                  <h4 className="text-xl font-semibold text-beige-900 mb-3">
+                  <h4 className="text-xl font-semibold text-slate-100 mb-3">
                     {project.title}
                   </h4>
-                  <p className="text-beige-600 mb-4 leading-relaxed">
+                  <p className="text-slate-300 mb-4 leading-relaxed">
                     {project.description}
                   </p>
                   
@@ -203,7 +203,7 @@ const Projects = () => {
                     {project.technologies.map((tech, techIndex) => (
                       <span
                         key={techIndex}
-                        className="bg-beige-100 text-beige-700 px-3 py-1 rounded-full text-sm font-medium"
+                        className="bg-accent-blue/20 text-accent-blue px-3 py-1 rounded-full text-sm font-medium border border-accent-blue/30"
                       >
                         {tech}
                       </span>
@@ -215,7 +215,7 @@ const Projects = () => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 bg-beige-600 text-white text-center py-2 rounded-lg hover:bg-beige-700 transition-colors duration-300 flex items-center justify-center gap-2"
+                      className="flex-1 bg-accent-blue text-white text-center py-2 rounded-lg hover:bg-blue-600 transition-colors duration-300 flex items-center justify-center gap-2"
                     >
                       <ExternalLink size={16} />
                       Live Demo
@@ -224,7 +224,7 @@ const Projects = () => {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex-1 border border-beige-600 text-beige-600 text-center py-2 rounded-lg hover:bg-beige-600 hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
+                      className="flex-1 border border-accent-blue text-accent-blue text-center py-2 rounded-lg hover:bg-accent-blue hover:text-white transition-all duration-300 flex items-center justify-center gap-2"
                     >
                       <Github size={16} />
                       Code
