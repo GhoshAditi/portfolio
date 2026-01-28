@@ -99,7 +99,7 @@ const LinkedInPosts = () => {
               {/* Post Header */}
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center">
-                  <span className="text-orange-500 font-bold text-lg">YN</span>
+                  <span className="text-orange-500 font-bold text-lg">AG</span>
                 </div>
                 <div className="flex-grow">
                   <h3 className="font-semibold text-slate-100">Aditi Ghosh</h3>
