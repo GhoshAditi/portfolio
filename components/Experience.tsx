@@ -47,6 +47,19 @@ const Experience = () => {
 
   const experiences = [
     {
+      position: "Software Development Engineer Intern",
+      company: "DevrelSquad",
+      location: "Remote",
+      duration: "Feb 2026 - Present",
+      type: "Full-time",
+      description: "Leading the development of modern web applications using NextJs, MongoDB, and cloud technologies like Azure and Docker. Collaborated with cross-functional teams to deliver high-quality software solutions.",
+      achievements: [
+        
+      ],
+      technologies: ["NextJs", "TypeScript", "Azure", "MongoDB", "Docker"],
+      current: true
+    },
+    {
       position: "Web Developer Intern",
       company: "PayZoll",
       location: "Remote",
