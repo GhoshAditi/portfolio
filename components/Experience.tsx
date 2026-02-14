@@ -194,27 +194,28 @@ const Experience = () => {
                   </p>
 
                   {/* Achievements */}
-                  <div className="mb-6">
-                    <h5 className="text-slate-100 font-medium mb-3 flex items-center gap-2">
-                      <Award size={16} />
-                      Key Achievements
-                    </h5>
-                    <ul className="space-y-2">
-                      {exp.achievements.map((achievement, achIndex) => (
-                        <motion.li
-                          key={achIndex}
-                          initial={{ x: -20, opacity: 0 }}
-                          animate={isInView ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
-                          transition={{ delay: (index * 0.3) + (achIndex * 0.1) }}
-                          className="text-slate-300 text-sm flex items-start gap-2"
-                        >
-                          <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
-                          {achievement}
-                        </motion.li>
-                      ))}
-                    </ul>
-                  </div>
-
+{exp.achievements.length > 0 && (
+  <div className="mb-6">
+    <h5 className="text-slate-100 font-medium mb-3 flex items-center gap-2">
+      <Award size={16} />
+      Key Achievements
+    </h5>
+    <ul className="space-y-2">
+      {exp.achievements.map((achievement, achIndex) => (
+        <motion.li
+          key={achIndex}
+          initial={{ x: -20, opacity: 0 }}
+          animate={isInView ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
+          transition={{ delay: (index * 0.3) + (achIndex * 0.1) }}
+          className="text-slate-300 text-sm flex items-start gap-2"
+        >
+          <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+          {achievement}
+        </motion.li>
+      ))}
+    </ul>
+  </div>
+)}
                   {/* Technologies */}
                   <div>
                     <h5 className="text-slate-100 font-medium mb-3">Technologies Used</h5>
