@@ -1,4 +1,4 @@
-export const SITE_URL = 'https://aditighosh.dev'
+export const SITE_URL = 'https://aditi-ghosh.vercel.app/'
 
 export const siteConfig = {
   name: 'Aditi Ghosh',
