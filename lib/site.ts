@@ -2,9 +2,9 @@ export const SITE_URL = 'https://aditighosh.dev'
 
 export const siteConfig = {
   name: 'Aditi Ghosh',
-  title: 'Aditi Ghosh | Full Stack Developer Portfolio',
+  title: 'Aditi Ghosh - SDE | Performance and Scalable Architecture',
   description:
-    'Flashy and gamified portfolio of Aditi Ghosh featuring full stack projects, AI builds, and performance-focused web engineering.',
+    'Hire Aditi Ghosh for your next project - High performance websites with scalable backends.',
   locale: 'en_US',
   keywords: [
     'Aditi Ghosh',
