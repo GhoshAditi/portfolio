@@ -2,6 +2,7 @@
 
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
+import GamifiedOverview from '@/components/GamifiedOverview'
 import About from '@/components/About'
 import TechStack from '@/components/TechStack'
 import Projects from '@/components/Projects'
@@ -16,6 +17,7 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-br from-slate-900 via-darkBlue-900 to-slate-800">
       <Header />
       <Hero />
+      <GamifiedOverview />
       <About />
       <TechStack />
       <Projects />

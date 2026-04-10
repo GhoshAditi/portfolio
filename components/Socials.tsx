@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Linkedin, Github, Mail, ExternalLink } from 'lucide-react'
+import QuestBanner from './QuestBanner'
 
 const Socials = () => {
   const ref = useRef(null)
@@ -82,12 +83,13 @@ const Socials = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
-            Connect With Me
+          <QuestBanner quest="Network Realm" reward="+210 XP" />
+          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
+            Guild Portal
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Follow my journey across different platforms to stay updated with my latest projects, insights, and professional growth
+            Join different channels to track code drops, dev updates, and problem-solving progress.
           </p>
         </motion.div>
 
@@ -103,16 +105,16 @@ const Socials = () => {
               whileHover={{ y: -10 }}
               className="group"
             >
-              <div className="bg-slate-900/40 backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:shadow-accent-blue/30 transition-all duration-300 h-full border border-white/10">
+              <div className="bg-slate-950/70 backdrop-blur-md rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:shadow-accent-cyan/25 transition-all duration-300 h-full border border-accent-cyan/20">
                 <div className="flex items-center gap-4 mb-6">
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    className={`w-16 h-16 rounded-xl flex items-center justify-center text-white transition-all duration-300 ${platform.color}`}
+                    className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white transition-all duration-300 ${platform.color}`}
                   >
                     {platform.icon}
                   </motion.div>
                   <div>
-                    <h3 className="text-xl font-semibold text-slate-100">
+                    <h3 className="text-xl font-black text-slate-100 uppercase tracking-[0.08em]">
                       {platform.name}
                     </h3>
                   </div>
@@ -132,7 +134,7 @@ const Socials = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`inline-flex items-center gap-2 text-white px-6 py-3 rounded-full font-medium transition-all duration-300 ${platform.color}`}
+                  className={`inline-flex items-center gap-2 text-white px-6 py-3 rounded-full font-black transition-all duration-300 ${platform.color}`}
                 >
                   Follow
                   <ExternalLink size={16} />
@@ -142,7 +144,6 @@ const Socials = () => {
           ))}
         </div>
 
-        {/* Quick Contact */}
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -150,18 +151,17 @@ const Socials = () => {
           transition={{ delay: 1.2 }}
           className="text-center"
         >
-          <div className="bg-gradient-to-br from-darkBlue-700 to-slate-800 rounded-2xl p-8 border border-slate-700">
-            <h3 className="text-2xl font-semibold text-slate-100 mb-4">
-              Prefer Email?
+          <div className="bg-gradient-to-br from-darkBlue-700/70 to-slate-900/80 rounded-3xl p-8 border border-accent-orange/30">
+            <h3 className="text-2xl font-black text-slate-100 mb-4">
+              Direct Ping?
             </h3>
             <p className="text-slate-300 mb-6">
-              Feel free to reach out directly via email for collaboration opportunities
+              Send a direct message for internships, freelance work, or product collaboration.
             </p>
             <motion.a
-              href="mailto:your.email@example.com"
-              whileHover={{ scale: 1.05 }}
+              href="mailto:aditighosh668@gmail.com"
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 bg-accent-blue hover:bg-blue-600 text-white px-8 py-3 rounded-full font-medium transition-colors duration-300"
+              className="inline-flex items-center gap-2 bg-orange-400 text-slate-950 px-8 py-3 rounded-full font-black"
             >
               <Mail size={18} />
               Send Email

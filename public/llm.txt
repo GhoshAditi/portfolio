@@ -1,0 +1,26 @@
+# LLM Access Guide: aditighosh.dev
+
+## Site Summary
+A portfolio website for Aditi Ghosh, a full stack developer focused on web engineering, AI projects, security products, and social-impact solutions.
+
+## Preferred Canonical
+https://aditighosh.dev/
+
+## Primary Sections
+- https://aditighosh.dev/
+- https://aditighosh.dev/projects
+- https://aditighosh.dev/services
+- https://aditighosh.dev/about
+
+## Crawlable Project Routes
+- /projects/[slug]
+- /projects/category/[category]
+
+## Project Categories
+- security
+- ai
+- education
+- social-impact
+
+## Contact
+Use the on-site contact form at /#contact for collaboration and project inquiries.

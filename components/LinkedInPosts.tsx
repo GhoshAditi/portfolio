@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Linkedin, Heart, MessageCircle, Share2, Eye } from 'lucide-react'
+import QuestBanner from './QuestBanner'
 
 const LinkedInPosts = () => {
   const ref = useRef(null)
@@ -76,12 +77,13 @@ const LinkedInPosts = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
-            Featured Posts
+          <QuestBanner quest="Community Logs" reward="+180 XP" />
+          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
+            Broadcast Feed
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Recent thoughts and updates from my professional journey on LinkedIn
+            Real-time campaign updates from events, speaking sessions, and hackathons.
           </p>
         </motion.div>
 
@@ -94,26 +96,23 @@ const LinkedInPosts = () => {
               animate={isInView ? "visible" : "hidden"}
               variants={index % 2 === 0 ? slideFromLeft : slideFromRight}
               transition={{ delay: index * 0.2 }}
-              className="bg-slate-900/40 backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-xl hover:shadow-accent-blue/30 transition-shadow duration-300 border border-white/10"
+              className="bg-slate-950/70 backdrop-blur-md rounded-3xl p-8 shadow-lg hover:shadow-xl hover:shadow-accent-cyan/30 transition-shadow duration-300 border border-accent-cyan/20"
             >
-              {/* Post Header */}
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center">
-                  <span className="text-orange-500 font-bold text-lg">AG</span>
+                <div className="w-12 h-12 bg-accent-orange/20 rounded-2xl border border-accent-orange/40 flex items-center justify-center">
+                  <span className="text-accent-orange font-black text-lg">AG</span>
                 </div>
                 <div className="flex-grow">
-                  <h3 className="font-semibold text-slate-100">Aditi Ghosh</h3>
-                  <p className="text-slate-300 text-sm">{post.date}</p>
+                  <h3 className="font-bold text-slate-100">Aditi Ghosh</h3>
+                  <p className="text-slate-300 text-sm uppercase tracking-[0.08em]">{post.date}</p>
                 </div>
-                <Linkedin className="text-blue-600" size={24} />
+                <Linkedin className="text-accent-cyan" size={24} />
               </div>
 
-              {/* Post Content */}
               <p className="text-slate-300 mb-6 leading-relaxed">
                 {post.content}
               </p>
 
-              {/* Post Stats */}
               <div className="flex items-center justify-between pt-4 border-t border-slate-600">
                 <div className="flex items-center gap-4 text-slate-300">
                   <div className="flex items-center gap-1">
@@ -134,7 +133,7 @@ const LinkedInPosts = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
-                  className="text-blue-600 hover:text-blue-700 transition-colors duration-300 flex items-center gap-1 text-sm"
+                  className="text-accent-cyan hover:text-accent-orange transition-colors duration-300 flex items-center gap-1 text-sm font-semibold"
                 >
                   <Eye size={16} />
                   View on LinkedIn
@@ -144,60 +143,6 @@ const LinkedInPosts = () => {
           ))}
         </div>
 
-        {/* Other Posts */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {linkedinPosts.filter(post => !post.featured).map((post, index) => (
-            <motion.div
-              key={index}
-              initial={{ y: 50, opacity: 0 }}
-              animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-              transition={{ delay: 0.6 + (index * 0.1) }}
-              className="bg-slate-900/40 backdrop-blur-md rounded-xl p-6 shadow-lg hover:shadow-xl hover:shadow-accent-blue/30 transition-shadow duration-300 border border-white/10"
-            >
-              {/* Post Header */}
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-orange-500/20 rounded-full flex items-center justify-center">
-                  <span className="text-orange-500 font-bold">AD</span>
-                </div>
-                <div className="flex-grow">
-                  <h4 className="font-medium text-slate-100">Aditi Ghosh</h4>
-                  <p className="text-slate-300 text-xs">{post.date}</p>
-                </div>
-                <Linkedin className="text-blue-600" size={20} />
-              </div>
-
-              {/* Post Content */}
-              <p className="text-slate-300 text-sm mb-4 leading-relaxed">
-                {post.content.length > 150 ? `${post.content.substring(0, 150)}...` : post.content}
-              </p>
-
-              {/* Post Stats */}
-              <div className="flex items-center justify-between text-slate-300">
-                <div className="flex items-center gap-3">
-                  <span className="text-xs flex items-center gap-1">
-                    <Heart size={12} />{post.likes}
-                  </span>
-                  <span className="text-xs flex items-center gap-1">
-                    <MessageCircle size={12} />{post.comments}
-                  </span>
-                  <span className="text-xs flex items-center gap-1">
-                    <Share2 size={12} />{post.shares}
-                  </span>
-                </div>
-                <a
-                  href="https://linkedin.com/in/aditighosh2005"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:text-blue-700 transition-colors duration-300 text-xs"
-                >
-                  View Post
-                </a>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Follow Call to Action */}
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -205,8 +150,8 @@ const LinkedInPosts = () => {
           transition={{ delay: 1 }}
           className="text-center mt-12"
         >
-          <h3 className="text-xl font-semibold text-slate-100 mb-4">
-            Want to see more updates?
+          <h3 className="text-xl font-black text-slate-100 mb-4 uppercase tracking-[0.1em]">
+            Need More Logs?
           </h3>
           <motion.a
             href="https://linkedin.com/in/aditighosh2005"
@@ -214,10 +159,10 @@ const LinkedInPosts = () => {
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 bg-accent-blue hover:bg-blue-600 text-white px-6 py-3 rounded-full font-medium transition-colors duration-300"
+            className="inline-flex items-center gap-2 bg-accent-cyan hover:bg-accent-orange text-slate-950 px-6 py-3 rounded-full font-black transition-colors duration-300"
           >
             <Linkedin size={18} />
-            Follow on LinkedIn
+            Follow Live Feed
           </motion.a>
         </motion.div>
       </div>

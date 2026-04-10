@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Code, Palette, Smartphone, Cloud, Search, Zap } from 'lucide-react'
+import QuestBanner from './QuestBanner'
 
 const Services = () => {
   const ref = useRef(null)
@@ -94,12 +95,13 @@ const Services = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
-            My Services
+          <QuestBanner quest="Skill Tree" reward="+420 XP" />
+          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
+            Service Loadout
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            I offer comprehensive web development services to help bring your ideas to life
+            Choose a build path and I will craft a polished, high-impact execution plan.
           </p>
         </motion.div>
 
@@ -113,15 +115,15 @@ const Services = () => {
               variants={index % 2 === 0 ? slideFromLeft : slideFromRight}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className="bg-slate-900/40 backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-2xl hover:shadow-accent-blue/30 transition-all duration-300 group border border-white/10"
+              className="bg-slate-950/70 backdrop-blur-md rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:shadow-accent-cyan/25 transition-all duration-300 group border border-accent-cyan/20"
             >
-              <div className="w-16 h-16 bg-orange-500/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-orange-500/30 transition-colors duration-300">
-                <div className="text-orange-500 group-hover:text-orange-400 transition-colors duration-300">
+              <div className="w-16 h-16 bg-accent-orange/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-accent-orange/30 transition-colors duration-300 border border-accent-orange/30">
+                <div className="text-accent-orange group-hover:text-orange-300 transition-colors duration-300">
                   {service.icon}
                 </div>
               </div>
 
-              <h3 className="text-xl font-semibold text-slate-100 mb-4">
+              <h3 className="text-xl font-black text-slate-100 mb-4">
                 {service.title}
               </h3>
 
@@ -138,7 +140,7 @@ const Services = () => {
                     transition={{ delay: (index * 0.1) + (featureIndex * 0.05) }}
                     className="flex items-center gap-2 text-slate-300"
                   >
-                    <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+                    <div className="w-1.5 h-1.5 bg-accent-cyan rounded-full"></div>
                     <span className="text-sm">{feature}</span>
                   </motion.div>
                 ))}
@@ -155,20 +157,19 @@ const Services = () => {
           transition={{ delay: 0.8 }}
           className="text-center mt-16"
         >
-          <h3 className="text-2xl font-semibold text-slate-100 mb-4">
-            Ready to Start Your Project?
+          <h3 className="text-2xl font-black text-slate-100 mb-4">
+            Ready To Launch?
           </h3>
           <p className="text-slate-300 mb-8 max-w-lg mx-auto">
-            Let&apos;s discuss your ideas and create something amazing together. 
-            I&apos;m here to help you achieve your goals.
+            Let us select your build path and ship a standout product with speed and precision.
           </p>
           <motion.a
             href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-block bg-accent-blue hover:bg-blue-600 text-white px-8 py-3 rounded-full font-medium transition-colors duration-300"
+            className="inline-block bg-accent-cyan hover:bg-sky-400 text-slate-950 px-8 py-3 rounded-full font-black transition-colors duration-300"
           >
-            Get In Touch
+            Start Mission
           </motion.a>
         </motion.div>
       </div>

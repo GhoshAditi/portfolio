@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 import { Mail, Phone, MapPin, Send, CheckCircle, AlertCircle } from 'lucide-react'
+import QuestBanner from './QuestBanner'
 
 const Contact = () => {
   const ref = useRef(null)
@@ -125,13 +126,13 @@ const Contact = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
+          <QuestBanner quest="Final Boss" reward="Collaboration Unlocked" />
+          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
             Get In Touch
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? I&apos;d love to hear from you. 
-            Let&apos;s create something amazing together!
+            Ready to co-build something standout? Send your mission briefing below.
           </p>
         </motion.div>
 
@@ -144,13 +145,11 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-semibold text-slate-100 mb-6">
-                Let&apos;s Talk
+              <h3 className="text-2xl font-black text-slate-100 mb-6 uppercase tracking-[0.08em]">
+                Mission Brief
               </h3>
               <p className="text-slate-300 leading-relaxed mb-8">
-                I&apos;m always excited to work on new projects and collaborate with 
-                amazing people. Whether you have a specific project in mind or 
-                just want to explore possibilities, feel free to reach out!
+                Share your idea, challenge, or opportunity. I respond fast and move from idea to execution quickly.
               </p>
             </div>
 
@@ -162,9 +161,9 @@ const Contact = () => {
                   initial={{ x: -50, opacity: 0 }}
                   animate={isInView ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-center gap-4 p-4 bg-slate-900/20 backdrop-blur-md rounded-xl shadow-sm hover:shadow-md hover:shadow-accent-blue/30 transition-shadow duration-300 border border-white/10"
+                  className="flex items-center gap-4 p-4 bg-slate-950/65 backdrop-blur-md rounded-2xl shadow-sm hover:shadow-md hover:shadow-accent-cyan/30 transition-shadow duration-300 border border-accent-cyan/20"
                 >
-                  <div className="w-12 h-12 bg-orange-500/20 rounded-lg flex items-center justify-center text-orange-500">
+                  <div className="w-12 h-12 bg-accent-orange/20 rounded-xl border border-accent-orange/40 flex items-center justify-center text-accent-orange">
                     {info.icon}
                   </div>
                   <div>
@@ -184,15 +183,14 @@ const Contact = () => {
               ))}
             </div>
 
-            {/* Response Time */}
             <motion.div
               initial={{ y: 30, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
               transition={{ delay: 0.5 }}
-              className="bg-slate-900/40 backdrop-blur-md rounded-xl p-6 border border-white/10"
+              className="bg-slate-950/70 backdrop-blur-md rounded-2xl p-6 border border-accent-orange/30"
             >
-              <h4 className="text-slate-100 font-semibold mb-2">
-                Quick Response
+              <h4 className="text-slate-100 font-black mb-2 uppercase tracking-[0.08em]">
+                Response Window
               </h4>
               <p className="text-slate-300 text-sm">
                 I typically respond to emails within 24 hours. For urgent matters, 
@@ -206,9 +204,9 @@ const Contact = () => {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={slideFromRight}
-            className="bg-slate-900/40 backdrop-blur-md rounded-2xl p-8 shadow-lg border border-white/10"
+            className="bg-slate-950/70 backdrop-blur-md rounded-3xl p-8 shadow-lg border border-accent-cyan/25"
           >
-            <h3 className="text-2xl font-semibold text-beige-900 mb-6">
+            <h3 className="text-2xl font-black text-slate-100 mb-6">
               Send Message
             </h3>
 
@@ -217,10 +215,10 @@ const Contact = () => {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6 flex items-center gap-3"
+                className="bg-green-500/10 border border-green-500/30 rounded-xl p-4 mb-6 flex items-center gap-3"
               >
                 <CheckCircle className="text-green-600" size={20} />
-                <p className="text-black">Thank you! Your message has been sent successfully.</p>
+                <p className="text-green-100">Thank you! Your message has been sent successfully.</p>
               </motion.div>
             )}
 
@@ -229,10 +227,10 @@ const Contact = () => {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6 flex items-center gap-3"
+                className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 mb-6 flex items-center gap-3"
               >
                 <AlertCircle className="text-red-600" size={20} />
-                <p className="text-black">Sorry, there was an error sending your message. Please try again.</p>
+                <p className="text-red-100">Sorry, there was an error sending your message. Please try again.</p>
               </motion.div>
             )}
 
@@ -249,7 +247,7 @@ const Contact = () => {
                     required
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-600 bg-slate-800 rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-all duration-300 text-slate-100 placeholder-slate-500"
+                      className="w-full px-4 py-3 border border-slate-600 bg-slate-900 rounded-xl focus:ring-2 focus:ring-accent-cyan focus:border-transparent transition-all duration-300 text-slate-100 placeholder-slate-500"
                     placeholder="Your Name"
                   />
                 </div>
@@ -264,7 +262,7 @@ const Contact = () => {
                     required
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-600 bg-slate-800 rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-all duration-300 text-slate-100 placeholder-slate-500"
+                      className="w-full px-4 py-3 border border-slate-600 bg-slate-900 rounded-xl focus:ring-2 focus:ring-accent-cyan focus:border-transparent transition-all duration-300 text-slate-100 placeholder-slate-500"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -281,7 +279,7 @@ const Contact = () => {
                   required
                   value={formData.subject}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-slate-600 bg-slate-800 rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-all duration-300 text-slate-100 placeholder-slate-500"
+                  className="w-full px-4 py-3 border border-slate-600 bg-slate-900 rounded-xl focus:ring-2 focus:ring-accent-cyan focus:border-transparent transition-all duration-300 text-slate-100 placeholder-slate-500"
                   placeholder="Project Discussion"
                 />
               </div>
@@ -297,7 +295,7 @@ const Contact = () => {
                   rows={6}
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-slate-600 bg-slate-800 rounded-lg focus:ring-2 focus:ring-accent-blue focus:border-transparent transition-all duration-300 resize-vertical text-slate-100 placeholder-slate-500"
+                  className="w-full px-4 py-3 border border-slate-600 bg-slate-900 rounded-xl focus:ring-2 focus:ring-accent-cyan focus:border-transparent transition-all duration-300 resize-vertical text-slate-100 placeholder-slate-500"
                   placeholder="Tell me about your project or how we can work together..."
                 ></textarea>
               </div>
@@ -309,9 +307,9 @@ const Contact = () => {
                 whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
                 className={`w-full flex items-center justify-center gap-2 px-8 py-3 rounded-lg font-medium transition-all duration-300 ${
                   isSubmitting
-                    ? 'bg-blue-500 cursor-not-allowed'
-                    : 'bg-accent-blue hover:bg-blue-600'
-                } text-white`}
+                    ? 'bg-blue-500 text-white cursor-not-allowed'
+                    : 'bg-accent-cyan hover:bg-accent-orange text-slate-950'
+                }`}
               >
                 {isSubmitting ? (
                   <>
@@ -337,7 +335,7 @@ const Contact = () => {
           transition={{ delay: 1 }}
           className="text-center mt-16 pt-8 border-t border-slate-700"
         >
-          <p className="text-slate-300">
+          <p className="text-slate-300 font-semibold">
             © 2026 Aditi Ghosh. Built with Next.js and Tailwind CSS.
           </p>
           <p className="text-slate-400 text-sm mt-2">

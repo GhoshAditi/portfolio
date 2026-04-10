@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Briefcase, Calendar, MapPin, Award } from 'lucide-react'
+import QuestBanner from './QuestBanner'
 
 const Experience = () => {
   const ref = useRef(null)
@@ -54,6 +55,9 @@ const Experience = () => {
       type: "Full-time",
       description: "Leading the development of modern web applications using NextJs, MongoDB, and cloud technologies like Azure and Docker. Collaborated with cross-functional teams to deliver high-quality software solutions.",
       achievements: [
+       " Implemented SEO strategies to enhance organic search visibility, optimizing content and metadata to improve Google rankings and discoverability across search engines and AI language models",
+"Enhanced product functionality by implementing user feedback, resolving bugs, developing new features, and creating additional pages to improve user experience",
+"Refactored codebase by modularizing components into constants, enums, and configuration files, improving code maintainability, scalability, and development efficiency"
         
       ],
       technologies: ["NextJs", "TypeScript", "Azure", "MongoDB", "Docker"],
@@ -91,7 +95,7 @@ const Experience = () => {
       current: false
     },
     {
-      position: "Web Development Lead",
+      position: "Web Development co-Lead",
       company: "GDG RCCIIT",
       location: "Kolkata, India",
       duration: "Aug 2025 - Present",
@@ -99,25 +103,39 @@ const Experience = () => {
       description: "Led web development initiatives for Google Developer Group RCCIIT, organizing workshops, managing development projects, and mentoring junior developers.",
       achievements: [
         "Organized technical workshops and coding sessions",
-        "Developed and maintained the official GDG RCCIIT website",
-        "Mentored 50+ students in modern web development practices"
+        
       ],
       technologies: ["React", "Next.js", "TypeScript", "Firebase", "Tailwind CSS", "Git"],
       current: false
     },
     {
-      position: "Web Development Lead",
+      position: "Tech Lead",
       company: "ACM RCCIIT",
       location: "Kolkata, India",
       duration: "Jan 2026 - Present",
       type: "Leadership Role",
-      description: "Served as Web Development Lead for ACM RCCIIT chapter, coordinating technical events, managing web projects, and fostering a community of developers.",
+      description: "Serving as Tech Lead for ACM RCCIIT chapter, coordinating technical events, managing web projects, and fostering a community of developers.",
       achievements: [
-        "Built responsive websites for college events and competitions",
+       
+      ],
+      technologies: ["HTML5", "CSS3", "JavaScript", "React", "MongoDB", "Express.js"],
+      current: false
+    },
+    {
+      position : "Tech Member",
+      company: "Student Welfare Committee RCCIIT",
+      location: "Kolkata, India",
+      duration: "Year 2025",
+      type: "Tech Role",
+      description: "Served as a Tech Member for SWC RCCIIT chapter, contributing to technical initiatives and supporting the development of web projects.",
+      achievements: [
+        "Contributed to the website development of the official college events like Techtrix, GOT & Regalia , enhancing its functionality and user experience",
+        
       ],
       technologies: ["HTML5", "CSS3", "JavaScript", "React", "MongoDB", "Express.js"],
       current: false
     }
+
   ]
 
   return (
@@ -130,49 +148,51 @@ const Experience = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
-            Work Experience & Achievements
+          <QuestBanner quest="Career Campaign" reward="+700 XP" />
+          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
+            Campaign Timeline
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            My professional journey and the experiences that have shaped my career in web development
+            Major milestones, side quests, and boss-fight achievements from my engineering journey.
           </p>
         </motion.div>
 
         {/* Experience Timeline */}
         <div className="relative mb-16">
           {/* Timeline Line */}
-          <div className="absolute left-8 top-0 w-0.5 h-full bg-orange-500 hidden md:block"></div>
+          <div className="absolute left-8 top-0 w-0.5 h-full bg-gradient-to-b from-accent-cyan to-accent-orange hidden md:block"></div>
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
                 initial="hidden"
-                animate={isInView ? "visible" : "hidden"}
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.25 }}
                 variants={index % 2 === 0 ? slideFromLeft : slideFromRight}
-                transition={{ delay: index * 0.3 }}
+                transition={{ duration: 0.6, delay: index * 0.18 }}
                 className="relative"
               >
                 {/* Timeline Dot */}
-                <div className="absolute left-6 top-8 w-4 h-4 bg-orange-500 rounded-full border-4 border-slate-800 shadow-lg hidden md:block"></div>
+                <div className="absolute left-5 top-9 w-6 h-6 bg-slate-950 rounded-full border-2 border-accent-cyan shadow-[0_0_20px_rgba(34,211,238,0.5)] hidden md:block"></div>
 
                 {/* Experience Card */}
-                <div className="md:ml-20 bg-slate-900/40 backdrop-blur-md rounded-2xl p-8 shadow-lg hover:shadow-xl hover:shadow-accent-blue/30 transition-shadow duration-300 border border-white/10">
+                <div className="md:ml-20 bg-slate-950/70 backdrop-blur-md rounded-3xl p-8 shadow-lg hover:shadow-xl hover:shadow-accent-cyan/20 transition-shadow duration-300 border border-accent-cyan/20">
                   <div className="flex flex-wrap items-start justify-between mb-6">
                     <div className="flex-grow">
                       <div className="flex items-center gap-2 mb-2">
-                        <h3 className="text-xl font-semibold text-slate-100">
+                        <h3 className="text-xl font-black text-slate-100">
                           {exp.position}
                         </h3>
                         
                       </div>
                       
-                      <h4 className="text-lg text-slate-200 font-medium mb-3">
+                      <h4 className="text-lg text-accent-cyan font-semibold mb-3 uppercase tracking-[0.06em]">
                         {exp.company}
                       </h4>
 
-                      <div className="flex flex-wrap gap-4 text-sm text-beige-600 mb-4">
+                      <div className="flex flex-wrap gap-4 text-sm mb-4">
                         <div className="flex items-center gap-1 text-slate-300">
                           <Calendar size={16} />
                           {exp.duration}
@@ -189,16 +209,16 @@ const Experience = () => {
                     </div>
                   </div>
 
-                  <p className="text-slate-300 mb-6 leading-relaxed">
+                  <p className="text-slate-300 mb-6 leading-relaxed text-[15px]">
                     {exp.description}
                   </p>
 
                   {/* Achievements */}
 {exp.achievements.length > 0 && (
   <div className="mb-6">
-    <h5 className="text-slate-100 font-medium mb-3 flex items-center gap-2">
+    <h5 className="text-slate-100 font-semibold mb-3 flex items-center gap-2 uppercase tracking-[0.09em] text-sm">
       <Award size={16} />
-      Key Achievements
+      Quest Rewards
     </h5>
     <ul className="space-y-2">
       {exp.achievements.map((achievement, achIndex) => (
@@ -209,7 +229,7 @@ const Experience = () => {
           transition={{ delay: (index * 0.3) + (achIndex * 0.1) }}
           className="text-slate-300 text-sm flex items-start gap-2"
         >
-          <div className="w-1.5 h-1.5 bg-orange-500 rounded-full mt-2 flex-shrink-0"></div>
+          <div className="w-1.5 h-1.5 bg-accent-orange rounded-full mt-2 flex-shrink-0"></div>
           {achievement}
         </motion.li>
       ))}
@@ -218,7 +238,7 @@ const Experience = () => {
 )}
                   {/* Technologies */}
                   <div>
-                    <h5 className="text-slate-100 font-medium mb-3">Technologies Used</h5>
+                    <h5 className="text-slate-100 font-semibold mb-3 uppercase tracking-[0.09em] text-sm">Tools Equipped</h5>
                     <div className="flex flex-wrap gap-2">
                       {exp.technologies.map((tech, techIndex) => (
                         <motion.span
@@ -226,7 +246,7 @@ const Experience = () => {
                           initial={{ scale: 0, opacity: 0 }}
                           animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
                           transition={{ delay: (index * 0.3) + (techIndex * 0.05) }}
-                          className="bg-accent-blue/20 text-accent-blue border border-accent-blue/30 px-3 py-1 rounded-full text-sm font-medium"
+                          className="bg-accent-cyan/20 text-accent-cyan border border-accent-cyan/30 px-3 py-1 rounded-full text-sm font-semibold"
                         >
                           {tech}
                         </motion.span>

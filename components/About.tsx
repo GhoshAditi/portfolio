@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { GraduationCap, User, Calendar } from 'lucide-react'
+import QuestBanner from './QuestBanner'
 
 const About = () => {
   const ref = useRef(null)
@@ -58,79 +59,72 @@ const About = () => {
   return (
     <section id="about" ref={ref} className="py-20 px-6 bg-gradient-to-br from-slate-900 via-darkBlue-900 to-slate-800">
       <div className="container mx-auto max-w-6xl">
-        {/* Section Header */}
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-100 mb-4">
+          <QuestBanner quest="Origin Story" reward="+240 XP" />
+          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
             About Me
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-blue to-accent-purple mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Get to know more about my journey, education, and what drives my passion for development
+            Every strong build has an origin story. Here is mine.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* About Me Content */}
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
           <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={slideFromLeft}
-            className="space-y-6"
+            className="space-y-6 lg:col-span-7"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <User className="text-accent-blue" size={28} />
-              <h3 className="text-2xl font-semibold text-slate-100">Who I Am</h3>
-            </div>
-
-            <div className="space-y-4 text-slate-300 leading-relaxed">
-              <p>
-                I&apos;m a passionate full-stack developer with a love for creating innovative and 
-                user-friendly web applications. My journey in technology started during my freshman year in 
-                college years, where I discovered the power of code to solve real-world problems.
-              </p>
-              
-              <p>
-                With a strong foundation in both frontend and backend technologies, I enjoy 
-                building complete solutions from concept to deployment. I&apos;m particularly 
-                interested in modern web frameworks, cloud technologies, and creating 
-                seamless user experiences.
-              </p>
-
-              <p>
-                When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing 
-                to open-source projects, or sharing my knowledge with the developer community. 
-                I believe in continuous learning and staying up-to-date with the latest industry trends.
-              </p>
-            </div>
-
-            {/* Personal Stats */}
-            <div className="grid grid-cols-2 gap-6 mt-8">
-              <div className="text-center p-4 bg-slate-800/50 rounded-lg shadow-sm border border-slate-700">
-                <div className="text-2xl font-bold text-accent-blue">8+</div>
-                <div className="text-slate-300">Projects Completed</div>
+            <div className="rounded-3xl border border-accent-cyan/30 bg-slate-950/70 backdrop-blur-xl p-8">
+              <div className="flex items-center gap-3 mb-6">
+                <User className="text-accent-cyan" size={28} />
+                <h3 className="text-2xl font-semibold text-slate-100">Character Profile</h3>
               </div>
-              <div className="text-center p-4 bg-slate-800/50 rounded-lg shadow-sm border border-slate-700">
-                <div className="text-2xl font-bold text-accent-blue">2+</div>
-                <div className="text-slate-300">Years Experience</div>
+
+              <div className="space-y-4 text-slate-300 leading-relaxed">
+                <p>
+                  I am a full-stack developer obsessed with building products that are beautiful, useful, and technically sharp.
+                </p>
+                
+                <p>
+                  From frontend interactions to backend architecture, I enjoy owning the full game board. I care deeply about speed,
+                  code quality, and product clarity.
+                </p>
+
+                <p>
+                  Outside projects, I invest in open-source, community work, and continuous learning to keep leveling up.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-6 mt-8">
+              <div className="text-center p-5 bg-slate-950/70 rounded-2xl shadow-sm border border-accent-cyan/25">
+                <div className="text-2xl font-black text-accent-cyan">8+</div>
+                <div className="text-slate-300 text-sm uppercase tracking-[0.11em]">Projects Completed</div>
+              </div>
+              <div className="text-center p-5 bg-slate-950/70 rounded-2xl shadow-sm border border-accent-orange/25">
+                <div className="text-2xl font-black text-accent-orange">2+</div>
+                <div className="text-slate-300 text-sm uppercase tracking-[0.11em]">Years Experience</div>
               </div>
             </div>
           </motion.div>
 
-          {/* Education Section */}
           <motion.div
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={slideFromRight}
-            className="space-y-6"
+            className="space-y-6 lg:col-span-5"
           >
             <div className="flex items-center gap-3 mb-6">
-              <GraduationCap className="text-accent-blue" size={28} />
-              <h3 className="text-2xl font-semibold text-slate-100">Education</h3>
+              <GraduationCap className="text-accent-orange" size={28} />
+              <h3 className="text-2xl font-semibold text-slate-100">Academy Arc</h3>
             </div>
 
             <div className="space-y-6">
@@ -140,17 +134,17 @@ const About = () => {
                   initial={{ y: 50, opacity: 0 }}
                   animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
                   transition={{ delay: index * 0.2 }}
-                  className="bg-slate-800/50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-slate-700">
+                  className="bg-slate-950/70 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-accent-orange/25">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-slate-700 rounded-lg flex items-center justify-center">
-                      <Calendar className="text-accent-blue" size={20} />
+                    <div className="flex-shrink-0 w-12 h-12 bg-slate-800 rounded-xl flex items-center justify-center border border-accent-orange/35">
+                      <Calendar className="text-accent-orange" size={20} />
                     </div>
                     
                     <div className="flex-grow">
                       <h4 className="text-lg font-semibold text-slate-100 mb-1">
                         {edu.degree}
                       </h4>
-                      <p className="text-accent-blue font-medium mb-2">
+                      <p className="text-accent-cyan font-medium mb-2">
                         {edu.institution}
                       </p>
                       <p className="text-sm text-slate-400 mb-3">
@@ -159,7 +153,7 @@ const About = () => {
                       <p className="text-slate-300 text-sm mb-2">
                         {edu.description}
                       </p>
-                      <div className="inline-block bg-accent-blue/20 text-accent-blue text-sm px-3 py-1 rounded-full border border-accent-blue/30">
+                      <div className="inline-block bg-accent-cyan/20 text-accent-cyan text-sm px-3 py-1 rounded-full border border-accent-cyan/30">
                         {edu.grade}
                       </div>
                     </div>
