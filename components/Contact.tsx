@@ -132,7 +132,7 @@ const Contact = () => {
           </h2>
           <div className="mx-auto mb-6 h-px w-28 bg-accent-cyan/40"></div>
           <p className="im-sub text-base text-center mx-auto">
-            Ready to collaborate? I respond within 24 hours. Share your vision, timeline, and requirements. Let's ship something great together.
+            Ready to collaborate? I respond within 24 hours. Share your vision, timeline, and requirements. Let&apos;s ship something great together.
           </p>
         </motion.div>
 

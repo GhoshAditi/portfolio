@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import type { ReactNode } from 'react'
 import { SITE_URL, siteConfig } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 export default function PortfolioLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return <>{children}</>
 }

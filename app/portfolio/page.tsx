@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Download, ExternalLink, Github, Linkedin, Mail, MapPin, Phone, Code2, Database, Cloud, Rocket, Shield, Flame } from 'lucide-react'
+import { Download, ExternalLink, Github, Linkedin, Mail, MapPin, Phone, Code2, Database, Cloud, Rocket } from 'lucide-react'
 import { featuredProjects } from '@/lib/projects'
 
 const fadeInUp = {
@@ -381,7 +381,7 @@ export default function PortfolioPage() {
             <motion.div variants={fadeInUp} className='space-y-4'>
               <h3 className='text-4xl font-bold text-slate-100'>Ready to Work Together?</h3>
               <p className='text-lg text-slate-300 max-w-2xl mx-auto'>
-                Let's build something amazing. Reach out with your project details and I'll respond within 24 hours.
+                Let&apos;s build something amazing. Reach out with your project details and I&apos;ll respond within 24 hours.
               </p>
             </motion.div>
             <motion.div variants={fadeInUp} className='flex flex-wrap justify-center gap-4'>
