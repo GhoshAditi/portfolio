@@ -15,10 +15,10 @@ export default function ProjectsIndexPage() {
   const categories = ['security', 'ai', 'education', 'social-impact']
 
   return (
-    <main className="min-h-screen px-6 py-24">
+    <main className="min-h-screen px-6 py-24 im-section">
       <section className="container mx-auto max-w-6xl">
-        <p className="text-sm uppercase tracking-[0.2em] text-accent-cyan mb-4">Project Index</p>
-        <h1 className="text-4xl md:text-6xl font-black text-slate-100 mb-5">Build Quests</h1>
+        <p className="im-kicker mb-4">Project Index</p>
+        <h1 className="im-heading text-slate-100 mb-5">Build Quests</h1>
         <p className="text-slate-300 max-w-3xl mb-10">
           Explore technical deep-dives, architecture, and outcomes from projects across security, AI, and social impact.
         </p>
@@ -35,7 +35,7 @@ export default function ProjectsIndexPage() {
           {featuredProjects.map((project) => (
             <article
               key={project.slug}
-              className="rounded-2xl border border-white/10 bg-slate-900/50 p-6 backdrop-blur-md hover:border-accent-cyan/50 transition-colors"
+              className="im-card p-6 hover:border-accent-cyan/50 transition-colors"
             >
               <p className="text-xs uppercase tracking-[0.2em] text-accent-orange mb-3">{project.category}</p>
               <h2 className="text-xl text-slate-100 font-bold mb-3">{project.title}</h2>

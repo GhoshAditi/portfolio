@@ -139,8 +139,8 @@ const Experience = () => {
   ]
 
   return (
-    <section id="experience" ref={ref} className="py-20 px-6 bg-gradient-to-r from-slate-900 via-darkBlue-900 to-slate-800">
-      <div className="container mx-auto max-w-6xl">
+    <section id="experience" ref={ref} className="py-24 px-6 im-section relative overflow-hidden">
+      <div className="container mx-auto max-w-6xl relative z-10">
         {/* Section Header */}
         <motion.div
           initial="hidden"
@@ -148,13 +148,13 @@ const Experience = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <QuestBanner quest="Career Campaign" reward="+700 XP" />
-          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
-            Campaign Timeline
+          <QuestBanner quest="Career Timeline" reward="+360 XP" />
+          <h2 className="im-heading text-slate-100 mb-4 mt-6">
+            Professional Journey
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Major milestones, side quests, and boss-fight achievements from my engineering journey.
+          <div className="mx-auto mb-6 h-px w-28 bg-accent-cyan/40"></div>
+          <p className="im-sub text-base text-center mx-auto">
+            Diverse roles spanning web development, cloud infrastructure, and cross-functional collaborations across startups and open-source communities.
           </p>
         </motion.div>
 
@@ -178,7 +178,7 @@ const Experience = () => {
                 <div className="absolute left-5 top-9 w-6 h-6 bg-slate-950 rounded-full border-2 border-accent-cyan shadow-[0_0_20px_rgba(34,211,238,0.5)] hidden md:block"></div>
 
                 {/* Experience Card */}
-                <div className="md:ml-20 bg-slate-950/70 backdrop-blur-md rounded-3xl p-8 shadow-lg hover:shadow-xl hover:shadow-accent-cyan/20 transition-shadow duration-300 border border-accent-cyan/20">
+                <div className="md:ml-20 im-card p-8 hover:shadow-xl hover:shadow-accent-cyan/20 transition-shadow duration-300">
                   <div className="flex flex-wrap items-start justify-between mb-6">
                     <div className="flex-grow">
                       <div className="flex items-center gap-2 mb-2">

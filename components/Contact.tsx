@@ -117,7 +117,7 @@ const Contact = () => {
   ]
 
   return (
-    <section id="contact" ref={ref} className="py-20 px-6 bg-gradient-to-r from-slate-900 via-darkBlue-900 to-slate-800">
+    <section id="contact" ref={ref} className="py-24 px-6 im-section">
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <motion.div
@@ -127,12 +127,12 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <QuestBanner quest="Final Boss" reward="Collaboration Unlocked" />
-          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
+          <h2 className="im-heading text-slate-100 mb-4 mt-6">
             Get In Touch
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Ready to co-build something standout? Send your mission briefing below.
+          <div className="mx-auto mb-6 h-px w-28 bg-accent-cyan/40"></div>
+          <p className="im-sub text-base text-center mx-auto">
+            Ready to collaborate? I respond within 24 hours. Share your vision, timeline, and requirements. Let's ship something great together.
           </p>
         </motion.div>
 
@@ -161,7 +161,7 @@ const Contact = () => {
                   initial={{ x: -50, opacity: 0 }}
                   animate={isInView ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="flex items-center gap-4 p-4 bg-slate-950/65 backdrop-blur-md rounded-2xl shadow-sm hover:shadow-md hover:shadow-accent-cyan/30 transition-shadow duration-300 border border-accent-cyan/20"
+                  className="flex items-center gap-4 p-4 im-card hover:shadow-md hover:shadow-accent-cyan/30 transition-shadow duration-300"
                 >
                   <div className="w-12 h-12 bg-accent-orange/20 rounded-xl border border-accent-orange/40 flex items-center justify-center text-accent-orange">
                     {info.icon}
@@ -187,7 +187,7 @@ const Contact = () => {
               initial={{ y: 30, opacity: 0 }}
               animate={isInView ? { y: 0, opacity: 1 } : { y: 30, opacity: 0 }}
               transition={{ delay: 0.5 }}
-              className="bg-slate-950/70 backdrop-blur-md rounded-2xl p-6 border border-accent-orange/30"
+              className="im-card p-6"
             >
               <h4 className="text-slate-100 font-black mb-2 uppercase tracking-[0.08em]">
                 Response Window
@@ -204,7 +204,7 @@ const Contact = () => {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             variants={slideFromRight}
-            className="bg-slate-950/70 backdrop-blur-md rounded-3xl p-8 shadow-lg border border-accent-cyan/25"
+            className="im-card p-8"
           >
             <h3 className="text-2xl font-black text-slate-100 mb-6">
               Send Message
@@ -308,7 +308,7 @@ const Contact = () => {
                 className={`w-full flex items-center justify-center gap-2 px-8 py-3 rounded-lg font-medium transition-all duration-300 ${
                   isSubmitting
                     ? 'bg-blue-500 text-white cursor-not-allowed'
-                    : 'bg-accent-cyan hover:bg-accent-orange text-slate-950'
+                    : 'im-cta-primary'
                 }`}
               >
                 {isSubmitting ? (

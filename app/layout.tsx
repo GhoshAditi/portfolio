@@ -16,6 +16,8 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: siteConfig.keywords,
   category: 'technology',
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
   alternates: {
     canonical: '/',
   },
@@ -39,6 +41,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: siteConfig.title,
     description: siteConfig.description,
+    creator: '@aditighosh2005',
     images: [`${SITE_URL}/og-image.png`],
   },
   robots: {

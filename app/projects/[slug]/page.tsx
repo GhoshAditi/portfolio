@@ -60,13 +60,13 @@ export default function ProjectDetailPage({ params }: Params) {
   }
 
   return (
-    <main className="min-h-screen px-6 py-24">
+    <main className="min-h-screen px-6 py-24 im-section">
       <section className="container mx-auto max-w-5xl">
         <Link href="/projects" className="text-accent-cyan font-semibold hover:text-accent-orange transition-colors">
           ← Back to all projects
         </Link>
 
-        <article className="mt-8 rounded-3xl border border-white/10 bg-slate-900/55 p-8 md:p-12 backdrop-blur-lg">
+        <article className="im-card mt-8 p-8 md:p-12">
           <p className="text-xs uppercase tracking-[0.22em] text-accent-orange mb-4">{project.category}</p>
           <h1 className="text-4xl md:text-5xl font-black text-slate-100 mb-6">{project.title}</h1>
           <p className="text-slate-300 leading-relaxed text-lg mb-8">{project.description}</p>

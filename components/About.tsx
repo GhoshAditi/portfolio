@@ -57,7 +57,7 @@ const About = () => {
   ]
 
   return (
-    <section id="about" ref={ref} className="py-20 px-6 bg-gradient-to-br from-slate-900 via-darkBlue-900 to-slate-800">
+    <section id="about" ref={ref} className="py-20 px-6 im-section">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial="hidden"
@@ -66,12 +66,12 @@ const About = () => {
           className="text-center mb-16"
         >
           <QuestBanner quest="Origin Story" reward="+240 XP" />
-          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
+          <h2 className="im-heading text-slate-100 mb-4 mt-6">
             About Me
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Every strong build has an origin story. Here is mine.
+          <div className="mx-auto mb-6 h-px w-28 bg-accent-cyan/40"></div>
+          <p className="im-sub text-base text-center mx-auto">
+            Full-stack engineer with a passionate focus on clean architecture, exceptional UX, and shipping products that matter.
           </p>
         </motion.div>
 
@@ -82,7 +82,7 @@ const About = () => {
             variants={slideFromLeft}
             className="space-y-6 lg:col-span-7"
           >
-            <div className="rounded-3xl border border-accent-cyan/30 bg-slate-950/70 backdrop-blur-xl p-8">
+            <div className="im-card p-8">
               <div className="flex items-center gap-3 mb-6">
                 <User className="text-accent-cyan" size={28} />
                 <h3 className="text-2xl font-semibold text-slate-100">Character Profile</h3>

@@ -40,13 +40,13 @@ export default function ProjectCategoryPage({ params }: Params) {
   const categoryProjects = projects.filter((project) => project.category === params.category)
 
   return (
-    <main className="min-h-screen px-6 py-24">
+    <main className="min-h-screen px-6 py-24 im-section">
       <section className="container mx-auto max-w-6xl">
-        <Link href="/projects" className="text-accent-cyan font-semibold hover:text-accent-orange transition-colors">
+        <Link href="/projects" className="text-accent-cyan font-semibold hover:text-orange-300 transition-colors">
           ← Back to project index
         </Link>
 
-        <h1 className="text-4xl md:text-5xl font-black text-slate-100 mt-6 mb-4 capitalize">
+        <h1 className="im-heading text-slate-100 mt-6 mb-4 capitalize">
           {params.category.replace('-', ' ')} projects
         </h1>
         <p className="text-slate-300 mb-10 max-w-2xl">
@@ -55,10 +55,10 @@ export default function ProjectCategoryPage({ params }: Params) {
 
         <div className="grid md:grid-cols-2 gap-6">
           {categoryProjects.map((project) => (
-            <article key={project.slug} className="rounded-2xl border border-white/10 bg-slate-900/55 p-6">
+            <article key={project.slug} className="im-card p-6">
               <h2 className="text-2xl font-bold text-slate-100 mb-3">{project.title}</h2>
               <p className="text-slate-300 mb-4">{project.description}</p>
-              <Link href={`/projects/${project.slug}`} className="text-accent-cyan font-semibold hover:text-accent-orange">
+              <Link href={`/projects/${project.slug}`} className="text-accent-cyan font-semibold hover:text-orange-300">
                 Read case study →
               </Link>
             </article>

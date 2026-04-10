@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --ink: 236, 240, 245;
+  --ink-soft: 161, 172, 189;
+  --bg-0: 6, 9, 16;
+  --bg-1: 10, 16, 28;
+  --surface: 14, 21, 35;
+  --line: 71, 85, 105;
+  --accent-cool: 47, 216, 195;
+  --accent-warm: 255, 168, 94;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -16,14 +27,14 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background:
-    radial-gradient(circle at 10% 15%, rgba(34, 211, 238, 0.14), transparent 35%),
-    radial-gradient(circle at 85% 20%, rgba(249, 115, 22, 0.16), transparent 35%),
-    radial-gradient(circle at 50% 85%, rgba(34, 211, 238, 0.1), transparent 40%),
-    linear-gradient(155deg, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)) 55%, #0b1224 100%);
+  color: rgb(var(--ink));
   min-height: 100vh;
   line-height: 1.5;
+  background:
+    radial-gradient(1200px 700px at 10% -5%, rgba(var(--accent-cool), 0.18), transparent 40%),
+    radial-gradient(800px 600px at 90% 0%, rgba(var(--accent-warm), 0.16), transparent 45%),
+    radial-gradient(700px 500px at 50% 105%, rgba(var(--accent-cool), 0.12), transparent 55%),
+    linear-gradient(165deg, rgb(var(--bg-0)), rgb(var(--bg-1)) 55%, #090d17 100%);
 }
 
 a {
@@ -31,42 +42,102 @@ a {
   text-decoration: none;
 }
 
-:root {
-  --foreground-rgb: 248, 250, 252;
-  --background-start-rgb: 5, 10, 24;
-  --background-end-rgb: 16, 28, 52;
-  --accent-rgb: 34, 211, 238;
-  --panel-rgb: 15, 23, 42;
-}
-
 body::before {
   content: '';
   position: fixed;
   inset: 0;
-  pointer-events: none;
-  background-image: linear-gradient(rgba(148, 163, 184, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(148, 163, 184, 0.07) 1px, transparent 1px);
-  background-size: 36px 36px;
-  mask-image: radial-gradient(circle at center, black, transparent 75%);
   z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at center, black, transparent 75%);
 }
 
+.im-section {
+  position: relative;
+  background: linear-gradient(180deg, rgba(8, 13, 24, 0.65) 0%, rgba(8, 13, 24, 0.3) 100%);
+}
+
+.im-heading {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(2.1rem, 6vw, 3.8rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+}
+
+.im-kicker {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(var(--accent-cool), 0.95);
+  font-weight: 700;
+}
+
+.im-sub {
+  color: rgba(var(--ink-soft), 0.98);
+  max-width: 44rem;
+}
+
+.im-card {
+  border-radius: 1.5rem;
+  border: 1px solid rgba(var(--line), 0.34);
+  background: linear-gradient(140deg, rgba(var(--surface), 0.8), rgba(8, 13, 24, 0.78));
+  box-shadow: 0 20px 60px rgba(1, 4, 10, 0.42);
+  backdrop-filter: blur(12px);
+}
+
+.im-chip,
 .chip-link {
-  border: 1px solid rgba(34, 211, 238, 0.45);
+  border: 1px solid rgba(var(--line), 0.45);
   border-radius: 9999px;
-  padding: 0.45rem 0.85rem;
+  padding: 0.45rem 0.9rem;
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-weight: 700;
-  background: rgba(2, 6, 23, 0.72);
-  color: #22d3ee;
+  color: rgb(var(--ink));
+  background: rgba(12, 20, 34, 0.68);
   transition: all 180ms ease;
 }
 
+.im-chip:hover,
 .chip-link:hover {
-  color: #0f172a;
-  background: #22d3ee;
+  transform: translateY(-1px);
+  border-color: rgba(var(--accent-cool), 0.65);
+  color: rgb(var(--accent-cool));
+}
+
+.im-cta-primary {
+  border-radius: 9999px;
+  padding: 0.8rem 1.55rem;
+  border: 1px solid rgba(var(--accent-cool), 0.6);
+  background: rgb(var(--accent-cool));
+  color: #07101d;
+  font-weight: 800;
+  transition: all 160ms ease;
+}
+
+.im-cta-primary:hover {
+  background: rgb(var(--accent-warm));
+  border-color: rgba(var(--accent-warm), 0.6);
+}
+
+.im-cta-ghost {
+  border-radius: 9999px;
+  padding: 0.8rem 1.55rem;
+  border: 1px solid rgba(var(--line), 0.6);
+  color: rgb(var(--ink));
+  background: rgba(12, 20, 34, 0.4);
+  font-weight: 700;
+  transition: all 160ms ease;
+}
+
+.im-cta-ghost:hover {
+  border-color: rgba(var(--accent-cool), 0.6);
+  color: rgb(var(--accent-cool));
 }
 
 @media (prefers-reduced-motion: reduce) {

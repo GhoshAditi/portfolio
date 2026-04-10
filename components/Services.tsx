@@ -86,7 +86,7 @@ const Services = () => {
   ]
 
   return (
-    <section id="services" ref={ref} className="py-20 px-6 bg-gradient-to-r from-slate-900 via-darkBlue-900 to-slate-800">
+    <section id="services" ref={ref} className="py-24 px-6 im-section">
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <motion.div
@@ -95,13 +95,13 @@ const Services = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <QuestBanner quest="Skill Tree" reward="+420 XP" />
-          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
-            Service Loadout
+          <QuestBanner quest="Service Menu" reward="+420 XP" />
+          <h2 className="im-heading text-slate-100 mb-4 mt-6">
+            What I Build
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Choose a build path and I will craft a polished, high-impact execution plan.
+          <div className="mx-auto mb-6 h-px w-28 bg-accent-cyan/40"></div>
+          <p className="im-sub text-base text-center mx-auto">
+            End-to-end solutions spanning modern web development, cloud infrastructure, and performance optimization. Custom execution for every project stage.
           </p>
         </motion.div>
 
@@ -115,7 +115,7 @@ const Services = () => {
               variants={index % 2 === 0 ? slideFromLeft : slideFromRight}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className="bg-slate-950/70 backdrop-blur-md rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:shadow-accent-cyan/25 transition-all duration-300 group border border-accent-cyan/20"
+              className="im-card p-8 hover:shadow-2xl hover:shadow-accent-cyan/25 transition-all duration-300 group"
             >
               <div className="w-16 h-16 bg-accent-orange/20 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-accent-orange/30 transition-colors duration-300 border border-accent-orange/30">
                 <div className="text-accent-orange group-hover:text-orange-300 transition-colors duration-300">
@@ -167,7 +167,7 @@ const Services = () => {
             href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-block bg-accent-cyan hover:bg-sky-400 text-slate-950 px-8 py-3 rounded-full font-black transition-colors duration-300"
+            className="inline-block im-cta-primary"
           >
             Start Mission
           </motion.a>

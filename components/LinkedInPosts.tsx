@@ -68,7 +68,7 @@ const LinkedInPosts = () => {
   ]
 
   return (
-    <section id="linkedin" ref={ref} className="py-20 px-6 bg-gradient-to-r from-slate-900 via-darkBlue-900 to-slate-800">
+    <section id="linkedin" ref={ref} className="py-24 px-6 im-section">
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <motion.div
@@ -77,12 +77,16 @@ const LinkedInPosts = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <QuestBanner quest="Community Logs" reward="+180 XP" />
-          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
-            Broadcast Feed
+          <QuestBanner quest="Community Engagement" reward="+180 XP" />
+          <h2 className="im-heading text-slate-100 mb-4 mt-6">
+            Social Highlights
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
+          <div className="mx-auto mb-6 h-px w-28 bg-accent-cyan/40"></div>
+          <p className="im-sub text-base text-center max-w-2xl mx-auto">
+            Featured insights and achievements from community engagement across platforms.
+          </p>
+          <div className="mx-auto mb-6 h-px w-28 bg-slate-500/70"></div>
+          <p className="text-lg text-slate-300 text-center max-w-2xl mx-auto">
             Real-time campaign updates from events, speaking sessions, and hackathons.
           </p>
         </motion.div>
@@ -96,7 +100,7 @@ const LinkedInPosts = () => {
               animate={isInView ? "visible" : "hidden"}
               variants={index % 2 === 0 ? slideFromLeft : slideFromRight}
               transition={{ delay: index * 0.2 }}
-              className="bg-slate-950/70 backdrop-blur-md rounded-3xl p-8 shadow-lg hover:shadow-xl hover:shadow-accent-cyan/30 transition-shadow duration-300 border border-accent-cyan/20"
+              className="im-card p-8 hover:shadow-xl hover:shadow-accent-cyan/30 transition-shadow duration-300"
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 bg-accent-orange/20 rounded-2xl border border-accent-orange/40 flex items-center justify-center">

@@ -74,7 +74,7 @@ const Socials = () => {
   ]
 
   return (
-    <section id="socials" ref={ref} className="py-20 px-6 bg-gradient-to-r from-slate-900 via-darkBlue-900 to-slate-800">
+    <section id="socials" ref={ref} className="py-24 px-6 im-section">
       <div className="container mx-auto max-w-6xl">
         {/* Section Header */}
         <motion.div
@@ -83,13 +83,13 @@ const Socials = () => {
           variants={fadeInUp}
           className="text-center mb-16"
         >
-          <QuestBanner quest="Network Realm" reward="+210 XP" />
-          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
-            Guild Portal
+          <QuestBanner quest="Connect Online" reward="+210 XP" />
+          <h2 className="im-heading text-slate-100 mb-4 mt-6">
+            Connect With Me
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Join different channels to track code drops, dev updates, and problem-solving progress.
+          <div className="mx-auto mb-6 h-px w-28 bg-accent-cyan/40"></div>
+          <p className="im-sub text-base text-center mx-auto">
+            Follow my work across multiple platforms. GitHub for open-source, LinkedIn for industry updates, LeetCode for algorithm challenges.
           </p>
         </motion.div>
 
@@ -105,7 +105,7 @@ const Socials = () => {
               whileHover={{ y: -10 }}
               className="group"
             >
-              <div className="bg-slate-950/70 backdrop-blur-md rounded-3xl p-8 shadow-lg hover:shadow-2xl hover:shadow-accent-cyan/25 transition-all duration-300 h-full border border-accent-cyan/20">
+              <div className="im-card p-8 hover:shadow-2xl hover:shadow-accent-cyan/25 transition-all duration-300 h-full">
                 <div className="flex items-center gap-4 mb-6">
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
@@ -151,7 +151,7 @@ const Socials = () => {
           transition={{ delay: 1.2 }}
           className="text-center"
         >
-          <div className="bg-gradient-to-br from-darkBlue-700/70 to-slate-900/80 rounded-3xl p-8 border border-accent-orange/30">
+          <div className="im-card p-8">
             <h3 className="text-2xl font-black text-slate-100 mb-4">
               Direct Ping?
             </h3>
@@ -161,7 +161,7 @@ const Socials = () => {
             <motion.a
               href="mailto:aditighosh668@gmail.com"
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 bg-orange-400 text-slate-950 px-8 py-3 rounded-full font-black"
+              className="inline-flex items-center gap-2 im-cta-primary"
             >
               <Mail size={18} />
               Send Email

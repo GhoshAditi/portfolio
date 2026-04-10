@@ -49,7 +49,7 @@ const Projects = () => {
   }
 
   return (
-    <section id="projects" ref={ref} className="py-20 px-6 bg-gradient-to-br from-slate-900 via-darkBlue-900 to-slate-800">
+    <section id="projects" ref={ref} className="py-20 px-6 im-section">
       <div className="container mx-auto max-w-7xl">
         {/* Section Header */}
         <motion.div
@@ -59,12 +59,12 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <QuestBanner quest="Quest Board" reward="+500 XP" />
-          <h2 className="text-4xl md:text-5xl font-black font-display text-slate-100 mb-4 mt-4">
-            My Projects
+          <h2 className="im-heading text-slate-100 mb-4 mt-6">
+            Featured Work
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-accent-cyan to-accent-orange mx-auto mb-6"></div>
-          <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Select any mission card to inspect its stack, demo, and source payload.
+          <div className="mx-auto mb-6 h-px w-28 bg-accent-cyan/40"></div>
+          <p className="im-sub text-base text-center mx-auto">
+            Curated selection of production projects spanning full-stack development, cloud architecture, and real-world impact.
           </p>
         </motion.div>
 
@@ -79,7 +79,7 @@ const Projects = () => {
                 animate={isInView ? "visible" : "hidden"}
                 variants={index % 2 === 0 ? slideFromLeft : slideFromRight}
                 transition={{ delay: index * 0.2 }}
-                className="group bg-slate-950/70 backdrop-blur-md rounded-3xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 border border-accent-cyan/20 hover:border-accent-cyan/50"
+                className="group im-card overflow-hidden hover:shadow-2xl transition-all duration-300 hover:border-accent-cyan/50"
               >
                 <div className="relative overflow-hidden">
                   <div className="w-full h-48 bg-gradient-to-br from-slate-800 to-darkBlue-900 flex items-center justify-center border-b border-accent-cyan/20">

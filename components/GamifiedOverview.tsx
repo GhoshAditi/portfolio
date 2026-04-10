@@ -20,7 +20,7 @@ export default function GamifiedOverview() {
   return (
     <section className="px-6 pb-16 -mt-8 relative z-20">
       <div className="container mx-auto max-w-6xl">
-        <div className="rounded-3xl border border-accent-cyan/35 bg-slate-950/75 backdrop-blur-xl p-6 md:p-8 shadow-[0_0_80px_rgba(34,211,238,0.16)]">
+        <div className="im-card p-6 md:p-8">
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <div>
               <p className="text-xs uppercase tracking-[0.24em] text-accent-orange">Player Dashboard</p>
@@ -44,7 +44,7 @@ export default function GamifiedOverview() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className="rounded-2xl border border-white/10 bg-slate-900/80 p-4 hover:border-accent-cyan/35 transition-colors"
+                className="im-card p-4 hover:border-accent-cyan/35 transition-colors"
               >
                 <p className="text-sm text-slate-300">{metric.label}</p>
                 <p className="text-3xl font-black text-accent-cyan leading-tight mt-2">{metric.value}</p>
