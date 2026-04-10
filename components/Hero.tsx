@@ -54,7 +54,7 @@ const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center pt-24 px-6 relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute top-24 right-[10%] h-20 w-20 rounded-full border border-accent-orange/40" />
+        <div className="hidden sm:block absolute top-24 right-[10%] h-20 w-20 rounded-full border border-accent-orange/40" />
         <div className="absolute bottom-24 left-[12%] h-40 w-40 rounded-full bg-accent-cyan/20 blur-3xl" />
         <div className="absolute bottom-20 right-[8%] h-44 w-44 rounded-full bg-accent-orange/20 blur-3xl" />
       </div>
@@ -137,7 +137,7 @@ const Hero = () => {
 
           <motion.div
             variants={slideFromRight}
-            className="flex justify-center lg:justify-end"
+            className="hidden lg:flex justify-center lg:justify-end"
           >
             <div className="relative">
               <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-accent-cyan/30 via-transparent to-accent-orange/30 blur-2xl" />

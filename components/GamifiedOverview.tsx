@@ -6,7 +6,7 @@ import { Target, Shield, Rocket } from 'lucide-react'
 const metrics = [
   { label: 'Level', value: '18', hint: 'Builder Rank' },
   { label: 'XP', value: '12,480', hint: 'Engineering XP' },
-  { label: 'Quest Wins', value: '26', hint: 'Shipped Projects' },
+  { label: 'Quest Wins', value: '15', hint: 'Shipped Projects' },
   { label: 'Streak', value: '143', hint: 'Learning Days' },
 ]
 
