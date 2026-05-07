@@ -1,11 +1,16 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import { Space_Grotesk, Outfit } from 'next/font/google'
+import { Cormorant_Upright } from 'next/font/google'
 import './globals.css'
 import { SITE_URL, siteConfig } from '@/lib/site'
+import LenisProvider from '@/components/LenisProvider'
 
-const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space' })
-const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' })
+const cormorant = Cormorant_Upright({
+  subsets: ['latin'],
+  variable: '--font-cormorant',
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -73,9 +78,11 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${spaceGrotesk.variable} ${outfit.variable} font-sans min-h-screen text-slate-100 antialiased`}>
-        {children}
+    <html lang="en" className="scroll-smooth" data-theme="dark">
+      <body className={`${cormorant.variable} antialiased`} style={{ fontFamily: 'var(--font-cormorant), serif', paddingTop: '0' }}>
+        <LenisProvider>
+          {children}
+        </LenisProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
       </body>
     </html>

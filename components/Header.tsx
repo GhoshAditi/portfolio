@@ -1,117 +1,217 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { useState, useCallback, useEffect } from 'react'
+import { HiOutlineSun, HiOutlineMoon, HiBars3BottomRight, HiXMark } from 'react-icons/hi2'
+import { motion, AnimatePresence } from 'framer-motion'
+import NavHeader from '@/components/ui/nav-header'
 
-const Header = () => {
-  const [isOpen, setIsOpen] = useState(false)
+
+export default function Header() {
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40)
+      setScrolled(window.scrollY > 20)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const navItems = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#tech', label: 'Stack' },
-    { href: '#projects', label: 'Projects' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#services', label: 'Services' },
-    { href: '#contact', label: 'Contact' },
-  ]
+  const toggleTheme = useCallback(() => {
+    setTheme(prev => {
+      const next = prev === 'dark' ? 'light' : 'dark'
+      document.documentElement.setAttribute('data-theme', next)
+      return next
+    })
+  }, [])
 
-  const topBadges = [
-    { href: '#linkedin', label: 'Updates' },
-    { href: '#socials', label: 'Links' },
-  ]
+  useEffect(() => {
+    const handleHashChange = () => setIsMenuOpen(false)
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
 
   return (
-    <motion.header
-      initial={false}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-slate-950/85 backdrop-blur-xl border-b border-slate-700/60 shadow-[0_14px_45px_rgba(2,6,23,0.45)]'
-          : 'bg-transparent'
-      }`}
-    >
-      <nav className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          <motion.div whileHover={{ y: -1 }} className="cursor-pointer">
-            <a href="#home" className="block">
-              <p className="im-kicker">Aditi Ghosh</p>
-              <h1 className="text-2xl font-extrabold font-display text-slate-100 tracking-tight">Portfolio</h1>
-            </a>
-          </motion.div>
+    <>
+      {/* ── Fixed Brand Block ────────────────────────────────────── */}
+      <div 
+        className="brand-block-fixed"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          padding: '1.5rem 2rem',
+          zIndex: 9999,
+          pointerEvents: 'auto'
+        }}
+      >
+        <a
+          href="#home"
+          style={{ 
+            display: 'flex', 
+            flexDirection: 'column', 
+            textDecoration: 'none', 
+            lineHeight: 1
+          }}
+        >
+          <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: 'var(--red)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '2px' }}>
+            Aditi Ghosh
+          </span>
+          <span style={{ fontSize: '1.4rem', fontWeight: 500, color: 'var(--fg)', letterSpacing: '-0.03em' }}>
+            Portfolio
+          </span>
+        </a>
+      </div>
 
-          <div className="hidden xl:flex items-center space-x-7">
-            {navItems.map((item, index) => (
-              <motion.a
-                key={item.href}
-                href={item.href}
-                initial={{ y: -12, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: index * 0.08 }}
-                whileHover={{ y: -2 }}
-                className="text-slate-300 hover:text-accent-cyan transition-colors duration-300 font-semibold text-sm uppercase tracking-[0.12em]"
-              >
-                {item.label}
-              </motion.a>
-            ))}
+      {/* ── Navigation Row ────────────────────────────────────────── */}
+      <div
+        className={`nav-row-sticky ${scrolled ? 'is-scrolled' : ''}`}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 9998,
+          pointerEvents: 'none',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          padding: '1.5rem 0',
+          transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+        }}
+      >
+        <div className="container" style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'flex-end', // Align nav to right since brand is top-left
+          width: '100%',
+          pointerEvents: 'none'
+        }}>
+          
+          {/* Desktop Navigation */}
+          <div className="desktop-nav-container" style={{ flex: 1, display: 'flex', justifyContent: 'center', pointerEvents: 'auto' }}>
+            <NavHeader />
           </div>
 
-          <div className="hidden md:flex items-center gap-2 ml-4">
-            {topBadges.map((route) => (
-              <a key={route.href} href={route.href} className="im-chip">
-                {route.label}
-              </a>
-            ))}
-          </div>
+          {/* Right Actions */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', pointerEvents: 'auto' }}>
+            <button
+              onClick={toggleTheme}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '38px',
+                height: '38px',
+                border: '1px solid var(--border)',
+                borderRadius: '50%',
+                background: 'rgba(var(--bg-rgb), 0.3)',
+                backdropFilter: 'blur(12px)',
+                color: 'var(--fg)',
+                cursor: 'pointer',
+              }}
+            >
+              {theme === 'dark' ? <HiOutlineSun size={18} /> : <HiOutlineMoon size={18} />}
+            </button>
 
-          <button className="xl:hidden text-slate-100 p-2" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+            <button
+              className="mobile-hamburger"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              style={{
+                display: 'none',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '38px',
+                height: '38px',
+                border: '1px solid var(--border)',
+                borderRadius: 'var(--r-md)',
+                background: 'rgba(var(--bg-rgb), 0.3)',
+                backdropFilter: 'blur(12px)',
+                color: isMenuOpen ? 'var(--red)' : 'var(--fg)',
+                cursor: 'pointer',
+              }}
+            >
+              {isMenuOpen ? <HiXMark size={22} /> : <HiBars3BottomRight size={22} />}
+            </button>
+          </div>
         </div>
+      </div>
 
-        {isOpen && (
+      {/* ── Mobile Menu Overlay ────────────────────────────────────── */}
+      <AnimatePresence>
+        {isMenuOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="xl:hidden mt-4 pb-4"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: '100vh' }}
+            exit={{ opacity: 0, height: 0 }}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              right: 0,
+              background: 'var(--bg)',
+              padding: '7rem 1.5rem 2rem',
+              zIndex: 9997,
+              overflow: 'hidden',
+              pointerEvents: 'auto'
+            }}
           >
-            <div className="im-card flex flex-col space-y-4 p-6">
-              {navItems.map((item, index) => (
-                <motion.a
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              {[
+                { label: "Home", href: "#home" },
+                { label: "About", href: "#about" },
+                { label: "Stack", href: "#tech" },
+                { label: "Projects", href: "#projects" },
+                { label: "Experience", href: "#experience" },
+                { label: "Services", href: "#services" },
+                { label: "Contact", href: "#contact" },
+                { label: "Updates", href: "#linkedin" },
+                { label: "Links", href: "#socials" },
+              ].map((item, i) => (
+                <a
                   key={item.href}
                   href={item.href}
-                  initial={{ x: -18, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="text-slate-200 hover:text-accent-cyan transition-colors duration-300 font-semibold py-2"
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => setIsMenuOpen(false)}
+                  style={{
+                    fontSize: '1.5rem',
+                    fontWeight: 500,
+                    color: 'var(--fg)',
+                    padding: '0.85rem 0',
+                    borderBottom: '1px solid var(--border)',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    textDecoration: 'none'
+                  }}
                 >
                   {item.label}
-                </motion.a>
+                  <span style={{ color: 'var(--red)', fontSize: '0.8rem' }}>0{i+1}</span>
+                </a>
               ))}
-              <div className="flex flex-wrap gap-2 pt-3 border-t border-slate-700/60">
-                {topBadges.map((route) => (
-                  <a key={route.href} href={route.href} className="im-chip" onClick={() => setIsOpen(false)}>
-                    {route.label}
-                  </a>
-                ))}
-              </div>
             </div>
           </motion.div>
         )}
-      </nav>
-    </motion.header>
+      </AnimatePresence>
+
+      <style>{`
+        @media (min-width: 1025px) {
+          .nav-row-sticky.is-scrolled {
+             padding: 0.75rem 0 !important;
+             background: rgba(var(--bg-rgb), 0.7);
+             backdrop-filter: blur(12px);
+          }
+        }
+
+        @media (max-width: 1024px) {
+          .brand-block-fixed { padding: 1.25rem 1.5rem !important; }
+          .desktop-nav-container { display: none !important; }
+          .desktop-only-badges { display: none !important; }
+          .mobile-hamburger { display: flex !important; }
+          .nav-row-sticky { padding: 1.25rem 1.5rem !important; }
+        }
+      `}</style>
+    </>
   )
 }
-
-export default Header

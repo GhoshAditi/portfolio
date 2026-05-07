@@ -37,12 +37,12 @@ export default function ProjectsIndexPage() {
               key={project.slug}
               className="im-card p-6 hover:border-accent-cyan/50 transition-colors"
             >
-              <p className="text-xs uppercase tracking-[0.2em] text-accent-orange mb-3">{project.category}</p>
-              <h2 className="text-xl text-slate-100 font-bold mb-3">{project.title}</h2>
-              <p className="text-slate-300 text-sm leading-relaxed mb-5">{project.description}</p>
+              <p className="text-sm uppercase tracking-[0.2em] text-accent-orange mb-3">{project.category}</p>
+              <h2 className="text-2xl text-slate-100 font-bold mb-3">{project.title}</h2>
+              <p className="text-slate-300 text-base leading-relaxed mb-5">{project.description}</p>
               <Link
                 href={`/projects/${project.slug}`}
-                className="text-sm font-semibold text-accent-cyan hover:text-accent-orange transition-colors"
+                className="text-base font-semibold text-accent-cyan hover:text-accent-orange transition-colors"
               >
                 Open case study →
               </Link>

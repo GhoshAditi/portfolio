@@ -77,13 +77,13 @@ export default function PortfolioPage() {
             className='space-y-8'
           >
             <motion.div variants={fadeInUp} className='text-center space-y-4'>
-              <h1 className='text-5xl md:text-7xl font-black text-slate-100 leading-tight'>
+              <h1 className='text-6xl md:text-8xl font-black text-slate-100 leading-tight'>
                 Aditi Ghosh
               </h1>
-              <h2 className='text-2xl md:text-3xl text-accent-cyan font-semibold'>
+              <h2 className='text-3xl md:text-4xl text-accent-cyan font-semibold'>
                 Full Stack Engineer | Performance Architect
               </h2>
-              <p className='text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed'>
+              <p className='text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed'>
                 Building high-performance, scalable web applications with clean architecture and exceptional user experiences. Specialized in Next.js, TypeScript, and cloud technologies.
               </p>
             </motion.div>
@@ -150,7 +150,7 @@ export default function PortfolioPage() {
             className='space-y-8'
           >
             <motion.div variants={fadeInUp}>
-              <h3 className='text-3xl font-bold text-slate-100 mb-6'>Professional Summary</h3>
+              <h3 className='text-4xl font-bold text-slate-100 mb-6'>Professional Summary</h3>
               <div className='bg-slate-850 rounded-2xl border border-slate-700/50 p-8 space-y-4 text-slate-300 leading-relaxed'>
                 <p>
                   Full-stack engineer with 2+ years of professional experience building production-grade web applications. Specialized in high-performance architecture, scalable backend systems, and modern frontend development using Next.js and TypeScript.
@@ -177,7 +177,7 @@ export default function PortfolioPage() {
             variants={containerVariants}
             className='space-y-8'
           >
-            <motion.h3 variants={fadeInUp} className='text-3xl font-bold text-slate-100'>
+            <motion.h3 variants={fadeInUp} className='text-4xl font-bold text-slate-100'>
               Core Competencies
             </motion.h3>
             <div className='grid md:grid-cols-3 gap-6'>
@@ -188,7 +188,7 @@ export default function PortfolioPage() {
                   transition={{ delay: idx * 0.1 }}
                   className='bg-slate-850 rounded-2xl border border-slate-700/50 p-6 hover:border-accent-cyan/50 transition-colors'
                 >
-                  <h4 className='text-xl font-bold text-slate-100 mb-2'>{skill.title}</h4>
+                  <h4 className='text-2xl font-bold text-slate-100 mb-2'>{skill.title}</h4>
                   <p className='text-slate-400'>{skill.desc}</p>
                 </motion.div>
               ))}
@@ -207,7 +207,7 @@ export default function PortfolioPage() {
             variants={containerVariants}
             className='space-y-8'
           >
-            <motion.h3 variants={fadeInUp} className='text-3xl font-bold text-slate-100'>
+            <motion.h3 variants={fadeInUp} className='text-4xl font-bold text-slate-100'>
               Tech Stack & Tools
             </motion.h3>
             <div className='grid md:grid-cols-4 gap-6'>
@@ -227,7 +227,7 @@ export default function PortfolioPage() {
                   </h4>
                   <ul className='space-y-2'>
                     {techs.map((tech) => (
-                      <li key={tech} className='text-slate-400 text-sm'>
+                      <li key={tech} className='text-slate-400 text-base'>
                         • {tech}
                       </li>
                     ))}
@@ -249,7 +249,7 @@ export default function PortfolioPage() {
             variants={containerVariants}
             className='space-y-8'
           >
-            <motion.h3 variants={fadeInUp} className='text-3xl font-bold text-slate-100'>
+            <motion.h3 variants={fadeInUp} className='text-4xl font-bold text-slate-100'>
               Professional Experience
             </motion.h3>
             <div className='space-y-6'>
@@ -262,12 +262,12 @@ export default function PortfolioPage() {
                 >
                   <div className='flex flex-col md:flex-row md:justify-between md:items-start gap-4 mb-4'>
                     <div>
-                      <h4 className='text-xl font-bold text-slate-100'>{exp.role}</h4>
+                      <h4 className='text-2xl font-bold text-slate-100'>{exp.role}</h4>
                       <p className='text-accent-cyan font-semibold'>{exp.company}</p>
                     </div>
                     <div className='text-right text-slate-400'>
-                      <p className='text-sm'>{exp.period}</p>
-                      <p className='text-sm flex items-center gap-1 justify-end mt-1'>
+                      <p className='text-base'>{exp.period}</p>
+                      <p className='text-base flex items-center gap-1 justify-end mt-1'>
                         <MapPin size={14} /> {exp.location}
                       </p>
                     </div>
@@ -297,7 +297,7 @@ export default function PortfolioPage() {
             variants={containerVariants}
             className='space-y-8'
           >
-            <motion.h3 variants={fadeInUp} className='text-3xl font-bold text-slate-100'>
+            <motion.h3 variants={fadeInUp} className='text-4xl font-bold text-slate-100'>
               Featured Projects
             </motion.h3>
             <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
@@ -310,20 +310,20 @@ export default function PortfolioPage() {
                   className='group bg-slate-850 rounded-2xl border border-slate-700/50 overflow-hidden hover:border-accent-cyan/50 transition-all duration-300'
                 >
                   <div className='h-40 bg-gradient-to-br from-slate-800 to-slate-900 flex items-center justify-center overflow-hidden relative'>
-                    <p className='text-slate-400 text-sm font-medium'>{project.title}</p>
+                    <p className='text-slate-400 text-base font-medium'>{project.title}</p>
                   </div>
                   <div className='p-6 space-y-4'>
                     <div>
-                      <h4 className='text-lg font-bold text-slate-100 mb-2 group-hover:text-accent-cyan transition-colors'>
+                      <h4 className='text-xl font-bold text-slate-100 mb-2 group-hover:text-accent-cyan transition-colors'>
                         {project.title}
                       </h4>
-                      <p className='text-slate-400 text-sm line-clamp-2'>{project.description}</p>
+                      <p className='text-slate-400 text-base line-clamp-2'>{project.description}</p>
                     </div>
                     <div className='flex flex-wrap gap-2'>
                       {project.technologies.slice(0, 3).map((tech) => (
                         <span
                           key={tech}
-                          className='text-xs px-2 py-1 rounded-full bg-accent-cyan/15 text-accent-cyan border border-accent-cyan/30'
+                          className='text-sm px-2 py-1 rounded-full bg-accent-cyan/15 text-accent-cyan border border-accent-cyan/30'
                         >
                           {tech}
                         </span>
@@ -334,7 +334,7 @@ export default function PortfolioPage() {
                         href={project.liveUrl}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='flex-1 flex items-center justify-center gap-1 py-2 rounded-lg bg-accent-cyan/10 hover:bg-accent-cyan/20 text-accent-cyan text-sm font-semibold transition-colors'
+                        className='flex-1 flex items-center justify-center gap-1 py-2 rounded-lg bg-accent-cyan/10 hover:bg-accent-cyan/20 text-accent-cyan text-base font-semibold transition-colors'
                         onClick={(e) => e.stopPropagation()}
                       >
                         <ExternalLink size={16} />
@@ -344,7 +344,7 @@ export default function PortfolioPage() {
                         href={project.githubUrl}
                         target='_blank'
                         rel='noopener noreferrer'
-                        className='flex-1 flex items-center justify-center gap-1 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 text-slate-200 text-sm font-semibold transition-colors'
+                        className='flex-1 flex items-center justify-center gap-1 py-2 rounded-lg bg-slate-700/50 hover:bg-slate-700 text-slate-200 text-base font-semibold transition-colors'
                         onClick={(e) => e.stopPropagation()}
                       >
                         <Github size={16} />
@@ -379,8 +379,8 @@ export default function PortfolioPage() {
             className='text-center space-y-8'
           >
             <motion.div variants={fadeInUp} className='space-y-4'>
-              <h3 className='text-4xl font-bold text-slate-100'>Ready to Work Together?</h3>
-              <p className='text-lg text-slate-300 max-w-2xl mx-auto'>
+              <h3 className='text-5xl font-bold text-slate-100'>Ready to Work Together?</h3>
+              <p className='text-xl text-slate-300 max-w-2xl mx-auto'>
                 Let&apos;s build something amazing. Reach out with your project details and I&apos;ll respond within 24 hours.
               </p>
             </motion.div>

@@ -1,0 +1,14 @@
+{
+  "linkset": [
+    {
+      "anchor": "/",
+      "rel": "service-doc",
+      "href": "/README.md"
+    },
+    {
+      "anchor": "/",
+      "rel": "api-catalog",
+      "href": "/.well-known/api-catalog"
+    }
+  ]
+}
