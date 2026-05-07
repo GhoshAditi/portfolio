@@ -1,0 +1,23 @@
+{
+  "serverInfo": {
+    "name": "Aditi Ghosh Portfolio Agent",
+    "version": "1.0.0",
+    "description": "Agent-ready portfolio interface for Aditi Ghosh"
+  },
+  "capabilities": {
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "prompts": {
+      "listChanged": false
+    },
+    "tools": {
+      "listChanged": false
+    }
+  },
+  "transport": {
+    "type": "http",
+    "url": "/api/mcp"
+  }
+}

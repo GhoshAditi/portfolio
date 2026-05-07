@@ -67,17 +67,17 @@ export default function ProjectDetailPage({ params }: Params) {
         </Link>
 
         <article className="im-card mt-8 p-8 md:p-12">
-          <p className="text-xs uppercase tracking-[0.22em] text-accent-orange mb-4">{project.category}</p>
-          <h1 className="text-4xl md:text-5xl font-black text-slate-100 mb-6">{project.title}</h1>
-          <p className="text-slate-300 leading-relaxed text-lg mb-8">{project.description}</p>
+          <p className="text-sm uppercase tracking-[0.22em] text-accent-orange mb-4">{project.category}</p>
+          <h1 className="text-5xl md:text-6xl font-black text-slate-100 mb-6">{project.title}</h1>
+          <p className="text-slate-300 leading-relaxed text-xl mb-8">{project.description}</p>
 
           <div className="mb-8">
-            <h2 className="text-xl text-slate-100 font-semibold mb-4">Tech Stack</h2>
+            <h2 className="text-2xl text-slate-100 font-semibold mb-4">Tech Stack</h2>
             <div className="flex flex-wrap gap-3">
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="rounded-full border border-accent-cyan/40 bg-accent-cyan/10 px-4 py-1.5 text-sm text-accent-cyan"
+                  className="rounded-full border border-accent-cyan/40 bg-accent-cyan/10 px-4 py-1.5 text-base text-accent-cyan"
                 >
                   {tech}
                 </span>

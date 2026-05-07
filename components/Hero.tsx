@@ -1,160 +1,361 @@
 'use client'
 
 import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { Download, Sparkles, Trophy, Flame } from 'lucide-react'
+import { motion, useReducedMotion } from 'framer-motion'
+import { HiOutlineStar, HiOutlineSparkles, HiOutlineCheckBadge, HiOutlineWrenchScrewdriver, HiOutlineArrowLongRight } from 'react-icons/hi2'
+import BlurText from '@/components/BlurText'
+import { NumberTicker } from '@/components/magicui/number-ticker'
 
-const Hero = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.2,
-        staggerChildren: 0.15,
-      },
-    },
-  }
+/* ── Animation variants ────────────────────────────────────────────────────── */
+const EASE_EXPO = [0.16, 1, 0.3, 1] as const
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-      },
-    },
-  }
+const fadeUp = (delay = 0) => ({
+  hidden:  { opacity: 0, y: 24, clipPath: 'inset(100% 0 0 0)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    clipPath: 'inset(0% 0 0 0)',
+    transition: { duration: 0.65, ease: EASE_EXPO, delay },
+  },
+})
 
-  const slideFromLeft = {
-    hidden: { x: -70, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: 'easeOut',
-      },
-    },
-  }
+const fadeIn = (delay = 0) => ({
+  hidden:  { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.5, ease: EASE_EXPO, delay } },
+})
 
-  const slideFromRight = {
-    hidden: { x: 70, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: 'easeOut',
-      },
-    },
-  }
+const slideRight = (delay = 0) => ({
+  hidden:  { opacity: 0, x: 40 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.7, ease: EASE_EXPO, delay } },
+})
+
+/* ── Stat item ─────────────────────────────────────────────────────────────── */
+function Stat({ value, label, suffix = "" }: { value: number; label: string; suffix?: string }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.15rem' }}>
+      <span style={{ fontSize: '1.85rem', fontWeight: 500, color: 'var(--fg)', letterSpacing: '-0.03em', lineHeight: 1, display: 'flex', alignItems: 'baseline' }}>
+        <NumberTicker value={value} />
+        <span style={{ fontSize: '1.2rem', color: 'var(--red)', marginLeft: '1px' }}>{suffix}</span>
+      </span>
+      <span className="t-label" style={{ color: 'var(--fg-soft)' }}>{label}</span>
+    </div>
+  )
+}
+
+/* ── Red geometric corner accent (SVG) ─────────────────────────────────────── */
+function CornerAccent() {
+  return (
+    <svg
+      aria-hidden="true"
+      width="32"
+      height="32"
+      viewBox="0 0 32 32"
+      fill="none"
+      style={{ position: 'absolute', top: '-1px', right: '-1px' }}
+    >
+      <path d="M0 0 L32 0 L32 32" fill="var(--red)" />
+    </svg>
+  )
+}
+
+/* ── Component ─────────────────────────────────────────────────────────────── */
+export default function Hero() {
+  const reduced = useReducedMotion()
 
   return (
-    <section id="home" className="im-section min-h-screen flex items-center justify-center pt-24 px-6 relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="hidden sm:block absolute top-24 right-[10%] h-20 w-20 rounded-full border border-slate-500/40" />
-        <div className="absolute bottom-24 left-[12%] h-40 w-40 rounded-full bg-accent-cyan/10 blur-3xl" />
-        <div className="absolute bottom-20 right-[8%] h-44 w-44 rounded-full bg-orange-300/10 blur-3xl" />
-      </div>
+    <section
+      id="home"
+      style={{
+        minHeight: '100svh',
+        display: 'flex',
+        alignItems: 'center',
+        paddingTop: 'calc(5rem + 100px)',
+        paddingBottom: '4rem',
+        paddingLeft: '1.5rem',
+        paddingRight: '1.5rem',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      {/* ── Faint red glow in background ─────────────────────── */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: '10%',
+          right: '5%',
+          width: '40vw',
+          height: '40vw',
+          maxWidth: '600px',
+          maxHeight: '600px',
+          borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(255,19,19,0.07) 0%, transparent 70%)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }}
+      />
 
-      <div className="container mx-auto max-w-6xl">
-        <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="text-center lg:text-left">
-            <motion.div variants={slideFromLeft} className="mb-6">
-              <span className="im-chip inline-flex items-center gap-2">
-                <Sparkles size={14} />
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+
+        {/* ── Two-column grid ──────────────────────────────────── */}
+        <div className="hero-grid">
+          {/* Eyebrow */}
+          <div className="hero-area-eyebrow">
+            <motion.div
+              variants={reduced ? {} : fadeIn(0.05)}
+              initial="hidden"
+              animate="visible"
+            >
+              <span className="chip">
+                <HiOutlineSparkles size={14} aria-hidden="true" />
                 Open To Build
-              </span>
-              <h1 className="im-heading mt-5 text-slate-100">Aditi Ghosh</h1>
-            </motion.div>
-
-            <motion.div variants={slideFromLeft} className="mb-6">
-              <h2 className="text-2xl md:text-3xl text-slate-100 font-semibold leading-tight">
-                Full Stack Engineer with strong product and performance instincts
-              </h2>
-            </motion.div>
-
-            <motion.p variants={slideFromLeft} className="im-sub text-lg mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
-              I design and ship immersive digital products with clean architecture, sharp UX details, and measurable outcomes.
-            </motion.p>
-
-            <motion.div variants={slideFromLeft} className="grid sm:grid-cols-3 gap-3 mb-8">
-              <div className="im-card p-4">
-                <p className="text-xs text-slate-400 uppercase tracking-[0.15em]">Projects</p>
-                <p className="text-xl font-black text-accent-cyan">15+</p>
-              </div>
-              <div className="im-card p-4">
-                <p className="text-xs text-slate-400 uppercase tracking-[0.15em]">Experience</p>
-                <p className="text-xl font-black text-orange-300">2+ yrs</p>
-              </div>
-              <div className="im-card p-4">
-                <p className="text-xs text-slate-400 uppercase tracking-[0.15em]">Win Rate</p>
-                <p className="text-xl font-black text-emerald-300">94%</p>
-              </div>
-            </motion.div>
-
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <motion.button
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => {
-                  window.open('/Aditi_Ghosh_Resume.pdf', '_blank')
-                }}
-                className="im-cta-primary flex items-center justify-center gap-2"
-              >
-                <Download size={18} />
-                Open CV
-              </motion.button>
-
-              <motion.a href="#contact" whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.95 }} className="im-cta-ghost text-center">
-                Get In Touch
-              </motion.a>
-            </motion.div>
-
-            <motion.div variants={slideFromLeft} className="flex flex-wrap items-center gap-4 mt-8 text-sm text-slate-300">
-              <span className="inline-flex items-center gap-2">
-                <Trophy size={16} className="text-accent-cyan" /> Hackathon Finalist
-              </span>
-              <span className="inline-flex items-center gap-2">
-                <Flame size={16} className="text-orange-300" /> Performance Optimizer
               </span>
             </motion.div>
           </div>
 
-          <motion.div variants={slideFromRight} className="hidden lg:flex justify-center lg:justify-end">
-            <div className="relative">
-              <div className="absolute -inset-6 rounded-[2.5rem] bg-gradient-to-br from-accent-cyan/20 via-transparent to-orange-300/20 blur-2xl" />
-
-              <div className="relative im-card p-5 rounded-[2rem]">
-                <div className="w-80 h-80 bg-slate-900 rounded-[1.6rem] flex items-center justify-center border border-slate-600/40 overflow-hidden">
-                  <Image
-                    src="/pfp.jpg"
-                    alt="Aditi Ghosh"
-                    width={320}
-                    height={320}
-                    className="w-full h-full object-cover rounded-[1.4rem] scale-110"
-                  />
-                </div>
-              </div>
-
-              <motion.div
-                animate={{ y: [-8, 8, -8] }}
-                transition={{ repeat: Infinity, duration: 4 }}
-                className="absolute -top-4 -right-4 w-14 h-14 border border-slate-400/50 rounded-2xl bg-slate-300/10"
+          {/* Headline group */}
+          <div className="hero-area-headline">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <BlurText
+                text="Aditi Ghosh"
+                delay={100}
+                animateBy="letters"
+                direction="top"
+                className="t-hero"
+                style={{ justifyContent: 'inherit' }} // Inherits center from parent grid on mobile
               />
-              <motion.div
-                animate={{ y: [8, -8, 8] }}
-                transition={{ repeat: Infinity, duration: 3 }}
-                className="absolute -bottom-6 -left-6 w-12 h-12 border border-orange-300/50 rounded-full bg-orange-300/20"
+
+              <BlurText
+                text="Full Stack Engineer with strong product and performance instincts"
+                delay={50}
+                animateBy="words"
+                direction="top"
+                className="t-body"
+                stepDuration={0.4}
+                style={{
+                  fontSize: 'clamp(1.15rem, 3vw, 1.7rem)',
+                  fontWeight: 400,
+                  lineHeight: 1.3,
+                  letterSpacing: '-0.01em',
+                  color: 'var(--fg-soft)',
+                  maxWidth: '48ch',
+                  justifyContent: 'inherit',
+                }}
               />
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+
+          {/* Body copy */}
+          <div className="hero-area-body">
+            <motion.p
+              variants={reduced ? {} : fadeUp(0.3)}
+              initial="hidden"
+              animate="visible"
+              className="t-body"
+              style={{ fontWeight: 400 }}
+            >
+              I design and ship immersive digital products with clean architecture, sharp UX details, and measurable outcomes.
+            </motion.p>
+          </div>
+
+          {/* ── Right: Photo frame ───────────────────────────── */}
+          <div className="hero-area-photo">
+            <motion.div
+              variants={reduced ? {} : slideRight(0.2)}
+              initial="hidden"
+              animate="visible"
+              className="hero-photo-wrapper"
+            >
+              <div
+                style={{
+                  position: 'relative',
+                  width: 'clamp(240px, 80vw, 420px)',
+                  aspectRatio: '1 / 1',
+                }}
+              >
+                {/* Outer structural frame */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: '-14px',
+                    border: '1px solid var(--border)',
+                    borderRadius: 'var(--r-lg)',
+                    pointerEvents: 'none',
+                    zIndex: 0,
+                  }}
+                />
+
+                {/* Red corner accent (top-right) */}
+                <div style={{ position: 'absolute', top: '-14px', right: '-14px', zIndex: 2, overflow: 'hidden', width: '40px', height: '40px', borderRadius: '0 var(--r-lg) 0 0' }}>
+                  <CornerAccent />
+                </div>
+
+                {/* Photo container */}
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: '100%',
+                    borderRadius: 'var(--r-lg)',
+                    overflow: 'hidden',
+                    border: '1px solid var(--border)',
+                    background: 'var(--surface)',
+                    zIndex: 1,
+                  }}
+                >
+                  <Image
+                    src="https://i.postimg.cc/cJzDL4HQ/pfp.jpg"
+                    alt="Aditi Ghosh — Full Stack Engineer"
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    sizes="(max-width: 1024px) 100vw, 420px"
+                    priority
+                  />
+                </div>
+
+                {/* Bottom-left structural dot */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    bottom: '-22px',
+                    left: '-22px',
+                    width: '10px',
+                    height: '10px',
+                    borderRadius: '50%',
+                    background: 'var(--red)',
+                    zIndex: 2,
+                  }}
+                />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Stats row */}
+          <div className="hero-area-stats">
+            <motion.div
+              variants={reduced ? {} : fadeIn(0.38)}
+              initial="hidden"
+              animate="visible"
+              className="hero-stats-row"
+            >
+              <Stat value={15} label="Projects" suffix="+" />
+              <div className="hero-stat-sep" aria-hidden="true" />
+              <Stat value={2} label="Experience" suffix="+ yrs" />
+              <div className="hero-stat-sep" aria-hidden="true" />
+              <Stat value={94} label="Win Rate" suffix="%" />
+            </motion.div>
+          </div>
+
+          {/* CTAs */}
+          <div className="hero-area-cta">
+            <motion.div
+              variants={reduced ? {} : fadeIn(0.45)}
+              initial="hidden"
+              animate="visible"
+              className="hero-cta-group"
+            >
+              <button
+                className="cta-primary"
+                onClick={() => window.open('/Aditi_Ghosh_Resume.pdf', '_blank')}
+                aria-label="Open Aditi Ghosh's CV in a new tab"
+                style={{ fontWeight: 600 }}
+              >
+                <HiOutlineStar size={16} aria-hidden="true" />
+                Open CV
+              </button>
+
+              <a href="#contact" className="cta-ghost" aria-label="Go to contact section" style={{ fontWeight: 600 }}>
+                Get In Touch
+                <HiOutlineArrowLongRight size={16} aria-hidden="true" />
+              </a>
+            </motion.div>
+          </div>
+
+          {/* Credential badges */}
+          <div className="hero-area-badges">
+            <motion.div
+              variants={reduced ? {} : fadeIn(0.52)}
+              initial="hidden"
+              animate="visible"
+              style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center', justifyContent: 'inherit' }}
+            >
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.9rem', fontWeight: 500, color: 'var(--fg-soft)' }}>
+                <HiOutlineCheckBadge size={16} style={{ color: 'var(--red)' }} aria-hidden="true" />
+                Hackathon Finalist
+              </span>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.9rem', fontWeight: 500, color: 'var(--fg-soft)' }}>
+                <HiOutlineWrenchScrewdriver size={16} style={{ color: 'var(--red)' }} aria-hidden="true" />
+                Performance Optimizer
+              </span>
+            </motion.div>
+          </div>
+
+        </div>
       </div>
+
+      {/* ── Responsive grid styles ───────────────────────────── */}
+      <style>{`
+        .hero-grid {
+          display: grid;
+          grid-template-areas: 
+            "eyebrow"
+            "headline"
+            "body"
+            "photo"
+            "stats"
+            "cta"
+            "badges";
+          gap: 2.5rem;
+          text-align: center;
+          align-items: center;
+        }
+
+        .hero-area-eyebrow { grid-area: eyebrow; display: flex; justify-content: center; }
+        .hero-area-headline { grid-area: headline; }
+        .hero-area-body { grid-area: body; }
+        .hero-area-photo { grid-area: photo; display: flex; justify-content: center; margin: 1.5rem 0; }
+        .hero-area-stats { grid-area: stats; }
+        .hero-area-cta { grid-area: cta; }
+        .hero-area-badges { grid-area: badges; display: flex; justify-content: center; }
+
+        .hero-stats-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: clamp(1rem, 4vw, 2.5rem);
+          width: 100%;
+        }
+        .hero-stat-sep { width: 1px; height: 1.5rem; background: var(--border); }
+        .hero-cta-group {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.75rem;
+          align-items: center;
+          justify-content: center;
+        }
+
+        @media (min-width: 1024px) {
+          .hero-grid {
+            grid-template-areas: 
+              "eyebrow photo"
+              "headline photo"
+              "body photo"
+              "stats photo"
+              "cta photo"
+              "badges photo";
+            grid-template-columns: 1.2fr 0.8fr;
+            text-align: left;
+            column-gap: 5rem;
+            row-gap: 1.5rem;
+          }
+          .hero-area-eyebrow { justify-content: flex-start; }
+          .hero-area-photo { justify-content: flex-end; margin: 0; grid-row: 1 / span 6; }
+          .hero-stats-row { justify-content: flex-start; }
+          .hero-cta-group { justify-content: flex-start; }
+          .hero-area-badges { justify-content: flex-start; }
+        }
+      `}</style>
+
     </section>
   )
 }
-
-export default Hero

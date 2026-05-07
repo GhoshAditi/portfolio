@@ -49,14 +49,14 @@ export default function ProjectCategoryPage({ params }: Params) {
         <h1 className="im-heading text-slate-100 mt-6 mb-4 capitalize">
           {params.category.replace('-', ' ')} projects
         </h1>
-        <p className="text-slate-300 mb-10 max-w-2xl">
+        <p className="text-slate-300 text-lg mb-10 max-w-2xl">
           Focused case studies in {params.category.replace('-', ' ')} engineering.
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
           {categoryProjects.map((project) => (
             <article key={project.slug} className="im-card p-6">
-              <h2 className="text-2xl font-bold text-slate-100 mb-3">{project.title}</h2>
+              <h2 className="text-3xl font-bold text-slate-100 mb-3">{project.title}</h2>
               <p className="text-slate-300 mb-4">{project.description}</p>
               <Link href={`/projects/${project.slug}`} className="text-accent-cyan font-semibold hover:text-orange-300">
                 Read case study →

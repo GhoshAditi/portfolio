@@ -1,176 +1,160 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Linkedin, Github, Mail, ExternalLink } from 'lucide-react'
-import QuestBanner from './QuestBanner'
+import { FaLinkedin, FaGithub } from 'react-icons/fa'
+import { HiOutlineEnvelope, HiOutlineArrowTopRightOnSquare, HiOutlineCommandLine } from 'react-icons/hi2'
 
-const Socials = () => {
+const EASE = [0.16, 1, 0.3, 1] as const
+
+const socialPlatforms = [
+  {
+    name: "LinkedIn",
+    icon: <FaLinkedin size={22} />,
+    url: "https://linkedin.com/in/aditighosh2005",
+    description: "Connect with me professionally and stay updated with my career journey, achievements, and industry insights.",
+    stats: "Professional networking • Career updates"
+  },
+  {
+    name: "GitHub",
+    icon: <FaGithub size={22} />,
+    url: "https://github.com/GhoshAditi",
+    description: "Explore my open source contributions, personal projects, and collaborative development work.",
+    stats: "Open source • Code repositories"
+  },
+  {
+    name: "LeetCode",
+    icon: <HiOutlineCommandLine size={22} />,
+    url: "https://leetcode.com/u/aditi_ghosh668/",
+    description: "Follow my competitive programming journey and algorithmic problem-solving progress.",
+    stats: "Algorithms • Problem solving"
+  }
+]
+
+const fadeUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE, delay } },
+})
+
+export default function Socials() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-
-  const slideFromLeft = {
-    hidden: { x: -100, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  }
-
-  const slideFromRight = {
-    hidden: { x: 100, opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  }
-
-  const fadeInUp = {
-    hidden: { y: 60, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  }
-
-  const socialPlatforms = [
-    {
-      name: "LinkedIn",
-      icon: <Linkedin size={32} />,
-      url: "https://linkedin.com/in/aditighosh2005",
-      description: "Connect with me professionally and stay updated with my career journey, achievements, and industry insights.",
-      color: "bg-blue-600 hover:bg-blue-700",
-      stats: "Professional networking • Career updates • Industry insights"
-    },
-    {
-      name: "GitHub",
-      icon: <Github size={32} />,
-      url: "https://github.com/GhoshAditi",
-      description: "Explore my open source contributions, personal projects, and collaborative development work.",
-      color: "bg-gray-800 hover:bg-gray-900",
-      stats: "Open source projects • Code repositories • Development showcase"
-    },
-    {
-      name: "LeetCode",
-      icon: <ExternalLink size={32} />,
-      url: "https://leetcode.com/u/aditi_ghosh668/",
-      description: "Follow my competitive programming journey and algorithmic problem-solving progress.",
-      color: "bg-orange-500 hover:bg-orange-600",
-      stats: "Algorithmic challenges • Problem solving • Coding practice"
-    }
-  ]
+  const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="socials" ref={ref} className="py-24 px-6 im-section">
-      <div className="container mx-auto max-w-6xl">
-        {/* Section Header */}
+    <section id="socials" ref={ref} className="section">
+      <div className="container">
+        
+        {/* ── Heading ─────────────────────────────────────────── */}
         <motion.div
+          variants={fadeUp(0)}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={fadeInUp}
-          className="text-center mb-16"
+          animate={inView ? 'visible' : 'hidden'}
+          style={{ marginBottom: 'clamp(2.5rem, 8vw, 4.5rem)' }}
         >
-          <QuestBanner quest="Connect Online" reward="+210 XP" />
-          <h2 className="im-heading text-slate-100 mb-4 mt-6">
-            Connect With Me
-          </h2>
-          <div className="mx-auto mb-6 h-px w-28 bg-accent-cyan/40"></div>
-          <p className="im-sub text-base text-center mx-auto">
+          <p className="t-label" style={{ marginBottom: '0.75rem' }}>Connect Online</p>
+          <h2 className="t-h2">Connect With Me</h2>
+          <p className="t-body" style={{ marginTop: '1.25rem', fontWeight: 400 }}>
             Follow my work across multiple platforms. GitHub for open-source, LinkedIn for industry updates, LeetCode for algorithm challenges.
           </p>
         </motion.div>
 
-        {/* Social Platforms Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {socialPlatforms.map((platform, index) => (
+        {/* ── Social Platforms Grid ───────────────────────────── */}
+        <div className="socials-grid">
+          {socialPlatforms.map((platform, i) => (
             <motion.div
-              key={index}
+              key={i}
+              variants={fadeUp(0.1 + i * 0.1)}
               initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={index % 2 === 0 ? slideFromLeft : slideFromRight}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="group"
+              animate={inView ? 'visible' : 'hidden'}
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                border: '1px solid var(--border)',
+                borderRadius: 'var(--r-lg)',
+                background: 'var(--surface)',
+                padding: 'clamp(1.5rem, 4vw, 2rem)',
+                transition: 'border-color var(--dur-std) var(--ease-out-quart)',
+              }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--border-hi)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border)')}
             >
-              <div className="im-card p-8 hover:shadow-2xl hover:shadow-accent-cyan/25 transition-all duration-300 h-full">
-                <div className="flex items-center gap-4 mb-6">
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white transition-all duration-300 ${platform.color}`}
-                  >
-                    {platform.icon}
-                  </motion.div>
-                  <div>
-                    <h3 className="text-xl font-black text-slate-100 uppercase tracking-[0.08em]">
-                      {platform.name}
-                    </h3>
-                  </div>
-                </div>
-
-                <p className="text-slate-300 mb-4 leading-relaxed">
-                  {platform.description}
-                </p>
-
-                <p className="text-slate-400 text-sm mb-6">
-                  {platform.stats}
-                </p>
-
-                <motion.a
-                  href={platform.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`inline-flex items-center gap-2 text-white px-6 py-3 rounded-full font-black transition-all duration-300 ${platform.color}`}
-                >
-                  Follow
-                  <ExternalLink size={16} />
-                </motion.a>
+              <div style={{
+                width: '40px',
+                height: '40px',
+                border: '1px solid var(--border)',
+                borderRadius: 'var(--r-md)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: 'var(--bg)',
+                color: 'var(--red)',
+                marginBottom: '1.25rem',
+              }}>
+                {platform.icon}
               </div>
+
+              <h3 className="t-h3" style={{ fontSize: 'clamp(1.3rem, 4vw, 1.55rem)', marginBottom: '0.75rem' }}>{platform.name}</h3>
+              <p style={{ fontSize: 'clamp(1rem, 3vw, 1.15rem)', color: 'var(--fg-soft)', lineHeight: 1.6, marginBottom: '1.25rem', flex: 1, fontWeight: 400 }}>
+                {platform.description}
+              </p>
+              
+              <p className="t-label" style={{ fontSize: '0.75rem', color: 'var(--steel)', marginBottom: '1.5rem', fontWeight: 600 }}>
+                {platform.stats}
+              </p>
+
+              <a
+                href={platform.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta-ghost"
+                style={{ fontSize: '0.9rem', padding: '0.6rem', fontWeight: 600 }}
+              >
+                Follow
+                <HiOutlineArrowTopRightOnSquare size={16} />
+              </a>
             </motion.div>
           ))}
         </div>
 
+        {/* ── Direct Ping CTA ─────────────────────────────────── */}
         <motion.div
+          variants={fadeUp(0.6)}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={fadeInUp}
-          transition={{ delay: 1.2 }}
-          className="text-center"
+          animate={inView ? 'visible' : 'hidden'}
+          style={{
+            marginTop: 'clamp(2.5rem, 8vw, 3.5rem)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--r-lg)',
+            padding: 'clamp(1.5rem, 5vw, 2.5rem)',
+            textAlign: 'center',
+            background: 'var(--bg)',
+          }}
         >
-          <div className="im-card p-8">
-            <h3 className="text-2xl font-black text-slate-100 mb-4">
-              Direct Ping?
-            </h3>
-            <p className="text-slate-300 mb-6">
-              Send a direct message for internships, freelance work, or product collaboration.
-            </p>
-            <motion.a
-              href="mailto:aditighosh668@gmail.com"
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 im-cta-primary"
-            >
-              <Mail size={18} />
-              Send Email
-            </motion.a>
-          </div>
+          <h3 className="t-h3" style={{ marginBottom: '0.75rem', fontSize: 'clamp(1.4rem, 4vw, 1.8rem)' }}>Direct Ping?</h3>
+          <p className="t-body" style={{ margin: '0 auto 2rem', fontWeight: 400, fontSize: 'clamp(1rem, 3vw, 1.1rem)' }}>
+            Send a direct message for internships, freelance work, or product collaboration.
+          </p>
+          <a href="mailto:aditighosh668@gmail.com" className="cta-primary" style={{ fontWeight: 600, padding: '0.85rem 2rem', fontSize: '0.9rem' }}>
+            <HiOutlineEnvelope size={18} />
+            Send Email
+          </a>
         </motion.div>
       </div>
+
+      <style>{`
+        .socials-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: clamp(1rem, 3vw, 1.5rem);
+        }
+        @media (min-width: 768px) {
+          .socials-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1024px) {
+          .socials-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+      `}</style>
     </section>
+
   )
 }
-
-export default Socials
