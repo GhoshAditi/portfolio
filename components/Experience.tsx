@@ -15,11 +15,14 @@ const experiences = [
     type: "Full-time",
     description: "Leading the development of modern web applications using NextJs, MongoDB, and cloud technologies like Azure and Docker. Collaborated with cross-functional teams to deliver high-quality software solutions.",
     achievements: [
-      "Implemented SEO strategies to enhance organic search visibility, optimizing content and metadata to improve Google rankings and discoverability across search engines and AI language models",
-      "Enhanced product functionality by implementing user feedback, resolving bugs, developing new features, and creating additional pages to improve user experience",
-      "Refactored codebase by modularizing components into constants, enums, and configuration files, improving code maintainability, scalability, and development efficiency"
+      "Assisted in the development and maintenance of web applications by revamping and redesigning multiple high-traffic product pages with polished, modern UI — sharpening visual hierarchy and boosting user engagement",
+      "Collaborated with the senior development team to integrate AI-powered enhancements into existing product features, elevating user experience and delivering intelligent, context-aware functionality",
+      "Spearheaded a full-scale codebase refactor, writing clean, efficient, and well-documented code by decomposing monolithic logic into clean constants, enums, and config files — dramatically improving modularity and long-term maintainability",
+      "Participated in code reviews and contributed to team discussions around architecture and best practices, improving overall code quality",
+      "Executed a comprehensive SEO overhaul — optimizing metadata, content structure, and discoverability signals — driving a 5x surge in organic users within 2 months",
+      " Diagnosed and resolved critical miscalculations in the lead generation pipeline, testing and debugging the web application to ensure functionality and data accuracy" 
     ],
-    technologies: ["NextJs", "TypeScript", "Azure", "MongoDB", "Docker"],
+    technologies: ["NextJs", "TypeScript", "Azure", "MongoDB", "Docker", "AWS"],
     current: true
   },
   {
@@ -54,7 +57,7 @@ const experiences = [
     current: false
   },
   {
-    position: "Web Development co-Lead",
+    position: "Web Development Lead",
     company: "GDG RCCIIT",
     location: "Kolkata, India",
     duration: "Aug 2025 — Present",
