@@ -201,15 +201,15 @@ export default function Experience() {
                   <div style={{ marginBottom: '1.5rem' }}>
                     <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.75rem', marginBottom: '1rem' }}>
                       <h3 className="t-h3" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)', lineHeight: 1.2 }}>{exp.position}</h3>
-                      <span className="t-label" style={{ fontSize: 'clamp(0.7rem, 2vw, 0.85rem)', color: 'var(--red)', whiteSpace: 'nowrap' }}>{exp.duration}</span>
+                      <span className="t-label" style={{ fontSize: 'clamp(0.8rem, 2vw, 0.95rem)', color: 'var(--red)', whiteSpace: 'nowrap' }}>{exp.duration}</span>
                     </div>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'clamp(0.75rem, 2vw, 1.5rem)', alignItems: 'center' }}>
                       <span style={{ fontSize: 'clamp(1rem, 3vw, 1.1rem)', fontWeight: 600, color: 'var(--fg)' }}>{exp.company}</span>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', color: 'var(--fg-soft)', fontWeight: 400 }}>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.95rem', color: 'var(--fg-soft)', fontWeight: 400 }}>
                           <HiOutlineMapPin size={14} /> {exp.location}
                         </span>
-                        <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', color: 'var(--fg-soft)', fontWeight: 400 }}>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.95rem', color: 'var(--fg-soft)', fontWeight: 400 }}>
                           <HiOutlineBriefcase size={14} /> {exp.type}
                         </span>
                       </div>
@@ -224,7 +224,7 @@ export default function Experience() {
                   {/* Achievements */}
                   {exp.achievements.length > 0 && (
                     <div style={{ marginBottom: '1.5rem' }}>
-                      <p className="t-label" style={{ fontSize: '0.75rem', color: 'var(--fg)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600 }}>
+                      <p className="t-label" style={{ color: 'var(--fg)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 600 }}>
                         <HiOutlineCheckBadge size={16} style={{ color: 'var(--red)' }} /> Quest Rewards
                       </p>
                       <ul style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', paddingLeft: '0.25rem' }}>
@@ -256,7 +256,7 @@ export default function Experience() {
                         key={tech}
                         whileHover={{ y: -2, borderColor: 'var(--red)' }}
                         style={{
-                          fontSize: '0.75rem',
+                          fontSize: '0.88rem',
                           fontWeight: 600,
                           color: 'var(--fg)',
                           padding: '0.25rem 0.65rem',

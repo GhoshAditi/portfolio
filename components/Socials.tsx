@@ -98,7 +98,7 @@ export default function Socials() {
                 {platform.description}
               </p>
               
-              <p className="t-label" style={{ fontSize: '0.75rem', color: 'var(--steel)', marginBottom: '1.5rem', fontWeight: 600 }}>
+              <p className="t-label" style={{ marginBottom: '1.5rem', fontWeight: 600 }}>
                 {platform.stats}
               </p>
 
@@ -107,7 +107,7 @@ export default function Socials() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="cta-ghost"
-                style={{ fontSize: '0.9rem', padding: '0.6rem', fontWeight: 600 }}
+                style={{ fontSize: '1rem', padding: '0.6rem', fontWeight: 600 }}
               >
                 Follow
                 <HiOutlineArrowTopRightOnSquare size={16} />
@@ -134,7 +134,7 @@ export default function Socials() {
           <p className="t-body" style={{ margin: '0 auto 2rem', fontWeight: 400, fontSize: 'clamp(1rem, 3vw, 1.1rem)' }}>
             Send a direct message for internships, freelance work, or product collaboration.
           </p>
-          <a href="mailto:aditighosh668@gmail.com" className="cta-primary" style={{ fontWeight: 600, padding: '0.85rem 2rem', fontSize: '0.9rem' }}>
+          <a href="mailto:aditighosh668@gmail.com" className="cta-primary" style={{ fontWeight: 600, padding: '0.85rem 2rem', fontSize: '1rem' }}>
             <HiOutlineEnvelope size={18} />
             Send Email
           </a>

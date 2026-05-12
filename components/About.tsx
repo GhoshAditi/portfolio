@@ -94,11 +94,11 @@ export default function About() {
             >
               <motion.div whileHover={{ scale: 1.05 }} style={{ cursor: 'default' }}>
                 <p style={{ fontSize: 'clamp(1.75rem, 6vw, 2.35rem)', fontWeight: 500, color: 'var(--fg)', letterSpacing: '-0.03em', lineHeight: 1 }}>8+</p>
-                <p className="t-label" style={{ marginTop: '0.3rem', fontSize: '0.7rem' }}>Projects Completed</p>
+                <p className="t-label" style={{ marginTop: '0.3rem' }}>Projects Completed</p>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} style={{ cursor: 'default' }}>
                 <p style={{ fontSize: 'clamp(1.75rem, 6vw, 2.35rem)', fontWeight: 500, color: 'var(--fg)', letterSpacing: '-0.03em', lineHeight: 1 }}>2+</p>
-                <p className="t-label" style={{ marginTop: '0.3rem', fontSize: '0.7rem' }}>Years Experience</p>
+                <p className="t-label" style={{ marginTop: '0.3rem' }}>Years Experience</p>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -128,7 +128,7 @@ export default function About() {
                     justifyContent: 'center',
                     background: 'var(--surface)',
                   }}>
-                    <HiOutlineCalendarDays size={18} style={{ color: 'var(--steel)' }} aria-hidden="true" />
+                    <HiOutlineCalendarDays size={18} style={{ color: 'var(--fg)' }} aria-hidden="true" />
                   </div>
 
                   <div style={{ flex: 1 }}>
@@ -138,7 +138,7 @@ export default function About() {
                     <p style={{ fontSize: '1.05rem', color: 'var(--red)', marginBottom: '0.3rem', fontWeight: 400 }}>
                       {edu.institution}
                     </p>
-                    <p className="t-label" style={{ marginBottom: '0.75rem', fontSize: '0.65rem' }}>{edu.year}</p>
+                    <p className="t-label" style={{ marginBottom: '0.75rem' }}>{edu.year}</p>
                     <p style={{ fontSize: '1rem', color: 'var(--fg-soft)', marginBottom: '0.75rem', fontWeight: 400, lineHeight: 1.5 }}>
                       {edu.description}
                     </p>
@@ -147,7 +147,7 @@ export default function About() {
                       padding: '0.2rem 0.65rem',
                       border: '1px solid var(--border)',
                       borderRadius: '9999px',
-                      fontSize: '0.9rem',
+                      fontSize: '1rem',
                       color: 'var(--fg)',
                       background: 'var(--surface)',
                       fontWeight: 500,

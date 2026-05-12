@@ -95,7 +95,7 @@ export default function Projects() {
               {/* Content */}
               <div style={{ padding: 'clamp(1.25rem, 4vw, 2rem)', flex: 1, display: 'flex', flexDirection: 'column' }}>
                 <div style={{ marginBottom: '1.5rem' }}>
-                  <p className="t-label" style={{ color: 'var(--red)', marginBottom: '0.75rem', fontSize: '0.75rem' }}>
+                  <p className="t-label" style={{ color: 'var(--red)', marginBottom: '0.75rem' }}>
                     {project.category.replace('-', ' ')}
                   </p>
                   <h3 className="t-h3" style={{ fontSize: 'clamp(1.4rem, 4vw, 1.6rem)', marginBottom: '1rem' }}>{project.title}</h3>
@@ -110,7 +110,7 @@ export default function Projects() {
                     <span
                       key={tech}
                       style={{
-                        fontSize: '0.75rem',
+                        fontSize: '0.88rem',
                         fontWeight: 600,
                         color: 'var(--fg)',
                         padding: '0.25rem 0.65rem',
@@ -135,7 +135,7 @@ export default function Projects() {
                     className="cta-primary"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    style={{ flex: 1, fontSize: '0.8rem', padding: '0.65rem 0', fontWeight: 600 }}
+                    style={{ flex: 1, fontSize: '0.92rem', padding: '0.65rem 0', fontWeight: 600 }}
                   >
                     <HiOutlineArrowTopRightOnSquare size={16} />
                     Live Demo
@@ -147,7 +147,7 @@ export default function Projects() {
                     className="cta-ghost"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    style={{ flex: 1, fontSize: '0.8rem', padding: '0.65rem 0', fontWeight: 600 }}
+                    style={{ flex: 1, fontSize: '0.92rem', padding: '0.65rem 0', fontWeight: 600 }}
                   >
                     <FaGithub size={16} />
                     Source

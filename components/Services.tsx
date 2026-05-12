@@ -170,7 +170,7 @@ export default function Services() {
                           {service.description}
                         </p>
                         <div className="features-list-mobile">
-                          <p style={{ fontSize: '0.65rem', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', color: 'var(--red)', fontWeight: 700 }}>
+                          <p style={{ fontSize: '0.82rem', textTransform: 'uppercase', letterSpacing: '0.15em', marginBottom: '1rem', color: 'var(--red)', fontWeight: 700 }}>
                             Operational Focus
                           </p>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -247,7 +247,7 @@ export default function Services() {
                         justifyContent: 'center',
                         padding: '0 1rem',
                         outline: 'none',
-                        fontSize: '0.75rem',
+                        fontSize: '0.88rem',
                         fontWeight: 700,
                         letterSpacing: '0.1em',
                         textTransform: 'uppercase',
@@ -292,7 +292,7 @@ export default function Services() {
                     </div>
 
                     <div className="features-list">
-                      <p style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1.5rem', opacity: 0.5, fontWeight: 700 }}>
+                      <p style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.2em', marginBottom: '1.5rem', opacity: 0.5, fontWeight: 700 }}>
                         Operational Focus
                       </p>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>

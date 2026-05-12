@@ -38,13 +38,13 @@ const perkCards = [
     title: 'Security Hardened',
     text: 'Defense-in-depth practices. Sensitive data handling with industry best practices.',
     icon: <HiOutlineShieldCheck size={24} />,
-    color: 'var(--steel)'
+    color: 'var(--fg)'
   },
   {
     title: 'Rapid Iteration',
     text: 'Clean production deployments. Fast feedback loops with robust error handling.',
     icon: <HiOutlineFire size={24} />,
-    color: 'var(--steel)'
+    color: 'var(--fg)'
   },
 ]
 
@@ -128,7 +128,7 @@ export default function TechStack() {
                 className="tech-item"
               >
                 <img src={item.logo} alt={`${item.name} logo`} width={28} height={28} loading="lazy" style={{ flexShrink: 0 }} />
-                <span style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', color: 'var(--fg)', fontWeight: 500 }}>{item.name}</span>
+                <span style={{ fontSize: 'clamp(0.98rem, 2vw, 1.15rem)', color: 'var(--fg)', fontWeight: 500 }}>{item.name}</span>
               </motion.div>
             ))}
           </motion.div>

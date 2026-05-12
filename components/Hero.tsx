@@ -279,11 +279,11 @@ export default function Hero() {
               animate="visible"
               style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center', justifyContent: 'inherit' }}
             >
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.9rem', fontWeight: 500, color: 'var(--fg-soft)' }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '1rem', fontWeight: 500, color: 'var(--fg-soft)' }}>
                 <HiOutlineCheckBadge size={16} style={{ color: 'var(--red)' }} aria-hidden="true" />
                 Hackathon Finalist
               </span>
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.9rem', fontWeight: 500, color: 'var(--fg-soft)' }}>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '1rem', fontWeight: 500, color: 'var(--fg-soft)' }}>
                 <HiOutlineWrenchScrewdriver size={16} style={{ color: 'var(--red)' }} aria-hidden="true" />
                 Performance Optimizer
               </span>
