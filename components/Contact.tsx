@@ -124,7 +124,7 @@ export default function Contact() {
               >
                 <div style={{ color: 'var(--red)', flexShrink: 0 }}>{info.icon}</div>
                 <div style={{ minWidth: 0, overflow: 'hidden' }}>
-                  <p className="t-label" style={{ fontSize: '0.75rem', color: 'var(--steel)', marginBottom: '0.2rem', fontWeight: 600 }}>{info.label}</p>
+                  <p className="t-label" style={{ marginBottom: '0.2rem', fontWeight: 600 }}>{info.label}</p>
                   {info.href ? (
                     <a href={info.href} style={{ fontSize: 'clamp(0.9rem, 3vw, 1.05rem)', color: 'var(--fg)', textDecoration: 'none', fontWeight: 400, wordBreak: 'break-all' }}>{info.value}</a>
                   ) : (
@@ -141,7 +141,7 @@ export default function Contact() {
               }}
               style={{ border: '1px solid var(--border)', borderRadius: 'var(--r-md)', padding: 'clamp(1rem, 3vw, 1.5rem)', background: 'var(--bg)', marginTop: '1rem' }}
             >
-              <h4 className="t-label" style={{ fontSize: '0.75rem', color: 'var(--fg)', marginBottom: '0.75rem', fontWeight: 600 }}>Response Window</h4>
+              <h4 className="t-label" style={{ color: 'var(--fg)', marginBottom: '0.75rem', fontWeight: 600 }}>Response Window</h4>
               <p style={{ fontSize: '0.95rem', color: 'var(--fg-soft)', lineHeight: 1.5, fontWeight: 400 }}>
                 I typically respond to emails within 24 hours. For urgent matters, feel free to call or connect via LinkedIn.
               </p>
@@ -177,7 +177,7 @@ export default function Contact() {
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
               <div className="form-row">
                 <div style={{ flex: 1 }}>
-                  <label htmlFor="name" className="t-label" style={{ fontSize: '0.75rem', display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Name *</label>
+                  <label htmlFor="name" className="t-label" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Name *</label>
                   <input
                     type="text" id="name" name="name" required value={formData.name} onChange={handleInputChange}
                     style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid var(--border)', borderRadius: 'var(--r-sm)', background: 'var(--bg)', color: 'var(--fg)', fontSize: '1rem', fontWeight: 400 }}
@@ -185,7 +185,7 @@ export default function Contact() {
                   />
                 </div>
                 <div style={{ flex: 1 }}>
-                  <label htmlFor="email" className="t-label" style={{ fontSize: '0.75rem', display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Email *</label>
+                  <label htmlFor="email" className="t-label" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Email *</label>
                   <input
                     type="email" id="email" name="email" required value={formData.email} onChange={handleInputChange}
                     style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid var(--border)', borderRadius: 'var(--r-sm)', background: 'var(--bg)', color: 'var(--fg)', fontSize: '1rem', fontWeight: 400 }}
@@ -195,7 +195,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="subject" className="t-label" style={{ fontSize: '0.75rem', display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Subject *</label>
+                <label htmlFor="subject" className="t-label" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Subject *</label>
                 <input
                   type="text" id="subject" name="subject" required value={formData.subject} onChange={handleInputChange}
                   style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid var(--border)', borderRadius: 'var(--r-sm)', background: 'var(--bg)', color: 'var(--fg)', fontSize: '1rem', fontWeight: 400 }}
@@ -204,7 +204,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label htmlFor="message" className="t-label" style={{ fontSize: '0.75rem', display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Message *</label>
+                <label htmlFor="message" className="t-label" style={{ display: 'block', marginBottom: '0.5rem', fontWeight: 600 }}>Message *</label>
                 <textarea
                   id="message" name="message" required rows={5} value={formData.message} onChange={handleInputChange}
                   style={{ width: '100%', padding: '0.75rem 1rem', border: '1px solid var(--border)', borderRadius: 'var(--r-sm)', background: 'var(--bg)', color: 'var(--fg)', fontSize: '1rem', resize: 'vertical', fontWeight: 400 }}
@@ -215,7 +215,7 @@ export default function Contact() {
               <button
                 type="submit" disabled={isSubmitting}
                 className="cta-primary"
-                style={{ width: '100%', padding: '0.85rem', fontWeight: 600, fontSize: '0.9rem' }}
+                style={{ width: '100%', padding: '0.85rem', fontWeight: 600, fontSize: '1rem' }}
               >
                 {isSubmitting ? 'Sending...' : <><HiOutlinePaperAirplane size={18} style={{ transform: 'rotate(90deg)' }} /> Send Message</>}
               </button>
@@ -228,7 +228,7 @@ export default function Contact() {
           <p style={{ fontSize: 'clamp(0.95rem, 3vw, 1.05rem)', color: 'var(--fg)', fontWeight: 600 }}>
             © 2026 Aditi Ghosh.
           </p>
-          <p style={{ fontSize: '0.8rem', color: 'var(--fg-soft)', marginTop: '0.5rem', fontWeight: 400 }}>
+          <p style={{ fontSize: '0.95rem', color: 'var(--fg-soft)', marginTop: '0.5rem', fontWeight: 400 }}>
             Built with Next.js & Framer Motion. Editorial Grade.
           </p>
         </footer>

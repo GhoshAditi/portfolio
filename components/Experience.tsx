@@ -57,7 +57,7 @@ const experiences = [
     current: false
   },
   {
-    position: "Web Development co-Lead",
+    position: "Web Development Lead",
     company: "GDG RCCIIT",
     location: "Kolkata, India",
     duration: "Aug 2025 — Present",

@@ -2,11 +2,13 @@
 
 import Image from 'next/image'
 import { motion, useReducedMotion } from 'framer-motion'
-import { 
-  HiOutlineStar, 
-  HiOutlineArrowLongRight, 
-  HiOutlineEnvelope, 
-  HiOutlineSparkles 
+import {
+  HiOutlineStar,
+  HiOutlineArrowLongRight,
+  HiOutlineEnvelope,
+  HiOutlineSparkles,
+  HiOutlineCheckBadge,
+  HiOutlineWrenchScrewdriver,
 } from 'react-icons/hi2'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 import BlurText from '@/components/BlurText'
@@ -18,14 +20,16 @@ export default function Hero() {
 
   return (
     <section id="home" className="ed-hero-stage">
-      {/* ── Background Vertical Grid Lines ── */}
       <div className="ed-grid-guides" aria-hidden="true">
-        <span /><span /><span /><span /><span />
+        <span />
+        <span />
+        <span />
+        <span />
+        <span />
       </div>
 
-      {/* ── Background Atmospheric Watermark ── */}
-      <motion.div 
-        className="ed-watermark" 
+      <motion.div
+        className="ed-watermark"
         aria-hidden="true"
         initial={reduced ? {} : { opacity: 0, x: -30 }}
         animate={reduced ? {} : { opacity: 1, x: 0 }}
@@ -34,8 +38,7 @@ export default function Hero() {
         PORTFOLIO
       </motion.div>
 
-      {/* ── Left Rail: Vertical Branding & Socials (Desktop only) ── */}
-      <motion.div 
+      <motion.div
         className="ed-left-rail"
         initial={reduced ? {} : { opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -43,30 +46,30 @@ export default function Hero() {
       >
         <span className="ed-rail-text">ENGINEER / DEVELOPER</span>
         <div className="ed-social-dock">
-          <motion.a 
+          <motion.a
             whileHover={{ y: -3, scale: 1.15 }}
-            href="mailto:aditighosh668@gmail.com" 
-            aria-label="Email" 
+            href="mailto:aditighosh668@gmail.com"
+            aria-label="Email"
             className="ed-dock-icon"
           >
             <HiOutlineEnvelope size={16} />
           </motion.a>
-          <motion.a 
+          <motion.a
             whileHover={{ y: -3, scale: 1.15 }}
-            href="https://github.com/aditighosh" 
-            target="_blank" 
-            rel="noreferrer" 
-            aria-label="GitHub" 
+            href="https://github.com/aditighosh"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
             className="ed-dock-icon"
           >
             <FaGithub size={15} />
           </motion.a>
-          <motion.a 
+          <motion.a
             whileHover={{ y: -3, scale: 1.15 }}
-            href="https://linkedin.com/in/aditi-ghosh" 
-            target="_blank" 
-            rel="noreferrer" 
-            aria-label="LinkedIn" 
+            href="https://linkedin.com/in/aditi-ghosh"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
             className="ed-dock-icon"
           >
             <FaLinkedinIn size={15} />
@@ -74,27 +77,29 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ── Right Rail: Minimal Scroll Indicator (Desktop only) ── */}
-      <motion.div 
-        className="ed-right-rail" 
+      <motion.div
+        className="ed-right-rail"
         aria-hidden="true"
         initial={reduced ? {} : { opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
       >
         <div className="ed-scroll-track">
-          <motion.div 
+          <motion.div
             className="ed-scroll-ring"
             animate={reduced ? {} : { scale: [1, 1.25, 1], opacity: [0.6, 1, 0.6] }}
             transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
           />
           <div className="ed-scroll-dots">
-            <span /><span /><span /><span />
+            <span />
+            <span />
+            <span />
+            <span />
           </div>
         </div>
         <div className="ed-scroll-indicator">
           <span className="ed-scroll-label">SCROLL</span>
-          <motion.span 
+          <motion.span
             className="ed-scroll-line"
             animate={reduced ? {} : { scaleY: [0.6, 1, 0.6], originY: 0 }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
@@ -102,15 +107,10 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* ── Main Hero Content ── */}
       <div className="container ed-hero-container">
         <div className="ed-hero-grid">
-
-          {/* Text Column */}
           <div className="ed-text-column">
-            
-            {/* Status chip */}
-            <motion.div 
+            <motion.div
               initial={reduced ? {} : { opacity: 0, y: -12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: EASE }}
@@ -122,7 +122,6 @@ export default function Hero() {
               </span>
             </motion.div>
 
-            {/* Headline Group */}
             <div className="ed-title-group">
               <BlurText
                 text="Aditi Ghosh"
@@ -132,7 +131,7 @@ export default function Hero() {
                 className="t-hero"
               />
 
-              <motion.p 
+              <motion.p
                 initial={reduced ? {} : { opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.15, ease: EASE }}
@@ -142,7 +141,6 @@ export default function Hero() {
               </motion.p>
             </div>
 
-            {/* Body Description */}
             <motion.p
               initial={reduced ? {} : { opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -152,7 +150,6 @@ export default function Hero() {
               I design and ship compact digital products with clean architecture, sharp UX details, and measurable performance.
             </motion.p>
 
-            {/* Call to Actions */}
             <motion.div
               initial={reduced ? {} : { opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -171,9 +168,9 @@ export default function Hero() {
                 <HiOutlineStar size={16} className="ed-link-star" />
               </motion.button>
 
-              <motion.a 
-                href="#contact" 
-                className="cta-ghost" 
+              <motion.a
+                href="#contact"
+                className="cta-ghost"
                 aria-label="Get In Touch"
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.96 }}
@@ -184,7 +181,6 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Portrait Image */}
           <div className="ed-photo-column">
             <motion.div
               initial={reduced ? {} : { opacity: 0, scale: 0.94, y: 15 }}
@@ -193,13 +189,9 @@ export default function Hero() {
               whileHover={reduced ? {} : { y: -6, scale: 1.015 }}
               className="ed-photo-frame"
             >
-              {/* Glow backlight */}
               <div className="ed-photo-glow" />
-
-              {/* Edge fade vignette */}
               <div className="ed-photo-vignette" />
-              
-              {/* Image */}
+
               <div className="ed-photo-inner">
                 <Image
                   src="https://i.postimg.cc/cJzDL4HQ/pfp.jpg"
@@ -211,11 +203,51 @@ export default function Hero() {
                 />
               </div>
 
-              {/* Outline Frame */}
               <div className="ed-photo-outline" />
             </motion.div>
-          </div>
 
+            <div className="hero-area-stats">
+              <motion.div
+                initial={reduced ? {} : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.4, ease: EASE }}
+                className="hero-stats-row"
+              >
+                <span className="hero-stat">
+                  <strong>15+</strong>
+                  Projects
+                </span>
+                <span className="hero-stat-sep" aria-hidden="true" />
+                <span className="hero-stat">
+                  <strong>2+</strong>
+                  Experience
+                </span>
+                <span className="hero-stat-sep" aria-hidden="true" />
+                <span className="hero-stat">
+                  <strong>94%</strong>
+                  Win Rate
+                </span>
+              </motion.div>
+            </div>
+
+            <div className="hero-area-badges">
+              <motion.div
+                initial={reduced ? {} : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.5, ease: EASE }}
+                style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}
+              >
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '1rem', fontWeight: 500, color: 'var(--fg-soft)' }}>
+                  <HiOutlineCheckBadge size={16} style={{ color: 'var(--red)' }} aria-hidden="true" />
+                  Hackathon Finalist
+                </span>
+                <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '1rem', fontWeight: 500, color: 'var(--fg-soft)' }}>
+                  <HiOutlineWrenchScrewdriver size={16} style={{ color: 'var(--red)' }} aria-hidden="true" />
+                  Performance Optimizer
+                </span>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

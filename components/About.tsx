@@ -123,30 +123,18 @@ export default function About() {
               </motion.p>
             </div>
 
-            {/* Stat Counters */}
-            <motion.div variants={fadeUp(0)} className="about-stats-strip">
-              <motion.div 
-                whileHover={reduced ? {} : { y: -3 }} 
-                className="about-stat-item"
-              >
-                <div className="stat-value-row">
-                  <span className="stat-number">5</span>
-                  <span className="stat-plus">+</span>
-                </div>
-                <p className="stat-label">Projects Completed</p>
+            {/* Stat pair */}
+            <motion.div 
+              variants={fadeUp(0)}
+              style={{ display: 'flex', gap: 'clamp(1.5rem, 5vw, 3rem)', marginTop: '2.5rem', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}
+            >
+              <motion.div whileHover={{ scale: 1.05 }} style={{ cursor: 'default' }}>
+                <p style={{ fontSize: 'clamp(1.75rem, 6vw, 2.35rem)', fontWeight: 500, color: 'var(--fg)', letterSpacing: '-0.03em', lineHeight: 1 }}>8+</p>
+                <p className="t-label" style={{ marginTop: '0.3rem' }}>Projects Completed</p>
               </motion.div>
-
-              <div className="stat-separator" />
-
-              <motion.div 
-                whileHover={reduced ? {} : { y: -3 }} 
-                className="about-stat-item"
-              >
-                <div className="stat-value-row">
-                  <span className="stat-number">2</span>
-                  <span className="stat-plus">+</span>
-                </div>
-                <p className="stat-label">Years Experience</p>
+              <motion.div whileHover={{ scale: 1.05 }} style={{ cursor: 'default' }}>
+                <p style={{ fontSize: 'clamp(1.75rem, 6vw, 2.35rem)', fontWeight: 500, color: 'var(--fg)', letterSpacing: '-0.03em', lineHeight: 1 }}>2+</p>
+                <p className="t-label" style={{ marginTop: '0.3rem' }}>Years Experience</p>
               </motion.div>
             </motion.div>
           </motion.div>

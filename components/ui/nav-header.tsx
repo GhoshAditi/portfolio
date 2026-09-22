@@ -95,7 +95,7 @@ const Tab = ({
         flexShrink: 0,
         color: 'var(--fg)',
         fontWeight: 500,
-        fontSize: 'clamp(0.65rem, 2vw, 0.7rem)',
+        fontSize: 'clamp(0.78rem, 2vw, 0.9rem)',
         textTransform: 'uppercase',
         letterSpacing: '0.1em',
         transition: 'color 0.3s ease'

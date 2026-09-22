@@ -176,6 +176,10 @@ textarea {
   line-height: 1.25;
   letter-spacing: -0.05em;
   text-transform: uppercase;
+  color: var(--fg-soft);
+}
+
+[data-theme="light"] .t-label {
   color: var(--steel);
 }
 

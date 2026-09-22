@@ -46,7 +46,7 @@ export default function Header() {
             lineHeight: 1
           }}
         >
-          <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', color: 'var(--red)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '2px' }}>
+          <span style={{ fontSize: '0.78rem', letterSpacing: '0.2em', color: 'var(--red)', fontWeight: 700, textTransform: 'uppercase', marginBottom: '2px' }}>
             Aditi Ghosh
           </span>
           <span style={{ fontSize: '1.4rem', fontWeight: 500, color: 'var(--fg)', letterSpacing: '-0.03em' }}>
@@ -158,7 +158,7 @@ export default function Header() {
                   }}
                 >
                   {item.label}
-                  <span style={{ color: 'var(--red)', fontSize: '0.8rem' }}>0{i+1}</span>
+                  <span style={{ color: 'var(--red)', fontSize: '0.92rem' }}>0{i+1}</span>
                 </a>
               ))}
             </div>

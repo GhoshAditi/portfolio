@@ -113,7 +113,7 @@ export default function LinkedInPosts() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '0.9rem',
+                    fontSize: '1rem',
                     fontWeight: 600,
                     color: '#fff',
                     flexShrink: 0,
@@ -123,7 +123,7 @@ export default function LinkedInPosts() {
                 </motion.div>
                 <div style={{ flex: 1 }}>
                   <h3 style={{ fontSize: 'clamp(1.1rem, 3vw, 1.25rem)', fontWeight: 500, color: 'var(--fg)', lineHeight: 1.2 }}>Aditi Ghosh</h3>
-                  <p className="t-label" style={{ fontSize: '0.75rem', color: 'var(--fg-soft)', marginTop: '0.2rem' }}>{post.date}</p>
+                  <p className="t-label" style={{ marginTop: '0.2rem' }}>{post.date}</p>
                 </div>
                 <FaLinkedin size={18} style={{ color: 'var(--red)' }} />
               </div>
@@ -139,13 +139,13 @@ export default function LinkedInPosts() {
               {/* Footer / Stats */}
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: '1.25rem', borderTop: '1px solid var(--border)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(0.75rem, 2vw, 1.25rem)', color: 'var(--fg-soft)' }}>
-                  <motion.div whileHover={{ scale: 1.2, color: 'var(--red)' }} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.9rem', cursor: 'pointer' }}>
+                  <motion.div whileHover={{ scale: 1.2, color: 'var(--red)' }} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '1rem', cursor: 'pointer' }}>
                     <HiOutlineHeart size={14} /> {post.likes}
                   </motion.div>
-                  <motion.div whileHover={{ scale: 1.2, color: 'var(--fg)' }} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.9rem', cursor: 'pointer' }}>
+                  <motion.div whileHover={{ scale: 1.2, color: 'var(--fg)' }} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '1rem', cursor: 'pointer' }}>
                     <HiOutlineChatBubbleLeftRight size={14} /> {post.comments}
                   </motion.div>
-                  <motion.div whileHover={{ scale: 1.2, color: 'var(--fg)' }} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '0.9rem', cursor: 'pointer' }}>
+                  <motion.div whileHover={{ scale: 1.2, color: 'var(--fg)' }} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontSize: '1rem', cursor: 'pointer' }}>
                     <HiOutlineShare size={14} /> {post.shares}
                   </motion.div>
                 </div>
@@ -154,7 +154,7 @@ export default function LinkedInPosts() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ x: 3 }}
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.9rem', fontWeight: 600, color: 'var(--red)', textDecoration: 'none' }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '1rem', fontWeight: 600, color: 'var(--red)', textDecoration: 'none' }}
                 >
                   <HiOutlineEye size={16} /> View
                 </motion.a>
