@@ -3,7 +3,6 @@
 import { motion, useScroll, useSpring } from 'framer-motion'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
-import GamifiedOverview from '@/components/GamifiedOverview'
 import About from '@/components/About'
 import TechStack from '@/components/TechStack'
 import Projects from '@/components/Projects'
@@ -18,11 +17,11 @@ export default function Home() {
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
   })
 
   return (
-    <main className="min-h-screen" style={{ paddingTop: '0' }}>
+    <main className="portfolio-shell">
       <motion.div
         style={{
           scaleX,
@@ -30,15 +29,14 @@ export default function Home() {
           top: 0,
           left: 0,
           right: 0,
-          height: '3px',
-          background: 'var(--red)',
+          height: '1px',
+          background: 'var(--color-bone-glow)',
           transformOrigin: '0%',
           zIndex: 1000,
         }}
       />
       <Header />
       <Hero />
-      <GamifiedOverview />
       <About />
       <TechStack />
       <Projects />

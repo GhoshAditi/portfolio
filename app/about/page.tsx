@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function AboutRoutePage() {
   return (
-    <main className="min-h-screen pt-16">
+    <main className="portfolio-shell">
       <About />
     </main>
   )

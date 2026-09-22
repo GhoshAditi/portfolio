@@ -1,248 +1,557 @@
 'use client'
-
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { HiOutlineShieldCheck, HiOutlineBolt, HiOutlineFire } from 'react-icons/hi2'
+import React from 'react'
+import { useState } from 'react'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
+import {
+  HiOutlineShieldCheck,
+  HiOutlineBolt,
+  HiOutlineFire,
+  HiOutlineCommandLine,
+  HiOutlineSparkles,
+  HiOutlineCircleStack,
+  HiOutlineCloud,
+  HiOutlineWrenchScrewdriver,
+} from 'react-icons/hi2'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
-const technologies = [
-  { name: 'Next.js',      logo: 'https://skillicons.dev/icons?i=nextjs'    },
-  { name: 'React',        logo: 'https://skillicons.dev/icons?i=react'     },
-  { name: 'TypeScript',   logo: 'https://skillicons.dev/icons?i=ts'        },
-  { name: 'JavaScript',   logo: 'https://skillicons.dev/icons?i=js'        },
-  { name: 'Tailwind CSS', logo: 'https://skillicons.dev/icons?i=tailwind'  },
-  { name: 'Node.js',      logo: 'https://skillicons.dev/icons?i=nodejs'    },
-  { name: 'Express',      logo: 'https://skillicons.dev/icons?i=express'   },
-  { name: 'Python',       logo: 'https://skillicons.dev/icons?i=python'    },
-  { name: 'Java',         logo: 'https://skillicons.dev/icons?i=java'      },
-  { name: 'PostgreSQL',   logo: 'https://skillicons.dev/icons?i=postgres'  },
-  { name: 'MongoDB',      logo: 'https://skillicons.dev/icons?i=mongodb'   },
-  { name: 'MySQL',        logo: 'https://skillicons.dev/icons?i=mysql'     },
-  { name: 'Firebase',     logo: 'https://skillicons.dev/icons?i=firebase'  },
-  { name: 'Docker',       logo: 'https://skillicons.dev/icons?i=docker'    },
-  { name: 'Azure',        logo: 'https://skillicons.dev/icons?i=azure'     },
-  { name: 'AWS',          logo: 'https://skillicons.dev/icons?i=aws'       },
-  { name: 'GitHub',       logo: 'https://skillicons.dev/icons?i=github'    },
-  { name: 'Vercel',       logo: 'https://skillicons.dev/icons?i=vercel'    },
+type CategoryKey = 'languages' | 'frontend' | 'backend' | 'cloud' | 'tools'
+
+interface TechItem {
+  name: string
+  logo: string
+}
+
+const techCategories: {
+  key: CategoryKey
+  label: string
+  icon: React.ReactNode
+  skills: TechItem[]
+}[] = [
+  {
+    key: 'languages',
+    label: 'Languages',
+    icon: <HiOutlineCommandLine size={16} />,
+    skills: [
+      { name: 'JavaScript', logo: 'https://skillicons.dev/icons?i=js' },
+      { name: 'TypeScript', logo: 'https://skillicons.dev/icons?i=ts' },
+      { name: 'Python',     logo: 'https://skillicons.dev/icons?i=python' },
+      { name: 'Java',       logo: 'https://skillicons.dev/icons?i=java' },
+      { name: 'C',          logo: 'https://skillicons.dev/icons?i=c' },
+      { name: 'C++',        logo: 'https://skillicons.dev/icons?i=cpp' },
+      { name: 'Go',         logo: 'https://skillicons.dev/icons?i=go' },
+    ],
+  },
+  {
+    key: 'frontend',
+    label: 'Frontend',
+    icon: <HiOutlineSparkles size={16} />,
+    skills: [
+      { name: 'React.js',     logo: 'https://skillicons.dev/icons?i=react' },
+      { name: 'Next.js',      logo: 'https://skillicons.dev/icons?i=nextjs' },
+      { name: 'Tailwind CSS', logo: 'https://skillicons.dev/icons?i=tailwind' },
+      { name: 'ThreeJS',      logo: 'https://skillicons.dev/icons?i=threejs' },
+      { name: 'HTML5',        logo: 'https://skillicons.dev/icons?i=html' },
+      { name: 'CSS3',         logo: 'https://skillicons.dev/icons?i=css' },
+    ],
+  },
+  {
+    key: 'backend',
+    label: 'Backend & DB',
+    icon: <HiOutlineCircleStack size={16} />,
+    skills: [
+      { name: 'Node.js',    logo: 'https://skillicons.dev/icons?i=nodejs' },
+      { name: 'Express.js', logo: 'https://skillicons.dev/icons?i=express' },
+      { name: 'Flask',      logo: 'https://skillicons.dev/icons?i=flask' },
+      { name: 'Django',     logo: 'https://skillicons.dev/icons?i=django' },
+      { name: 'PostgreSQL', logo: 'https://skillicons.dev/icons?i=postgres' },
+      { name: 'MySQL',      logo: 'https://skillicons.dev/icons?i=mysql' },
+      { name: 'MongoDB',    logo: 'https://skillicons.dev/icons?i=mongodb' },
+      { name: 'Supabase',   logo: 'https://skillicons.dev/icons?i=supabase' },
+    ],
+  },
+  {
+    key: 'cloud',
+    label: 'Cloud & DevOps',
+    icon: <HiOutlineCloud size={16} />,
+    skills: [
+      { name: 'AWS',      logo: 'https://skillicons.dev/icons?i=aws' },
+      { name: 'GCP',      logo: 'https://skillicons.dev/icons?i=gcp' },
+      { name: 'Azure',    logo: 'https://skillicons.dev/icons?i=azure' },
+      { name: 'Docker',   logo: 'https://skillicons.dev/icons?i=docker' },
+      { name: 'Firebase', logo: 'https://skillicons.dev/icons?i=firebase' },
+      { name: 'Vercel',   logo: 'https://skillicons.dev/icons?i=vercel' },
+    ],
+  },
+  {
+    key: 'tools',
+    label: 'Tooling',
+    icon: <HiOutlineWrenchScrewdriver size={16} />,
+    skills: [
+      { name: 'Git',     logo: 'https://skillicons.dev/icons?i=git' },
+      { name: 'GitHub',  logo: 'https://skillicons.dev/icons?i=github' },
+      { name: 'Postman', logo: 'https://skillicons.dev/icons?i=postman' },
+    ],
+  },
 ]
 
 const perkCards = [
   {
     title: 'Performance First',
     text: 'Core Web Vitals focused architecture. Lighthouse-grade optimization across all projects.',
-    icon: <HiOutlineBolt size={24} />,
-    color: 'var(--red)'
+    icon: <HiOutlineBolt size={22} />,
+    color: 'var(--red)',
   },
   {
     title: 'Security Hardened',
     text: 'Defense-in-depth practices. Sensitive data handling with industry best practices.',
-    icon: <HiOutlineShieldCheck size={24} />,
-    color: 'var(--steel)'
+    icon: <HiOutlineShieldCheck size={22} />,
+    color: 'var(--steel)',
   },
   {
     title: 'Rapid Iteration',
     text: 'Clean production deployments. Fast feedback loops with robust error handling.',
-    icon: <HiOutlineFire size={24} />,
-    color: 'var(--steel)'
+    icon: <HiOutlineFire size={22} />,
+    color: 'var(--steel)',
   },
 ]
 
 export default function TechStack() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const [activeCategory, setActiveCategory] = useState<CategoryKey>('languages')
+  const reduced = useReducedMotion()
+
+  const currentCategory = techCategories.find((cat) => cat.key === activeCategory) || techCategories[0]
 
   return (
-    <section id="tech" ref={ref} className="section">
-      <div className="container">
+    <section id="stack" className="ed-tech-stage section">
+      {/* ── Background Vertical Guides ── */}
+      <div className="ed-grid-guides" aria-hidden="true">
+        <span /><span /><span /><span /><span />
+      </div>
 
-        {/* ── Heading ─────────────────────────────────────────── */}
+      {/* ── Large Atmospheric Watermark ── */}
+      <div className="ed-watermark ed-tech-watermark" aria-hidden="true">
+        STACK
+      </div>
+
+      {/* ── Left Rail: Section Index ── */}
+      <div className="ed-left-rail" aria-hidden="true">
+        <span className="ed-rail-text">CHAPTER // 03 • TECH ARSENAL</span>
+      </div>
+
+      {/* ── Right Rail: Node Counter Indicator ── */}
+      <div className="ed-right-rail" aria-hidden="true">
+        <div className="ed-scroll-indicator">
+          <span className="ed-scroll-label">NODES: 28</span>
+          <span className="ed-scroll-line" />
+        </div>
+      </div>
+
+      <div className="container ed-tech-container">
+        
+        {/* ── Heading ── */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={reduced ? {} : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.55, ease: EASE }}
-          style={{ marginBottom: 'clamp(2.5rem, 8vw, 4rem)' }}
+          className="tech-heading-block"
         >
-          <p className="t-label" style={{ marginBottom: '0.75rem' }}>Skill Tree</p>
-          <h2 className="t-h2">Tech Mastery</h2>
-          <p className="t-body" style={{ marginTop: '1.25rem', fontWeight: 400 }}>
+          <div className="tech-badge-wrap">
+            <span className="chip">
+              Skill Tree
+            </span>
+          </div>
+          <h2 className="t-h2">
+            Tech <span style={{ color: 'var(--red)' }}>Mastery</span>
+          </h2>
+          <p className="t-body" style={{ marginTop: '0.85rem' }}>
             Specialized expertise across modern web development, cloud infrastructure, and full-stack systems. Proven track record shipping production-grade code at scale.
           </p>
         </motion.div>
 
-        {/* ── Tech grid ───────────────────────────────────────── */}
-        <div
-          style={{
-            border: '1px solid var(--border)',
-            borderRadius: 'var(--r-lg)',
-            padding: 'clamp(1.5rem, 5vw, 3rem)',
-            background: 'var(--surface)',
-            marginBottom: 'clamp(3rem, 10vw, 4rem)',
-            position: 'relative',
-            overflow: 'hidden'
-          }}
-        >
-          <motion.div 
-            className="tech-grid"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-              visible: {
-                transition: {
-                  staggerChildren: 0.05,
-                  delayChildren: 0.2
-                }
-              }
-            }}
-          >
-            {technologies.map((item) => (
-              <motion.div
-                key={item.name}
-                variants={{
-                  hidden: { opacity: 0, y: 15, scale: 0.95 },
-                  visible: { 
-                    opacity: 1, 
-                    y: 0, 
-                    scale: 1,
-                    transition: { type: 'spring', stiffness: 100, damping: 15 }
-                  }
-                }}
-                whileHover={{ 
-                  y: -4, 
-                  scale: 1.02,
-                  transition: { type: 'spring', stiffness: 400, damping: 10 }
-                }}
-                whileTap={{ scale: 0.98 }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 'clamp(0.5rem, 2vw, 1rem)',
-                  padding: 'clamp(0.75rem, 2vw, 1rem) clamp(0.85rem, 2vw, 1.25rem)',
-                  border: '1px solid var(--border)',
-                  borderRadius: 'var(--r-md)',
-                  background: 'var(--bg)',
-                  cursor: 'default',
-                  transition: 'border-color 0.3s ease, background-color 0.3s ease',
-                }}
-                className="tech-item"
+        {/* ── Category Tabs ── */}
+        <div className="tab-pill-bar">
+          {techCategories.map((cat) => {
+            const isActive = activeCategory === cat.key
+            return (
+              <button
+                key={cat.key}
+                onClick={() => setActiveCategory(cat.key)}
+                className={`tab-pill-btn ${isActive ? 'active' : ''}`}
               >
-                <img src={item.logo} alt={`${item.name} logo`} width={28} height={28} loading="lazy" style={{ flexShrink: 0 }} />
-                <span style={{ fontSize: 'clamp(0.9rem, 2vw, 1.1rem)', color: 'var(--fg)', fontWeight: 500 }}>{item.name}</span>
-              </motion.div>
-            ))}
-          </motion.div>
+                {cat.icon}
+                <span>{cat.label}</span>
+                {isActive && (
+                  <motion.div
+                    layoutId="activeTechTabIndicator"
+                    className="tab-pill-indicator"
+                    transition={{ type: 'spring', bounce: 0.2, duration: 0.45 }}
+                  />
+                )}
+              </button>
+            )
+          })}
         </div>
 
-        {/* ── Core competencies ───────────────────────────────── */}
-        <div>
-          <p className="t-label" style={{ marginBottom: '2rem' }}>Core Competencies</p>
-          <motion.div 
-            className="perk-grid"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={{
-              visible: {
-                transition: {
-                  staggerChildren: 0.1,
-                  delayChildren: 0.4
-                }
-              }
-            }}
-          >
-            {perkCards.map((perk) => (
+        {/* ── Card Display Panel ── */}
+        <div className="tech-display-frame">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeCategory}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.25, ease: EASE }}
+              className="cards-grid"
+            >
+              {currentCategory.skills.map((item, idx) => (
+                <motion.div
+                  key={item.name}
+                  initial={reduced ? {} : { opacity: 0, scale: 0.94 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: idx * 0.03,
+                    ease: EASE,
+                  }}
+                  whileHover={reduced ? {} : { y: -6, scale: 1.03 }}
+                  className="skill-card"
+                >
+                  <div className="card-ambient-glow" />
+                  <div className="skill-logo-wrap">
+                    <img
+                      src={item.logo}
+                      alt={item.name}
+                      width={52}
+                      height={52}
+                      loading="lazy"
+                      className="skill-logo-img"
+                    />
+                  </div>
+                  <span className="skill-card-name">{item.name}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* ── Core Competencies ── */}
+        <div className="tech-competencies-wrap">
+          <p className="t-label" style={{ marginBottom: '1.25rem' }}>Core Competencies</p>
+          <div className="perk-grid">
+            {perkCards.map((perk, idx) => (
               <motion.div
                 key={perk.title}
-                variants={{
-                  hidden: { opacity: 0, y: 30 },
-                  visible: { 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { type: 'spring', stiffness: 80, damping: 12 }
-                  }
-                }}
-                whileHover={{ 
-                  y: -10,
-                  transition: { type: 'spring', stiffness: 300, damping: 15 }
-                }}
+                initial={reduced ? {} : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: idx * 0.1, ease: EASE }}
+                whileHover={{ y: -5, transition: { duration: 0.25 } }}
                 className="perk-card"
-                style={{
-                  border: '1px solid var(--border)',
-                  borderRadius: '24px',
-                  padding: 'clamp(1.5rem, 5vw, 2.5rem)',
-                  background: 'var(--surface)',
-                  transition: 'border-color 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  cursor: 'default'
-                }}
               >
-                <div style={{ 
-                  width: '48px', 
-                  height: '48px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  background: 'var(--bg)', 
-                  border: '1px solid var(--border)',
-                  borderRadius: '14px',
-                  color: perk.color,
-                  marginBottom: '1.5rem',
-                  transition: 'all 0.4s ease'
-                }} className="perk-icon-box">
+                <div className="perk-icon-box" style={{ color: perk.color }}>
                   {perk.icon}
                 </div>
-                <h4 style={{ fontSize: 'clamp(1.2rem, 4vw, 1.4rem)', fontWeight: 600, color: 'var(--fg)', marginBottom: '1rem' }}>{perk.title}</h4>
-                <p style={{ fontSize: 'clamp(1.05rem, 3vw, 1.15rem)', color: 'var(--fg-soft)', lineHeight: 1.6, fontWeight: 400 }}>{perk.text}</p>
+                <h4 className="perk-title">{perk.title}</h4>
+                <p className="perk-desc">{perk.text}</p>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
+
       </div>
 
       <style>{`
-        .tech-grid {
+        .ed-tech-stage {
+          position: relative;
+          overflow: hidden;
+          background: 
+            radial-gradient(ellipse at 85% 20%, rgba(245, 194, 200, 0.04) 0%, transparent 50%),
+            radial-gradient(ellipse at 15% 80%, rgba(228, 223, 218, 0.03) 0%, transparent 50%),
+            #151612; /* Distinct deep obsidian tone */
+          border-top: 1px solid rgba(60, 60, 56, 0.4);
+          border-bottom: 1px solid rgba(60, 60, 56, 0.4);
+          padding-top: clamp(4.5rem, 8vw, 7rem);
+          padding-bottom: clamp(4.5rem, 8vw, 7rem);
+        }
+
+        .ed-tech-container {
+          position: relative;
+          z-index: 2;
+        }
+
+        .ed-tech-watermark {
+          position: absolute;
+          bottom: -1vw;
+          left: 50%;
+          transform: translateX(-50%);
+          font-family: var(--font-display);
+          font-size: clamp(6rem, 20vw, 18rem);
+          color: rgba(228, 223, 218, 0.04);
+          letter-spacing: -0.04em;
+          font-weight: 700;
+          pointer-events: none;
+          user-select: none;
+          z-index: 0;
+          line-height: 0.8;
+          white-space: nowrap;
+        }
+
+        @media (min-width: 1024px) {
+          .ed-tech-watermark {
+            left: 3%;
+            transform: none;
+          }
+        }
+
+        .tech-heading-block {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          margin-bottom: clamp(2rem, 5vw, 3rem);
+        }
+
+        .tech-badge-wrap {
+          margin-bottom: 0.75rem;
+        }
+
+        /* ── Tabs bar ── */
+        .tab-pill-bar {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.6rem;
+          margin-bottom: 1.75rem;
+          justify-content: center;
+        }
+
+        .tab-pill-btn {
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          padding: 0.55rem 1.15rem;
+          background: rgba(22, 23, 19, 0.65);
+          border: 1px solid var(--border);
+          border-radius: var(--radius-buttons);
+          color: var(--fg-soft);
+          font-family: var(--font-telemetry);
+          font-size: 13px;
+          cursor: pointer;
+          transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .tab-pill-btn:hover {
+          color: var(--fg);
+          border-color: var(--border-hi);
+        }
+
+        .tab-pill-btn.active {
+          color: var(--fg);
+          border-color: var(--border-hi);
+        }
+
+        .tab-pill-indicator {
+          position: absolute;
+          inset: 0;
+          border-radius: var(--radius-buttons);
+          background: rgba(228, 223, 218, 0.1);
+          border: 1px solid rgba(228, 223, 218, 0.35);
+          pointer-events: none;
+        }
+
+        /* ── Display Box ── */
+        .tech-display-frame {
+          position: relative;
+          min-height: 240px;
+          border: 1px solid rgba(60, 60, 56, 0.8);
+          border-radius: 18px;
+          padding: clamp(1.25rem, 3.5vw, 2.5rem);
+          background: rgba(18, 19, 15, 0.55);
+          backdrop-filter: blur(8px);
+        }
+
+        .cards-grid {
+          position: relative;
+          z-index: 1;
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: clamp(0.5rem, 2vw, 0.75rem);
+          gap: 1rem;
         }
-        .tech-item:hover {
-          background: var(--surface-hi);
-          border-color: var(--red);
-          transform: translateY(-3px);
+
+        @media (min-width: 520px) {
+          .cards-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.25rem;
+          }
         }
-        [data-theme="light"] .tech-item:hover {
-          background: #fff;
+
+        @media (min-width: 800px) {
+          .cards-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
+          }
         }
+
+        @media (min-width: 1100px) {
+          .cards-grid {
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+          }
+        }
+
+        /* ── Skill Cards ── */
+        .skill-card {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 1.85rem 1rem;
+          background: rgba(26, 27, 23, 0.85);
+          border: 1px solid var(--border);
+          border-radius: 14px;
+          cursor: pointer;
+          overflow: hidden;
+          transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .skill-card:hover {
+          border-color: rgba(228, 223, 218, 0.45);
+          background: rgba(33, 34, 29, 0.95);
+          box-shadow: 0 14px 32px -10px rgba(0, 0, 0, 0.7);
+        }
+
+        .card-ambient-glow {
+          position: absolute;
+          width: 70px;
+          height: 70px;
+          top: 30%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background: radial-gradient(circle, rgba(245, 194, 200, 0.12) 0%, transparent 70%);
+          border-radius: 50%;
+          pointer-events: none;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+
+        .skill-card:hover .card-ambient-glow {
+          opacity: 1;
+        }
+
+        .skill-logo-wrap {
+          width: 52px;
+          height: 52px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 1rem;
+        }
+
+        .skill-logo-img {
+          width: 48px;
+          height: 48px;
+          object-fit: contain;
+          transition: transform 0.25s ease;
+        }
+
+        .skill-card:hover .skill-logo-img {
+          transform: scale(1.08);
+        }
+
+        .skill-card-name {
+          font-size: 0.92rem;
+          font-weight: 500;
+          color: var(--fg);
+          text-align: center;
+          letter-spacing: -0.01em;
+        }
+
+        /* ── Core Competencies ── */
+        .tech-competencies-wrap {
+          margin-top: clamp(3rem, 7vw, 4.5rem);
+        }
+
         .perk-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 1.5rem;
+          gap: 1.25rem;
         }
+
+        .perk-card {
+          border: 1px solid var(--border);
+          border-radius: var(--r-md);
+          padding: 1.5rem;
+          background: rgba(22, 23, 19, 0.65);
+          backdrop-filter: blur(8px);
+          transition: border-color 0.25s ease, background-color 0.25s ease;
+        }
+
         .perk-card:hover {
-          border-color: var(--red);
-          box-shadow: 0 25px 50px -12px rgba(255, 0, 0, 0.15);
+          border-color: var(--border-hi);
           background: var(--surface-hi);
         }
-        [data-theme="light"] .perk-card:hover {
-          background: #fff;
-          box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
-        }
-        .perk-card:hover .perk-icon-box {
-          border-color: var(--red);
-          transform: rotate(5deg) scale(1.1);
+
+        .perk-icon-box {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           background: var(--bg);
+          border: 1px solid var(--border);
+          border-radius: var(--r-sm);
+          margin-bottom: 1rem;
+          transition: transform 0.3s ease;
         }
-        @media (min-width: 640px) {
-          .tech-grid { grid-template-columns: repeat(3, 1fr); }
+
+        .perk-card:hover .perk-icon-box {
+          transform: scale(1.08);
         }
+
+        .perk-title {
+          font-size: 1.15rem;
+          font-weight: 600;
+          color: var(--fg);
+          margin: 0 0 0.5rem 0;
+        }
+
+        .perk-desc {
+          font-size: 0.9rem;
+          color: var(--fg-soft);
+          line-height: 1.55;
+          margin: 0;
+        }
+
+        @media (min-width: 900px) {
+          .perk-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+        }
+
         @media (min-width: 1024px) {
-          .tech-grid { grid-template-columns: repeat(4, 1fr); }
-          .perk-grid { grid-template-columns: repeat(3, 1fr); }
+          .ed-tech-stage .ed-left-rail,
+          .ed-tech-stage .ed-right-rail {
+            display: flex;
+          }
+
+          .ed-tech-container {
+            padding-left: 3.5rem;
+            padding-right: 3rem;
+          }
+
+          .tech-heading-block {
+            align-items: flex-start;
+            text-align: left;
+          }
+
+          .tab-pill-bar {
+            justify-content: flex-start;
+          }
         }
       `}</style>
     </section>
-
   )
 }

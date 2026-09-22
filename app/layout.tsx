@@ -1,14 +1,28 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import { Cormorant_Upright } from 'next/font/google'
+import { Inter, IBM_Plex_Mono, VT323 } from 'next/font/google'
 import './globals.css'
 import { SITE_URL, siteConfig } from '@/lib/site'
 import LenisProvider from '@/components/LenisProvider'
 
-const cormorant = Cormorant_Upright({
+const arbeitContrast = Inter({
   subsets: ['latin'],
-  variable: '--font-cormorant',
-  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-arbeit-contrast',
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+})
+
+const arbeitTechnik = IBM_Plex_Mono({
+  subsets: ['latin'],
+  variable: '--font-arbeit-technik',
+  weight: ['400'],
+  display: 'swap',
+})
+
+const inlineVf = VT323({
+  subsets: ['latin'],
+  variable: '--font-inline-vf',
+  weight: ['400'],
   display: 'swap',
 })
 
@@ -79,7 +93,9 @@ export default function RootLayout({
 
   return (
     <html lang="en" className="scroll-smooth" data-theme="dark">
-      <body className={`${cormorant.variable} antialiased`} style={{ fontFamily: 'var(--font-cormorant), serif', paddingTop: '0' }}>
+      <body
+        className={`${arbeitContrast.variable} ${arbeitTechnik.variable} ${inlineVf.variable} antialiased`}
+      >
         <LenisProvider>
           {children}
         </LenisProvider>

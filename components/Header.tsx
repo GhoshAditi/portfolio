@@ -1,16 +1,13 @@
 'use client'
 
-import { useState, useCallback, useEffect } from 'react'
-import { HiOutlineSun, HiOutlineMoon, HiBars3BottomRight, HiXMark } from 'react-icons/hi2'
+import { useState, useEffect } from 'react'
+import { HiBars3BottomRight, HiXMark } from 'react-icons/hi2'
 import { motion, AnimatePresence } from 'framer-motion'
 import NavHeader from '@/components/ui/nav-header'
 
-
 export default function Header() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,14 +15,6 @@ export default function Header() {
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
-
-  const toggleTheme = useCallback(() => {
-    setTheme(prev => {
-      const next = prev === 'dark' ? 'light' : 'dark'
-      document.documentElement.setAttribute('data-theme', next)
-      return next
-    })
   }, [])
 
   useEffect(() => {
@@ -86,7 +75,7 @@ export default function Header() {
         <div className="container" style={{ 
           display: 'flex', 
           alignItems: 'center', 
-          justifyContent: 'flex-end', // Align nav to right since brand is top-left
+          justifyContent: 'flex-end',
           width: '100%',
           pointerEvents: 'none'
         }}>
@@ -96,30 +85,12 @@ export default function Header() {
             <NavHeader />
           </div>
 
-          {/* Right Actions */}
+          {/* Right Actions / Mobile Toggle */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', pointerEvents: 'auto' }}>
-            <button
-              onClick={toggleTheme}
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '38px',
-                height: '38px',
-                border: '1px solid var(--border)',
-                borderRadius: '50%',
-                background: 'rgba(var(--bg-rgb), 0.3)',
-                backdropFilter: 'blur(12px)',
-                color: 'var(--fg)',
-                cursor: 'pointer',
-              }}
-            >
-              {theme === 'dark' ? <HiOutlineSun size={18} /> : <HiOutlineMoon size={18} />}
-            </button>
-
             <button
               className="mobile-hamburger"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle navigation menu"
               style={{
                 display: 'none',
                 alignItems: 'center',
@@ -163,7 +134,7 @@ export default function Header() {
               {[
                 { label: "Home", href: "#home" },
                 { label: "About", href: "#about" },
-                { label: "Stack", href: "#tech" },
+                { label: "Stack", href: "#stack" },
                 { label: "Projects", href: "#projects" },
                 { label: "Experience", href: "#experience" },
                 { label: "Services", href: "#services" },
@@ -207,7 +178,6 @@ export default function Header() {
         @media (max-width: 1024px) {
           .brand-block-fixed { padding: 1.25rem 1.5rem !important; }
           .desktop-nav-container { display: none !important; }
-          .desktop-only-badges { display: none !important; }
           .mobile-hamburger { display: flex !important; }
           .nav-row-sticky { padding: 1.25rem 1.5rem !important; }
         }

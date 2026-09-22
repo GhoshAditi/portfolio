@@ -2,9 +2,9 @@ export const SITE_URL = 'https://aditi-ghosh.vercel.app/'
 
 export const siteConfig = {
   name: 'Aditi Ghosh',
-  title: 'Aditi Ghosh - SDE | Performance and Scalable Architecture',
+  title: 'Aditi Ghosh | Full Stack Engineer',
   description:
-    'Hire Aditi Ghosh for your next project - High performance websites with scalable backends.',
+    'Dark, compact portfolio for Aditi Ghosh featuring full-stack work, projects, experience, and contact details.',
   locale: 'en_US',
   keywords: [
     'Aditi Ghosh',

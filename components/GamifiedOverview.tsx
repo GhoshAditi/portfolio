@@ -1,21 +1,21 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { HiOutlineFlag, HiOutlineCheckBadge, HiOutlineBolt } from 'react-icons/hi2'
+import { HiOutlineBriefcase, HiOutlineCheckBadge, HiOutlineBolt, HiOutlineRocketLaunch } from 'react-icons/hi2'
 import { NumberTicker } from '@/components/magicui/number-ticker'
 
 
 const metrics = [
-  { label: 'Level',       value: 18,    hint: 'Builder Rank',     suffix: '' },
-  { label: 'XP',          value: 12480, hint: 'Engineering XP',   suffix: '' },
-  { label: 'Quest Wins',  value: 15,    hint: 'Shipped Projects', suffix: '' },
-  { label: 'Streak',      value: 143,   hint: 'Learning Days',    suffix: '' },
+  { label: 'Projects shipped', value: 15, hint: 'Product builds', suffix: '+' },
+  { label: 'Years building',    value: 2,  hint: 'Professional experience', suffix: '+' },
+  { label: 'Core technologies',  value: 10, hint: 'Primary stack areas', suffix: '+' },
+  { label: 'Focus',              value: 94, hint: 'Product + performance', suffix: '%' },
 ]
 
 const achievements = [
-  { text: 'Built AI + social-impact apps',    icon: <HiOutlineFlag  size={16} style={{ color: 'var(--red)', flexShrink: 0 }} /> },
-  { text: 'Full-stack rapid prototyping',     icon: <HiOutlineCheckBadge  size={16} style={{ color: 'var(--steel)', flexShrink: 0 }} /> },
-  { text: 'Performance-first UI execution',   icon: <HiOutlineBolt  size={16} style={{ color: 'var(--steel)', flexShrink: 0 }} /> },
+  { text: 'Built AI and social-impact products',    icon: <HiOutlineRocketLaunch size={16} style={{ color: 'var(--red)', flexShrink: 0 }} /> },
+  { text: 'Shipped full-stack systems across teams', icon: <HiOutlineBriefcase size={16} style={{ color: 'var(--steel)', flexShrink: 0 }} /> },
+  { text: 'Performance-first UI execution',          icon: <HiOutlineBolt size={16} style={{ color: 'var(--steel)', flexShrink: 0 }} /> },
 ]
 
 export default function GamifiedOverview() {
@@ -27,14 +27,14 @@ export default function GamifiedOverview() {
           {/* ── Header row ─────────────────────────────────────── */}
           <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', marginBottom: 'clamp(1.5rem, 5vw, 2.5rem)' }}>
             <div>
-              <p className="t-label" style={{ fontSize: '0.65rem' }}>Player Dashboard</p>
+              <p className="t-label" style={{ fontSize: '0.65rem' }}>At a glance</p>
               <h2 style={{ fontSize: 'clamp(1.3rem, 4vw, 1.6rem)', fontWeight: 500, color: 'var(--fg)', letterSpacing: '-0.02em', marginTop: '0.25rem' }}>
-                Command Center
+                Portfolio Overview
               </h2>
             </div>
             <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <a href="#projects" className="chip" style={{ fontWeight: 600, fontSize: '0.65rem' }}>Quests</a>
-              <a href="#services" className="chip" style={{ fontWeight: 600, fontSize: '0.65rem' }}>Skill Tree</a>
+              <a href="#projects" className="chip" style={{ fontWeight: 600, fontSize: '0.65rem' }}>Projects</a>
+              <a href="#services" className="chip" style={{ fontWeight: 600, fontSize: '0.65rem' }}>Services</a>
             </div>
           </div>
 
@@ -85,7 +85,7 @@ export default function GamifiedOverview() {
                   <NumberTicker value={m.value} />
                   {m.suffix}
                 </p>
-                <p className="t-label" style={{ fontSize: '0.6rem', marginTop: '0.25rem' }}>{m.hint}</p>
+                  <p className="t-label" style={{ fontSize: '0.6rem', marginTop: '0.25rem' }}>{m.hint}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -101,7 +101,7 @@ export default function GamifiedOverview() {
               transition={{ delay: 0.5, type: 'spring', stiffness: 80 }}
               style={{ border: '1px solid var(--border)', borderRadius: 'var(--r-md)', padding: 'clamp(1rem, 3vw, 1.5rem)' }}
             >
-              <p className="t-label" style={{ marginBottom: '1rem', fontSize: '0.7rem' }}>Unlocked Achievements</p>
+              <p className="t-label" style={{ marginBottom: '1rem', fontSize: '0.7rem' }}>Selected strengths</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
                 {achievements.map((a) => (
                   <motion.div 
@@ -133,12 +133,12 @@ export default function GamifiedOverview() {
               transition={{ delay: 0.5, type: 'spring', stiffness: 80 }}
               style={{ border: '1px solid var(--border)', borderRadius: 'var(--r-md)', padding: 'clamp(1rem, 3vw, 1.5rem)' }}
             >
-              <p className="t-label" style={{ marginBottom: '1rem', fontSize: '0.7rem' }}>Current Mission Loadout</p>
+              <p className="t-label" style={{ marginBottom: '1rem', fontSize: '0.7rem' }}>Working priorities</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                 {[
-                  { icon: <HiOutlineFlag size={16} style={{ color: 'var(--red)' }} />,   text: 'Build impactful products'  },
-                  { icon: <HiOutlineCheckBadge size={16} style={{ color: 'var(--steel)' }} />, text: 'Ship resilient systems'   },
-                  { icon: <HiOutlineBolt size={16} style={{ color: 'var(--steel)' }} />, text: 'Scale with performance'   },
+                  { icon: <HiOutlineBriefcase size={16} style={{ color: 'var(--red)' }} />,   text: 'Build products that ship cleanly'  },
+                  { icon: <HiOutlineCheckBadge size={16} style={{ color: 'var(--steel)' }} />, text: 'Keep the interface readable and sharp'   },
+                  { icon: <HiOutlineBolt size={16} style={{ color: 'var(--steel)' }} />, text: 'Optimize for performance and maintainability'   },
                 ].map(r => (
                   <motion.p 
                     key={r.text} 
