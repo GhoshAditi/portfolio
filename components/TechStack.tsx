@@ -1,137 +1,52 @@
 'use client'
-import React from 'react'
-import { useState } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import {
-  HiOutlineShieldCheck,
-  HiOutlineBolt,
-  HiOutlineFire,
-  HiOutlineCommandLine,
-  HiOutlineSparkles,
-  HiOutlineCircleStack,
-  HiOutlineCloud,
-  HiOutlineWrenchScrewdriver,
-} from 'react-icons/hi2'
+
+import { motion, useInView } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { FaAws } from 'react-icons/fa'
+import { 
+  SiJavascript, SiTypescript, SiPython, SiCplusplus, SiC, SiGo, 
+  SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, SiFirebase, 
+  SiDocker, SiLinux, SiGit, SiGithub, SiTensorflow, SiOpencv 
+} from 'react-icons/si'
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
-type CategoryKey = 'languages' | 'frontend' | 'backend' | 'cloud' | 'tools'
-
-interface TechItem {
-  name: string
-  logo: string
-}
-
-const techCategories: {
-  key: CategoryKey
-  label: string
-  icon: React.ReactNode
-  skills: TechItem[]
-}[] = [
-  {
-    key: 'languages',
-    label: 'Languages',
-    icon: <HiOutlineCommandLine size={16} />,
-    skills: [
-      { name: 'JavaScript', logo: 'https://skillicons.dev/icons?i=js' },
-      { name: 'TypeScript', logo: 'https://skillicons.dev/icons?i=ts' },
-      { name: 'Python',     logo: 'https://skillicons.dev/icons?i=python' },
-      { name: 'Java',       logo: 'https://skillicons.dev/icons?i=java' },
-      { name: 'C',          logo: 'https://skillicons.dev/icons?i=c' },
-      { name: 'C++',        logo: 'https://skillicons.dev/icons?i=cpp' },
-      { name: 'Go',         logo: 'https://skillicons.dev/icons?i=go' },
-    ],
-  },
-  {
-    key: 'frontend',
-    label: 'Frontend',
-    icon: <HiOutlineSparkles size={16} />,
-    skills: [
-      { name: 'React.js',     logo: 'https://skillicons.dev/icons?i=react' },
-      { name: 'Next.js',      logo: 'https://skillicons.dev/icons?i=nextjs' },
-      { name: 'Tailwind CSS', logo: 'https://skillicons.dev/icons?i=tailwind' },
-      { name: 'ThreeJS',      logo: 'https://skillicons.dev/icons?i=threejs' },
-      { name: 'HTML5',        logo: 'https://skillicons.dev/icons?i=html' },
-      { name: 'CSS3',         logo: 'https://skillicons.dev/icons?i=css' },
-    ],
-  },
-  {
-    key: 'backend',
-    label: 'Backend & DB',
-    icon: <HiOutlineCircleStack size={16} />,
-    skills: [
-      { name: 'Node.js',    logo: 'https://skillicons.dev/icons?i=nodejs' },
-      { name: 'Express.js', logo: 'https://skillicons.dev/icons?i=express' },
-      { name: 'Flask',      logo: 'https://skillicons.dev/icons?i=flask' },
-      { name: 'Django',     logo: 'https://skillicons.dev/icons?i=django' },
-      { name: 'PostgreSQL', logo: 'https://skillicons.dev/icons?i=postgres' },
-      { name: 'MySQL',      logo: 'https://skillicons.dev/icons?i=mysql' },
-      { name: 'MongoDB',    logo: 'https://skillicons.dev/icons?i=mongodb' },
-      { name: 'Supabase',   logo: 'https://skillicons.dev/icons?i=supabase' },
-    ],
-  },
-  {
-    key: 'cloud',
-    label: 'Cloud & DevOps',
-    icon: <HiOutlineCloud size={16} />,
-    skills: [
-      { name: 'AWS',      logo: 'https://skillicons.dev/icons?i=aws' },
-      { name: 'GCP',      logo: 'https://skillicons.dev/icons?i=gcp' },
-      { name: 'Azure',    logo: 'https://skillicons.dev/icons?i=azure' },
-      { name: 'Docker',   logo: 'https://skillicons.dev/icons?i=docker' },
-      { name: 'Firebase', logo: 'https://skillicons.dev/icons?i=firebase' },
-      { name: 'Vercel',   logo: 'https://skillicons.dev/icons?i=vercel' },
-    ],
-  },
-  {
-    key: 'tools',
-    label: 'Tooling',
-    icon: <HiOutlineWrenchScrewdriver size={16} />,
-    skills: [
-      { name: 'Git',     logo: 'https://skillicons.dev/icons?i=git' },
-      { name: 'GitHub',  logo: 'https://skillicons.dev/icons?i=github' },
-      { name: 'Postman', logo: 'https://skillicons.dev/icons?i=postman' },
-    ],
-  },
+const allTechs = [
+  { name: "JavaScript", icon: <SiJavascript size={26} style={{ color: '#f7df1e' }} /> },
+  { name: "TypeScript", icon: <SiTypescript size={26} style={{ color: '#3178c6' }} /> },
+  { name: "Python", icon: <SiPython size={26} style={{ color: '#3776ab' }} /> },
+  { name: "C++", icon: <SiCplusplus size={26} style={{ color: '#00599c' }} /> },
+  { name: "C", icon: <SiC size={26} style={{ color: '#a8b9cc' }} /> },
+  { name: "Go", icon: <SiGo size={26} style={{ color: '#00add8' }} /> },
+  { name: "Node.js", icon: <SiNodedotjs size={26} style={{ color: '#5fa04e' }} /> },
+  { name: "Express.js", icon: <SiExpress size={26} style={{ color: '#ffffff' }} /> },
+  { name: "MongoDB", icon: <SiMongodb size={26} style={{ color: '#47a248' }} /> },
+  { name: "PostgreSQL", icon: <SiPostgresql size={26} style={{ color: '#4169e1' }} /> },
+  { name: "Firebase", icon: <SiFirebase size={26} style={{ color: '#ffca28' }} /> },
+  { name: "Docker", icon: <SiDocker size={26} style={{ color: '#2496ed' }} /> },
+  { name: "AWS", icon: <FaAws size={26} style={{ color: '#ff9900' }} /> },
+  { name: "Linux", icon: <SiLinux size={26} style={{ color: '#fcc624' }} /> },
+  { name: "Git", icon: <SiGit size={26} style={{ color: '#f05032' }} /> },
+  { name: "GitHub", icon: <SiGithub size={26} style={{ color: '#ffffff' }} /> },
+  { name: "TensorFlow", icon: <SiTensorflow size={26} style={{ color: '#ff6f00' }} /> },
+  { name: "OpenCV", icon: <SiOpencv size={26} style={{ color: '#5c3ee8' }} /> },
 ]
 
-const perkCards = [
-  {
-    title: 'Performance First',
-    text: 'Core Web Vitals focused architecture. Lighthouse-grade optimization across all projects.',
-    icon: <HiOutlineBolt size={22} />,
-    color: 'var(--red)',
-  },
-  {
-    title: 'Security Hardened',
-    text: 'Defense-in-depth practices. Sensitive data handling with industry best practices.',
-    icon: <HiOutlineShieldCheck size={22} />,
-    color: 'var(--steel)',
-  },
-  {
-    title: 'Rapid Iteration',
-    text: 'Clean production deployments. Fast feedback loops with robust error handling.',
-    icon: <HiOutlineFire size={22} />,
-    color: 'var(--steel)',
-  },
-]
+const fadeUp = (delay = 0) => ({
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE, delay } },
+})
 
 export default function TechStack() {
-  const [activeCategory, setActiveCategory] = useState<CategoryKey>('languages')
-  const reduced = useReducedMotion()
-
-  const currentCategory = techCategories.find((cat) => cat.key === activeCategory) || techCategories[0]
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-100px' })
+  const [isPaused, setIsPaused] = useState(false)
 
   return (
-    <section id="stack" className="ed-tech-stage section">
-      {/* ── Background Vertical Guides ── */}
+    <section id="stack" ref={ref} className="ed-stack-stage section">
+      {/* ── Background Vertical Grid Guides ── */}
       <div className="ed-grid-guides" aria-hidden="true">
         <span /><span /><span /><span /><span />
-      </div>
-
-      {/* ── Large Atmospheric Watermark ── */}
-      <div className="ed-watermark ed-tech-watermark" aria-hidden="true">
-        STACK
       </div>
 
       {/* ── Left Rail: Section Index ── */}
@@ -139,416 +54,333 @@ export default function TechStack() {
         <span className="ed-rail-text">CHAPTER // 03 • TECH ARSENAL</span>
       </div>
 
-      {/* ── Right Rail: Node Counter Indicator ── */}
+      {/* ── Right Rail: Status Indicator ── */}
       <div className="ed-right-rail" aria-hidden="true">
         <div className="ed-scroll-indicator">
-          <span className="ed-scroll-label">NODES: 28</span>
+          <span className="ed-scroll-label">NODES: 18</span>
           <span className="ed-scroll-line" />
         </div>
       </div>
 
-      <div className="container ed-tech-container">
+      <div className="container ed-stack-container">
         
-        {/* ── Heading ── */}
-        <motion.div
-          initial={reduced ? {} : { opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: EASE }}
-          className="tech-heading-block"
+        {/* ── Header ── */}
+        <div className="stack-header-layout">
+          <motion.div
+            variants={fadeUp(0)}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+          >
+            <div className="stack-badge-wrap">
+              <span className="chip">Skill Tree</span>
+            </div>
+            <h2 className="t-h2">
+              Tech <span style={{ color: 'var(--red)' }}>Mastery</span>
+            </h2>
+            <p className="t-body" style={{ marginTop: '0.85rem', maxWidth: '48ch' }}>
+              Specialized expertise across modern backend architecture, cloud infrastructure, and AI systems in a 3D orbital array.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* ── 3D True Orbital Arena ── */}
+        <motion.div 
+          variants={fadeUp(0.2)}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="orbit-arena-3d"
         >
-          <div className="tech-badge-wrap">
-            <span className="chip">
-              Skill Tree
-            </span>
+          {/* Ambient glow */}
+          <div className="arena-ambient-glow" />
+
+          {/* Central 3D Wireframe Cube Core */}
+          <div className="arena-core-3d">
+            <div className="wireframe-cube">
+              <div className="cube-face front" />
+              <div className="cube-face back" />
+              <div className="cube-face right" />
+              <div className="cube-face left" />
+              <div className="cube-face top" />
+              <div className="cube-face bottom" />
+            </div>
+            <div className="core-pulse-ring" />
+            <div className="core-inner-glow" />
           </div>
-          <h2 className="t-h2">
-            Tech <span style={{ color: 'var(--red)' }}>Mastery</span>
-          </h2>
-          <p className="t-body" style={{ marginTop: '0.85rem' }}>
-            Specialized expertise across modern web development, cloud infrastructure, and full-stack systems. Proven track record shipping production-grade code at scale.
-          </p>
-        </motion.div>
 
-        {/* ── Category Tabs ── */}
-        <div className="tab-pill-bar">
-          {techCategories.map((cat) => {
-            const isActive = activeCategory === cat.key
-            return (
-              <button
-                key={cat.key}
-                onClick={() => setActiveCategory(cat.key)}
-                className={`tab-pill-btn ${isActive ? 'active' : ''}`}
-              >
-                {cat.icon}
-                <span>{cat.label}</span>
-                {isActive && (
-                  <motion.div
-                    layoutId="activeTechTabIndicator"
-                    className="tab-pill-indicator"
-                    transition={{ type: 'spring', bounce: 0.2, duration: 0.45 }}
-                  />
-                )}
-              </button>
-            )
-          })}
-        </div>
+          {/* 3D Orbiting Sphere Container */}
+          <div className={`orbit-sphere-container ${isPaused ? 'is-paused' : ''}`}>
+            {allTechs.map((tech, i) => {
+              // Distribute items across a 3D spherical shell layout
+              const phi = Math.acos(-1 + (2 * i) / allTechs.length)
+              const theta = Math.sqrt(allTechs.length * Math.PI) * phi
+              
+              const radius = 210 // 3D Orbit radius in pixels
 
-        {/* ── Card Display Panel ── */}
-        <div className="tech-display-frame">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeCategory}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.25, ease: EASE }}
-              className="cards-grid"
-            >
-              {currentCategory.skills.map((item, idx) => (
-                <motion.div
-                  key={item.name}
-                  initial={reduced ? {} : { opacity: 0, scale: 0.94 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    duration: 0.3,
-                    delay: idx * 0.03,
-                    ease: EASE,
+              // Convert spherical coordinates to 3D offsets
+              const x = radius * Math.cos(theta) * Math.sin(phi)
+              const y = radius * Math.sin(theta) * Math.sin(phi)
+              const z = radius * Math.cos(phi)
+
+              return (
+                <div
+                  key={tech.name}
+                  className="orbit-3d-item"
+                  style={{
+                    ['--tx' as any]: `${x}px`,
+                    ['--ty' as any]: `${y}px`,
+                    ['--tz' as any]: `${z}px`,
+                    animationDelay: `-${(i / allTechs.length) * 35}s`,
                   }}
-                  whileHover={reduced ? {} : { y: -6, scale: 1.03 }}
-                  className="skill-card"
+                  onMouseEnter={() => setIsPaused(true)}
+                  onMouseLeave={() => setIsPaused(false)}
                 >
-                  <div className="card-ambient-glow" />
-                  <div className="skill-logo-wrap">
-                    <img
-                      src={item.logo}
-                      alt={item.name}
-                      width={52}
-                      height={52}
-                      loading="lazy"
-                      className="skill-logo-img"
-                    />
+                  <div className="orbit-node-card">
+                    <div className="node-glow" />
+                    <div className="node-content">
+                      <div className="node-icon-box">
+                        {tech.icon}
+                      </div>
+                      <span className="node-title">{tech.name}</span>
+                    </div>
                   </div>
-                  <span className="skill-card-name">{item.name}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* ── Core Competencies ── */}
-        <div className="tech-competencies-wrap">
-          <p className="t-label" style={{ marginBottom: '1.25rem' }}>Core Competencies</p>
-          <div className="perk-grid">
-            {perkCards.map((perk, idx) => (
-              <motion.div
-                key={perk.title}
-                initial={reduced ? {} : { opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: idx * 0.1, ease: EASE }}
-                whileHover={{ y: -5, transition: { duration: 0.25 } }}
-                className="perk-card"
-              >
-                <div className="perk-icon-box" style={{ color: perk.color }}>
-                  {perk.icon}
                 </div>
-                <h4 className="perk-title">{perk.title}</h4>
-                <p className="perk-desc">{perk.text}</p>
-              </motion.div>
-            ))}
+              )
+            })}
           </div>
-        </div>
+        </motion.div>
 
       </div>
 
       <style>{`
-        .ed-tech-stage {
-          position: relative;
-          overflow: hidden;
+        .ed-stack-stage {
+          position: sticky;
+          top: 0;
+          z-index: 20;
+          min-height: 100vh;
+          min-height: 100svh;
+          display: flex;
+          align-items: center;
           background: 
-            radial-gradient(ellipse at 85% 20%, rgba(245, 194, 200, 0.04) 0%, transparent 50%),
-            radial-gradient(ellipse at 15% 80%, rgba(228, 223, 218, 0.03) 0%, transparent 50%),
-            #151612; /* Distinct deep obsidian tone */
-          border-top: 1px solid rgba(60, 60, 56, 0.4);
-          border-bottom: 1px solid rgba(60, 60, 56, 0.4);
-          padding-top: clamp(4.5rem, 8vw, 7rem);
-          padding-bottom: clamp(4.5rem, 8vw, 7rem);
+            radial-gradient(circle at 50% 45%, rgba(224, 101, 96, 0.06) 0%, transparent 60%),
+            linear-gradient(135deg, #131410 0%, #1a1b16 50%, #12130f 100%);
+          border-top: 1px solid rgba(60, 60, 56, 0.5);
+          border-bottom: 1px solid rgba(60, 60, 56, 0.5);
+          padding-top: clamp(4rem, 6vw, 6rem);
+          padding-bottom: clamp(4rem, 6vw, 6rem);
+          box-sizing: border-box;
+          overflow: hidden;
         }
 
-        .ed-tech-container {
+        .ed-stack-container {
           position: relative;
           z-index: 2;
+          max-width: 1200px;
+          margin: 0 auto;
+          width: 100%;
         }
 
-        .ed-tech-watermark {
-          position: absolute;
-          bottom: -1vw;
-          left: 50%;
-          transform: translateX(-50%);
-          font-family: var(--font-display);
-          font-size: clamp(6rem, 20vw, 18rem);
-          color: rgba(228, 223, 218, 0.04);
-          letter-spacing: -0.04em;
-          font-weight: 700;
-          pointer-events: none;
-          user-select: none;
-          z-index: 0;
-          line-height: 0.8;
-          white-space: nowrap;
+        .stack-header-layout {
+          margin-bottom: 2rem;
         }
 
-        @media (min-width: 1024px) {
-          .ed-tech-watermark {
-            left: 3%;
-            transform: none;
-          }
-        }
-
-        .tech-heading-block {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          margin-bottom: clamp(2rem, 5vw, 3rem);
-        }
-
-        .tech-badge-wrap {
+        .stack-badge-wrap {
           margin-bottom: 0.75rem;
         }
 
-        /* ── Tabs bar ── */
-        .tab-pill-bar {
+        /* ── 3D Orbit Arena ── */
+        .orbit-arena-3d {
+          position: relative;
+          width: 100%;
+          height: 500px;
+          border: 1px solid rgba(228, 223, 218, 0.12);
+          border-radius: 24px;
+          background: rgba(20, 21, 17, 0.82);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
           display: flex;
-          flex-wrap: wrap;
-          gap: 0.6rem;
-          margin-bottom: 1.75rem;
-          justify-content: center;
-        }
-
-        .tab-pill-btn {
-          position: relative;
-          display: inline-flex;
-          align-items: center;
-          gap: 0.5rem;
-          padding: 0.55rem 1.15rem;
-          background: rgba(22, 23, 19, 0.65);
-          border: 1px solid var(--border);
-          border-radius: var(--radius-buttons);
-          color: var(--fg-soft);
-          font-family: var(--font-telemetry);
-          font-size: 13px;
-          cursor: pointer;
-          transition: color 0.2s ease, border-color 0.2s ease;
-        }
-
-        .tab-pill-btn:hover {
-          color: var(--fg);
-          border-color: var(--border-hi);
-        }
-
-        .tab-pill-btn.active {
-          color: var(--fg);
-          border-color: var(--border-hi);
-        }
-
-        .tab-pill-indicator {
-          position: absolute;
-          inset: 0;
-          border-radius: var(--radius-buttons);
-          background: rgba(228, 223, 218, 0.1);
-          border: 1px solid rgba(228, 223, 218, 0.35);
-          pointer-events: none;
-        }
-
-        /* ── Display Box ── */
-        .tech-display-frame {
-          position: relative;
-          min-height: 240px;
-          border: 1px solid rgba(60, 60, 56, 0.8);
-          border-radius: 18px;
-          padding: clamp(1.25rem, 3.5vw, 2.5rem);
-          background: rgba(18, 19, 15, 0.55);
-          backdrop-filter: blur(8px);
-        }
-
-        .cards-grid {
-          position: relative;
-          z-index: 1;
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 1rem;
-        }
-
-        @media (min-width: 520px) {
-          .cards-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-          }
-        }
-
-        @media (min-width: 800px) {
-          .cards-grid {
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.25rem;
-          }
-        }
-
-        @media (min-width: 1100px) {
-          .cards-grid {
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1.5rem;
-          }
-        }
-
-        /* ── Skill Cards ── */
-        .skill-card {
-          position: relative;
-          display: flex;
-          flex-direction: column;
           align-items: center;
           justify-content: center;
-          padding: 1.85rem 1rem;
-          background: rgba(26, 27, 23, 0.85);
-          border: 1px solid var(--border);
-          border-radius: 14px;
-          cursor: pointer;
           overflow: hidden;
-          transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+          box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7);
+          perspective: 1200px;
         }
 
-        .skill-card:hover {
-          border-color: rgba(228, 223, 218, 0.45);
-          background: rgba(33, 34, 29, 0.95);
-          box-shadow: 0 14px 32px -10px rgba(0, 0, 0, 0.7);
-        }
-
-        .card-ambient-glow {
+        .arena-ambient-glow {
           position: absolute;
-          width: 70px;
-          height: 70px;
-          top: 30%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          background: radial-gradient(circle, rgba(245, 194, 200, 0.12) 0%, transparent 70%);
+          width: 400px;
+          height: 400px;
           border-radius: 50%;
+          background: radial-gradient(circle, rgba(224, 101, 96, 0.12) 0%, transparent 70%);
           pointer-events: none;
-          opacity: 0;
-          transition: opacity 0.3s ease;
+          z-index: 1;
         }
 
-        .skill-card:hover .card-ambient-glow {
-          opacity: 1;
-        }
-
-        .skill-logo-wrap {
-          width: 52px;
-          height: 52px;
+        /* Central 3D Wireframe Cube Core */
+        .arena-core-3d {
+          position: absolute;
+          z-index: 4;
+          width: 120px;
+          height: 120px;
           display: flex;
           align-items: center;
           justify-content: center;
-          margin-bottom: 1rem;
+          transform-style: preserve-3d;
+          pointer-events: none;
         }
 
-        .skill-logo-img {
-          width: 48px;
-          height: 48px;
-          object-fit: contain;
-          transition: transform 0.25s ease;
+        .wireframe-cube {
+          position: relative;
+          width: 65px;
+          height: 65px;
+          transform-style: preserve-3d;
+          animation: rotateCube 18s linear infinite;
         }
 
-        .skill-card:hover .skill-logo-img {
-          transform: scale(1.08);
+        @keyframes rotateCube {
+          0% { transform: rotateX(0deg) rotateY(0deg); }
+          100% { transform: rotateX(360deg) rotateY(360deg); }
         }
 
-        .skill-card-name {
-          font-size: 0.92rem;
-          font-weight: 500;
-          color: var(--fg);
-          text-align: center;
-          letter-spacing: -0.01em;
+        .cube-face {
+          position: absolute;
+          width: 65px;
+          height: 65px;
+          border: 1.5px solid rgba(224, 101, 96, 0.65);
+          background: rgba(224, 101, 96, 0.06);
+          box-shadow: inset 0 0 15px rgba(224, 101, 96, 0.25);
         }
 
-        /* ── Core Competencies ── */
-        .tech-competencies-wrap {
-          margin-top: clamp(3rem, 7vw, 4.5rem);
+        .cube-face.front  { transform: translateZ(32.5px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(32.5px); }
+        .cube-face.right  { transform: rotateY(90deg) translateZ(32.5px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(32.5px); }
+        .cube-face.top    { transform: rotateX(90deg) translateZ(32.5px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(32.5px); }
+
+        .core-pulse-ring {
+          position: absolute;
+          inset: -35px;
+          border-radius: 50%;
+          border: 1px dashed rgba(224, 101, 96, 0.35);
+          animation: spinSlow 30s linear infinite;
         }
 
-        .perk-grid {
-          display: grid;
-          grid-template-columns: 1fr;
-          gap: 1.25rem;
+        .core-inner-glow {
+          position: absolute;
+          inset: -10px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(224, 101, 96, 0.3) 0%, transparent 70%);
+          filter: blur(10px);
+          z-index: -1;
         }
 
-        .perk-card {
-          border: 1px solid var(--border);
-          border-radius: var(--r-md);
-          padding: 1.5rem;
-          background: rgba(22, 23, 19, 0.65);
-          backdrop-filter: blur(8px);
-          transition: border-color 0.25s ease, background-color 0.25s ease;
+        @keyframes spinSlow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
 
-        .perk-card:hover {
-          border-color: var(--border-hi);
-          background: var(--surface-hi);
+        /* 3D Spherical Orbit Container */
+        .orbit-sphere-container {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          transform-style: preserve-3d;
+          animation: orbit3D 35s linear infinite;
+          z-index: 3;
         }
 
-        .perk-icon-box {
-          width: 40px;
-          height: 40px;
+        .orbit-sphere-container.is-paused {
+          animation-play-state: paused;
+        }
+
+        @keyframes orbit3D {
+          0% { transform: rotateX(15deg) rotateY(0deg); }
+          100% { transform: rotateX(15deg) rotateY(360deg); }
+        }
+
+        .orbit-3d-item {
+          position: absolute;
+          transform-style: preserve-3d;
+          transform: translate3d(var(--tx), var(--ty), var(--tz));
+        }
+
+        .orbit-node-card {
+          position: relative;
+          transform: translate(-50%, -50%);
+          pointer-events: auto;
+          display: flex;
+          align-items: center;
+          gap: 0.65rem;
+          padding: 0.7rem 1.1rem;
+          border-radius: 14px;
+          background: rgba(30, 31, 26, 0.95);
+          border: 1px solid rgba(228, 223, 218, 0.22);
+          backdrop-filter: blur(12px);
+          box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.8);
+          cursor: pointer;
+          transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+        }
+
+        .orbit-node-card:hover {
+          border-color: rgba(224, 101, 96, 0.6);
+          background: rgba(42, 43, 36, 0.98);
+          transform: translate(-50%, -50%) scale(1.15);
+          z-index: 10;
+        }
+
+        .node-glow {
+          position: absolute;
+          top: -20px;
+          right: -20px;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(224, 101, 96, 0.15) 0%, transparent 70%);
+          pointer-events: none;
+        }
+
+        .node-content {
+          position: relative;
+          z-index: 2;
+          display: flex;
+          align-items: center;
+          gap: 0.6rem;
+        }
+
+        .node-icon-box {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: var(--bg);
-          border: 1px solid var(--border);
-          border-radius: var(--r-sm);
-          margin-bottom: 1rem;
-          transition: transform 0.3s ease;
         }
 
-        .perk-card:hover .perk-icon-box {
-          transform: scale(1.08);
-        }
-
-        .perk-title {
-          font-size: 1.15rem;
+        .node-title {
+          font-family: var(--font-body);
+          font-size: 0.88rem;
           font-weight: 600;
           color: var(--fg);
-          margin: 0 0 0.5rem 0;
+          white-space: nowrap;
         }
 
-        .perk-desc {
-          font-size: 0.9rem;
-          color: var(--fg-soft);
-          line-height: 1.55;
-          margin: 0;
-        }
-
-        @media (min-width: 900px) {
-          .perk-grid {
-            grid-template-columns: repeat(3, 1fr);
+        @media (max-width: 768px) {
+          .orbit-arena-3d {
+            height: 420px;
+          }
+          .orbit-sphere-container {
+            transform: scale(0.7);
           }
         }
 
         @media (min-width: 1024px) {
-          .ed-tech-stage .ed-left-rail,
-          .ed-tech-stage .ed-right-rail {
+          .ed-stack-stage .ed-left-rail,
+          .ed-stack-stage .ed-right-rail {
             display: flex;
           }
 
-          .ed-tech-container {
+          .ed-stack-container {
             padding-left: 3.5rem;
             padding-right: 3rem;
-          }
-
-          .tech-heading-block {
-            align-items: flex-start;
-            text-align: left;
-          }
-
-          .tab-pill-bar {
-            justify-content: flex-start;
           }
         }
       `}</style>

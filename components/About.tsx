@@ -1,42 +1,37 @@
 'use client'
 
+import React, { useRef } from 'react'
+import dynamic from 'next/dynamic'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { useRef } from 'react'
-import { HiOutlineAcademicCap, HiOutlineUser, HiOutlineCalendarDays } from 'react-icons/hi2'
 import { TextHighlighter } from '@/components/fancy/text/text-highlighter'
+
+// Client-safe dynamic player using the installed dotlottie package
+const DotLottieReact = dynamic(
+  () => import('@lottiefiles/dotlottie-react').then((mod) => mod.DotLottieReact),
+  { ssr: false }
+)
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
-const fadeUp = (delay = 0) => ({
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE, delay } },
+const slideFromRight = (delay = 0) => ({
+  hidden: { opacity: 0, x: 50 },
+  visible: { 
+    opacity: 1, 
+    x: 0, 
+    transition: { duration: 0.65, ease: EASE, delay } 
+  },
 })
 
-const education = [
-  {
-    degree: 'Bachelor of Technology (B.Tech) — Computer Science and Engineering',
-    institution: 'RCC Institute of Information Technology, Kolkata',
-    year: '2023 — 2027',
-    description: 'Focused on software engineering, algorithms, and web development.',
-    grade: 'CGPA: 8.84 / 10',
-  },
-]
-
 export default function About() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: false, amount: 0.25 })
   const reduced = useReducedMotion()
 
   return (
-    <section id="about" ref={ref} className="ed-about-stage section">
+    <section id="about" ref={ref} className="ed-about-stage">
       {/* ── Background Vertical Grid Lines ── */}
       <div className="ed-grid-guides" aria-hidden="true">
         <span /><span /><span /><span /><span />
-      </div>
-
-      {/* ── Background Watermark ── */}
-      <div className="ed-watermark ed-about-watermark" aria-hidden="true">
-        ABOUT
       </div>
 
       {/* ── Left Rail: Section Index ── */}
@@ -53,150 +48,118 @@ export default function About() {
       </div>
 
       <div className="container ed-about-container">
-        {/* ── Section Header ── */}
+        {/* ── Header ── */}
         <motion.div
-          variants={fadeUp(0)}
+          variants={slideFromRight(0)}
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           className="about-header"
         >
           <div className="about-badge-wrap">
-            <span className="chip about-chip">
-              Origin Story
-            </span>
+            <span className="chip about-chip">Origin Story</span>
           </div>
           <h2 className="t-h2 about-heading">
             About <span className="about-heading-accent">Me</span>
           </h2>
         </motion.div>
 
-        {/* ── Two Column Content ── */}
+        {/* ── Two Column Grid ── */}
         <div className="about-grid">
-          {/* ── Left Column: Character Profile ── */}
+          {/* ── Left Column: Bio & Side-by-Side Stats ── */}
           <motion.div
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={{
-              visible: {
-                transition: {
-                  staggerChildren: 0.1,
-                  delayChildren: 0.15,
-                },
-              },
-            }}
+            animate={inView ? 'visible' : 'hidden'}
             className="about-profile-col"
           >
-            <motion.div variants={fadeUp(0)} className="about-subtitle-wrap">
-              <div className="about-icon-badge">
-                <HiOutlineUser size={18} className="icon-badge-symbol" aria-hidden="true" />
-              </div>
-              <h3 className="about-section-title">
-                Character Profile
-              </h3>
-            </motion.div>
-
             <div className="about-bio-text">
-              <motion.p variants={fadeUp(0)} className="about-copy">
+              <motion.p variants={slideFromRight(0.08)} className="about-copy">
                 I am a{' '}
-                <TextHighlighter highlightColor="#0d0e0b" className="text-highlight">
+                <TextHighlighter highlightColor="rgba(245, 194, 200, 0.18)" className="text-highlight">
                   full-stack developer
                 </TextHighlighter>{' '}
                 obsessed with building products that are{' '}
-                <TextHighlighter highlightColor="#0d0e0b" className="text-highlight">
+                <TextHighlighter highlightColor="rgba(245, 194, 200, 0.18)" className="text-highlight">
                   beautiful, useful, and technically sharp.
                 </TextHighlighter>
               </motion.p>
-              <motion.p variants={fadeUp(0)} className="about-copy">
+
+              <motion.p variants={slideFromRight(0.14)} className="about-copy">
                 From frontend interactions to backend architecture, I enjoy owning the{' '}
-                <TextHighlighter highlightColor="#0d0e0b" className="text-highlight">
+                <TextHighlighter highlightColor="rgba(128, 82, 255, 0.22)" className="text-highlight">
                   full game board.
                 </TextHighlighter>{' '}
                 I care deeply about speed, code quality, and product clarity.
               </motion.p>
-              <motion.p variants={fadeUp(0)} className="about-copy">
+
+              <motion.p variants={slideFromRight(0.2)} className="about-copy">
                 Outside projects, I invest in{' '}
-                <TextHighlighter highlightColor="#0d0e0b" className="text-highlight">
+                <TextHighlighter highlightColor="rgba(245, 194, 200, 0.18)" className="text-highlight">
                   open-source, community work,
                 </TextHighlighter>{' '}
                 and continuous learning to keep leveling up.
               </motion.p>
             </div>
 
-            {/* Stat pair */}
+            {/* ── Side-by-Side Stats (Horizontal) ── */}
             <motion.div 
-              variants={fadeUp(0)}
-              style={{ display: 'flex', gap: 'clamp(1.5rem, 5vw, 3rem)', marginTop: '2.5rem', paddingTop: '2rem', borderTop: '1px solid var(--border)' }}
+              variants={slideFromRight(0.26)}
+              className="about-stats-row"
             >
-              <motion.div whileHover={{ scale: 1.05 }} style={{ cursor: 'default' }}>
-                <p style={{ fontSize: 'clamp(1.75rem, 6vw, 2.35rem)', fontWeight: 500, color: 'var(--fg)', letterSpacing: '-0.03em', lineHeight: 1 }}>8+</p>
-                <p className="t-label" style={{ marginTop: '0.3rem' }}>Projects Completed</p>
+              <motion.div whileHover={reduced ? {} : { scale: 1.05 }} className="stat-unit">
+                <span className="stat-number">5+</span>
+                <span className="stat-label">PROJECTS COMPLETED</span>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} style={{ cursor: 'default' }}>
-                <p style={{ fontSize: 'clamp(1.75rem, 6vw, 2.35rem)', fontWeight: 500, color: 'var(--fg)', letterSpacing: '-0.03em', lineHeight: 1 }}>2+</p>
-                <p className="t-label" style={{ marginTop: '0.3rem' }}>Years Experience</p>
+
+              <div className="stat-divider" />
+
+              <motion.div whileHover={reduced ? {} : { scale: 1.05 }} className="stat-unit">
+                <span className="stat-number">2+</span>
+                <span className="stat-label">YEARS EXPERIENCE</span>
               </motion.div>
             </motion.div>
           </motion.div>
 
-          {/* ── Right Column: Academy Card ── */}
+          {/* ── Right Column: Large Animated Lottie Character ── */}
           <motion.div
-            variants={fadeUp(0.2)}
+            variants={slideFromRight(0.32)}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            className="about-academy-col"
+            animate={inView ? 'visible' : 'hidden'}
+            className="about-visual-col"
           >
-            <div className="about-subtitle-wrap">
-              <div className="about-icon-badge">
-                <HiOutlineAcademicCap size={18} className="icon-badge-symbol" aria-hidden="true" />
-              </div>
-              <h3 className="about-section-title">
-                Academy
-              </h3>
+            <div className="lottie-character-container">
+              <DotLottieReact
+                src="/coding-genius.json"
+                loop
+                autoplay
+                className="lottie-canvas-player"
+              />
             </div>
-
-            {education.map((edu) => (
-              <motion.div 
-                key={edu.degree}
-                whileHover={reduced ? {} : { y: -4 }}
-                transition={{ duration: 0.3 }}
-                className="academy-card"
-              >
-                <div className="academy-header-flex">
-                  <div className="academy-icon-box">
-                    <HiOutlineCalendarDays size={18} style={{ color: 'var(--fg)' }} aria-hidden="true" />
-                  </div>
-                  <div className="academy-meta">
-                    <span className="academy-year-pill">{edu.year}</span>
-                    <span className="academy-grade-badge">{edu.grade}</span>
-                  </div>
-                </div>
-
-                <div className="academy-info">
-                  <h4 className="academy-degree">{edu.degree}</h4>
-                  <p className="academy-institution">{edu.institution}</p>
-                  <p className="academy-desc">{edu.description}</p>
-                </div>
-              </motion.div>
-            ))}
           </motion.div>
         </div>
       </div>
 
-      <style>{`
+      <style jsx>{`
         .ed-about-stage {
           position: relative;
+          width: 100%;
+          min-height: 100vh;
+          min-height: 100svh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           overflow: hidden;
           background: #1f201c;
           border-top: 1px solid rgba(60, 60, 56, 0.5);
           border-bottom: 1px solid rgba(60, 60, 56, 0.5);
-          padding-top: clamp(4.5rem, 9vw, 7rem);
-          padding-bottom: clamp(4.5rem, 9vw, 7rem);
+          padding-top: max(5.5rem, 9vh);
+          padding-bottom: 3.5rem;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+          box-sizing: border-box;
         }
 
-        /* ── Background Guides ── */
-        .ed-about-stage .ed-grid-guides {
+        /* ── Background Vertical Grid ── */
+        .ed-grid-guides {
           position: absolute;
           inset: 0;
           display: grid;
@@ -207,43 +170,18 @@ export default function About() {
         }
 
         @media (min-width: 768px) {
-          .ed-about-stage .ed-grid-guides {
+          .ed-grid-guides {
             grid-template-columns: repeat(5, 1fr);
           }
         }
 
-        .ed-about-stage .ed-grid-guides span {
+        .ed-grid-guides span {
           border-right: 1px solid rgba(228, 223, 218, 0.2);
           height: 100%;
         }
 
-        /* ── Watermark in Grey Background ── */
-        .ed-about-watermark {
-          position: absolute;
-          bottom: 2%;
-          left: 50%;
-          transform: translateX(-50%);
-          font-family: var(--font-display);
-          font-size: clamp(6rem, 20vw, 18rem);
-          color: rgba(0, 0, 0, 0.2);
-          letter-spacing: -0.04em;
-          font-weight: 700;
-          pointer-events: none;
-          user-select: none;
-          z-index: 0;
-          line-height: 0.8;
-          white-space: nowrap;
-        }
-
-        @media (min-width: 1024px) {
-          .ed-about-watermark {
-            left: 2%;
-            transform: none;
-          }
-        }
-
-        /* ── Side Rails ── */
-        .ed-about-stage .ed-left-rail {
+        /* ── Rails ── */
+        .ed-left-rail {
           position: absolute;
           left: 1.5rem;
           bottom: 3.5rem;
@@ -253,7 +191,7 @@ export default function About() {
           z-index: 5;
         }
 
-        .ed-about-stage .ed-rail-text {
+        .ed-rail-text {
           writing-mode: vertical-rl;
           transform: rotate(180deg);
           font-family: var(--font-telemetry);
@@ -262,7 +200,7 @@ export default function About() {
           color: var(--steel);
         }
 
-        .ed-about-stage .ed-right-rail {
+        .ed-right-rail {
           position: absolute;
           right: 1.5rem;
           top: 50%;
@@ -274,14 +212,14 @@ export default function About() {
           pointer-events: none;
         }
 
-        .ed-about-stage .ed-scroll-indicator {
+        .ed-scroll-indicator {
           display: flex;
           flex-direction: column;
           align-items: center;
           gap: 0.5rem;
         }
 
-        .ed-about-stage .ed-scroll-label {
+        .ed-scroll-label {
           writing-mode: vertical-rl;
           font-family: var(--font-telemetry);
           font-size: 10px;
@@ -289,28 +227,31 @@ export default function About() {
           color: var(--steel);
         }
 
-        .ed-about-stage .ed-scroll-line {
+        .ed-scroll-line {
           width: 1px;
           height: 38px;
           background: var(--fg);
         }
 
-        /* ── Content Layout ── */
+        /* ── Container ── */
         .ed-about-container {
           position: relative;
           z-index: 2;
+          width: 100%;
+          max-width: 1160px;
+          margin: 0 auto;
         }
 
         .about-header {
           display: flex;
           flex-direction: column;
-          align-items: center;
-          text-align: center;
-          margin-bottom: clamp(2.5rem, 6vw, 4rem);
+          align-items: flex-start;
+          text-align: left;
+          margin-bottom: clamp(1rem, 2.5vh, 2rem);
         }
 
         .about-badge-wrap {
-          margin-bottom: 0.75rem;
+          margin-bottom: 0.4rem;
         }
 
         .about-chip {
@@ -321,240 +262,142 @@ export default function About() {
 
         .about-heading {
           color: var(--fg);
+          margin: 0;
+          font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+          font-family: var(--font-display);
+          font-weight: 800;
+          letter-spacing: -0.03em;
         }
 
         .about-heading-accent {
           color: var(--fg);
           text-decoration: underline;
-          text-decoration-thickness: 3px;
-          text-underline-offset: 6px;
+          text-decoration-thickness: 4px;
+          text-underline-offset: 8px;
+          text-decoration-color: orangered;
         }
 
+        /* ── Content Grid ── */
         .about-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: 2.5rem;
-          align-items: start;
+          gap: 2rem;
+          align-items: center;
         }
 
-        .about-profile-col,
-        .about-academy-col {
+        @media (min-width: 1024px) {
+          .about-grid {
+            grid-template-columns: 1.15fr 0.85fr;
+            column-gap: 3.5rem;
+          }
+        }
+
+        .about-profile-col {
           display: flex;
           flex-direction: column;
-        }
-
-        .about-subtitle-wrap {
-          display: flex;
-          align-items: center;
-          gap: 0.75rem;
-          margin-bottom: 1.5rem;
-        }
-
-        .about-section-title {
-          font-family: var(--font-display);
-          font-weight: 500;
-          color: var(--fg);
-          margin: 0;
-          font-size: clamp(1.2rem, 3vw, 1.5rem);
-        }
-
-        .about-icon-badge {
-          width: 36px;
-          height: 36px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border-radius: 8px;
-          background: #12130f;
-          border: 1px solid var(--border);
-        }
-
-        .icon-badge-symbol {
-          color: var(--color-bone-glow);
         }
 
         .about-bio-text {
           display: flex;
           flex-direction: column;
-          gap: 1.25rem;
+          gap: 1.15rem;
         }
 
         .about-copy {
-          font-size: clamp(1rem, 2.2vw, 1.15rem);
+          font-size: clamp(0.95rem, 1.6vw, 1.12rem);
           line-height: 1.65;
           color: var(--fg-soft);
+          margin: 0;
         }
 
         .text-highlight {
           color: #ffffff !important;
-          padding: 0.15rem 0.45rem;
+          background: rgba(245, 194, 200, 0.16) !important;
+          border: 1px solid rgba(245, 194, 200, 0.25);
+          font-weight: 500;
+          padding: 0.1rem 0.35rem;
           border-radius: 4px;
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          display: inline-block;
+          display: inline;
         }
 
-        /* ── Stats Strip ── */
-        .about-stats-strip {
-          display: flex;
-          align-items: center;
-          gap: 2rem;
-          margin-top: 2.5rem;
-          padding-top: 1.75rem;
-          border-top: 1px solid rgba(60, 60, 56, 0.8);
+        /* ── Horizontal Stats Row ── */
+        .about-stats-row {
+          display: flex !important;
+          flex-direction: row !important;
+          align-items: center !important;
+          gap: clamp(2rem, 4vw, 3.5rem) !important;
+          margin-top: 2rem;
+          padding-top: 1.5rem;
+          border-top: 1px solid var(--border);
+          width: fit-content;
         }
 
-        .about-stat-item {
+        .stat-unit {
           display: flex;
           flex-direction: column;
-          gap: 0.25rem;
-        }
-
-        .stat-value-row {
-          display: flex;
-          align-items: baseline;
-          gap: 0.15rem;
+          cursor: default;
         }
 
         .stat-number {
           font-family: var(--font-display);
-          font-size: clamp(2.4rem, 5vw, 3.2rem);
-          font-weight: 500;
+          font-size: clamp(2.4rem, 4.5vw, 3.2rem);
+          font-weight: 700;
           color: var(--fg);
-          line-height: 0.9;
           letter-spacing: -0.03em;
-        }
-
-        .stat-plus {
-          font-family: var(--font-display);
-          font-size: 1.6rem;
-          color: var(--steel);
-          font-weight: 600;
+          line-height: 1;
         }
 
         .stat-label {
+          font-family: var(--font-telemetry);
           font-size: 11px;
           color: var(--steel);
-          letter-spacing: 0.04em;
           text-transform: uppercase;
-          font-family: var(--font-telemetry);
+          letter-spacing: 0.08em;
+          margin-top: 0.4rem;
+          white-space: nowrap;
         }
 
-        .stat-separator {
+        .stat-divider {
           width: 1px;
-          height: 2.5rem;
-          background: rgba(60, 60, 56, 0.8);
+          height: 42px;
+          background: var(--border);
         }
 
-        /* ── Academy Card (Black Grounding) ── */
-        .academy-card {
-          position: relative;
-          background: #12130f;
-          border: 1px solid var(--border);
-          border-radius: 16px;
-          padding: clamp(1.5rem, 4vw, 2.25rem);
-          overflow: hidden;
-          transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-        }
-
-        .academy-card:hover {
-          border-color: rgba(228, 223, 218, 0.4);
-          box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7);
-        }
-
-        .academy-header-flex {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          margin-bottom: 1.25rem;
-        }
-
-        .academy-icon-box {
-          width: 38px;
-          height: 38px;
+        /* ── Right Column Lottie Size & Position ── */
+        .about-visual-col {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: #1c1d19;
-          border: 1px solid var(--border);
-          border-radius: 8px;
+          width: 100%;
+          height: 100%;
         }
 
-        .academy-meta {
+        .lottie-character-container {
+          position: relative;
+          width: 100%;
+          max-width: 440px;
+          height: 420px;
           display: flex;
           align-items: center;
-          gap: 0.6rem;
+          justify-content: center;
+          margin-top: -1.5rem;
         }
 
-        .academy-year-pill {
-          font-family: var(--font-telemetry);
-          font-size: 11px;
-          color: var(--steel);
-          padding: 0.25rem 0.65rem;
-          background: #1c1d19;
-          border: 1px solid var(--border);
-          border-radius: 9999px;
+        :global(.lottie-canvas-player) {
+          width: 100% !important;
+          height: 100% !important;
+          object-fit: contain;
         }
 
-        .academy-grade-badge {
-          font-family: var(--font-telemetry);
-          font-size: 11px;
-          color: var(--fg);
-          background: #252621;
-          border: 1px solid var(--border-hi);
-          font-weight: 500;
-          padding: 0.25rem 0.65rem;
-          border-radius: 9999px;
-        }
-
-        .academy-info {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-
-        .academy-degree {
-          font-family: var(--font-body);
-          font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-          font-weight: 500;
-          color: var(--fg);
-          line-height: 1.35;
-          margin: 0;
-        }
-
-        .academy-institution {
-          font-size: 0.95rem;
-          color: var(--steel);
-          font-weight: 400;
-          margin: 0;
-        }
-
-        .academy-desc {
-          font-size: 0.9rem;
-          color: var(--fg-soft);
-          line-height: 1.5;
-          margin: 0.35rem 0 0 0;
-        }
-
-        /* ── Responsive Grid ── */
         @media (min-width: 1024px) {
-          .ed-about-stage .ed-left-rail,
-          .ed-about-stage .ed-right-rail {
+          .ed-left-rail,
+          .ed-right-rail {
             display: flex;
           }
 
           .ed-about-container {
             padding-left: 3.5rem;
             padding-right: 3rem;
-          }
-
-          .about-header {
-            align-items: flex-start;
-            text-align: left;
-          }
-
-          .about-grid {
-            grid-template-columns: 1.25fr 0.95fr;
-            column-gap: 4rem;
           }
         }
       `}</style>

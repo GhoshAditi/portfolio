@@ -112,11 +112,6 @@ export default function Experience() {
         <span /><span /><span /><span /><span />
       </div>
 
-      {/* ── Background Atmospheric Watermark ── */}
-      <div className="ed-watermark ed-exp-watermark" aria-hidden="true">
-        TIMELINE
-      </div>
-
       {/* ── Left Rail: Section Index ── */}
       <div className="ed-left-rail" aria-hidden="true">
         <span className="ed-rail-text">CHAPTER // 05 • CAREER</span>
@@ -158,35 +153,18 @@ export default function Experience() {
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: EASE }}
+            transition={{ duration: 1.2, ease: EASE }}
             className="exp-spine-line" 
           />
 
-          <motion.div 
-            className="exp-entries-flow"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={{
-              visible: {
-                transition: {
-                  staggerChildren: 0.12,
-                  delayChildren: 0.15
-                }
-              }
-            }}
-          >
+          <div className="exp-entries-flow">
             {experiences.map((exp, i) => (
               <motion.div
                 key={i}
-                variants={{
-                  hidden: { opacity: 0, x: -16 },
-                  visible: { 
-                    opacity: 1, 
-                    x: 0,
-                    transition: { type: 'spring', stiffness: 80, damping: 15 }
-                  }
-                }}
+                initial={{ opacity: 0, x: 90 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.65, delay: i * 0.12, ease: EASE }}
                 className="exp-row"
               >
                 {/* Timeline Dot Node */}
@@ -194,13 +172,13 @@ export default function Experience() {
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.2 + i * 0.1, type: 'spring', stiffness: 220 }}
+                  transition={{ delay: 0.1 + i * 0.12, type: 'spring', stiffness: 220 }}
                   className={`exp-dot ${exp.current ? 'is-current' : ''}`}
                 />
 
                 {/* Main Card */}
                 <motion.div 
-                  whileHover={reduced ? {} : { y: -4 }}
+                  whileHover={reduced ? {} : { y: -6, scale: 1.01 }}
                   transition={{ duration: 0.25 }}
                   className="experience-card"
                 >
@@ -242,10 +220,10 @@ export default function Experience() {
                         {exp.achievements.map((ach, ai) => (
                           <motion.li 
                             key={ai} 
-                            whileHover={reduced ? {} : { x: 3 }}
+                            whileHover={reduced ? {} : { x: 4 }}
                             className="exp-achievement-item"
                           >
-                            <span className="exp-bullet-dash" />
+                            <span className="exp-bullet-dot" />
                             <span>{ach}</span>
                           </motion.li>
                         ))}
@@ -264,7 +242,7 @@ export default function Experience() {
                 </motion.div>
               </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -273,8 +251,8 @@ export default function Experience() {
           position: relative;
           overflow: hidden;
           background: 
-            radial-gradient(ellipse at 15% 20%, rgba(245, 194, 200, 0.04) 0%, transparent 60%),
-            radial-gradient(ellipse at 85% 80%, rgba(228, 223, 218, 0.03) 0%, transparent 60%),
+            radial-gradient(ellipse at 10% 20%, rgba(224, 101, 96, 0.05) 0%, transparent 50%),
+            radial-gradient(ellipse at 90% 80%, rgba(228, 223, 218, 0.04) 0%, transparent 50%),
             var(--bg);
           padding-top: clamp(4.5rem, 8vw, 7rem);
           padding-bottom: clamp(4.5rem, 8vw, 7rem);
@@ -283,37 +261,15 @@ export default function Experience() {
         .ed-exp-container {
           position: relative;
           z-index: 2;
-        }
-
-        .ed-exp-watermark {
-          position: absolute;
-          bottom: -1vw;
-          left: 50%;
-          transform: translateX(-50%);
-          font-family: var(--font-display);
-          font-size: clamp(5.5rem, 18vw, 16rem);
-          color: rgba(228, 223, 218, 0.03);
-          letter-spacing: -0.04em;
-          font-weight: 700;
-          pointer-events: none;
-          user-select: none;
-          z-index: 0;
-          line-height: 0.8;
-          white-space: nowrap;
-        }
-
-        @media (min-width: 1024px) {
-          .ed-exp-watermark {
-            left: 3%;
-            transform: none;
-          }
+          max-width: 940px;
+          margin: 0 auto;
         }
 
         .exp-header {
           display: flex;
           flex-direction: column;
-          align-items: center;
-          text-align: center;
+          align-items: flex-start;
+          text-align: left;
           margin-bottom: clamp(2.5rem, 6vw, 4rem);
         }
 
@@ -324,8 +280,6 @@ export default function Experience() {
         /* ── Timeline Track ── */
         .exp-timeline-wrapper {
           position: relative;
-          max-width: 900px;
-          margin: 0 auto;
         }
 
         .exp-spine-line {
@@ -333,8 +287,8 @@ export default function Experience() {
           left: 6px;
           top: 0.8rem;
           bottom: 1.5rem;
-          width: 1px;
-          background: rgba(60, 60, 56, 0.7);
+          width: 2px;
+          background: linear-gradient(180deg, var(--red) 0%, rgba(60, 60, 56, 0.4) 100%);
           transform-origin: top;
         }
 
@@ -346,57 +300,73 @@ export default function Experience() {
 
         .exp-row {
           position: relative;
-          padding-left: clamp(1.75rem, 4vw, 2.5rem);
+          padding-left: clamp(2rem, 4.5vw, 2.75rem);
         }
 
         .exp-dot {
           position: absolute;
           left: 6px;
           top: 1.8rem;
-          width: 9px;
-          height: 9px;
+          width: 12px;
+          height: 12px;
           border-radius: 50%;
           background: var(--bg);
           border: 2px solid var(--steel);
           transform: translateX(-50%);
           z-index: 2;
+          box-shadow: 0 0 0 4px rgba(228, 223, 218, 0.04);
         }
 
         .exp-dot.is-current {
           background: var(--red);
-          border-color: var(--red);
-          box-shadow: 0 0 10px rgba(228, 223, 218, 0.4);
+          border-color: #fff;
+          box-shadow: 0 0 16px rgba(224, 101, 96, 0.8), 0 0 0 4px rgba(224, 101, 96, 0.2);
         }
 
-        /* ── Card Styling ── */
+        /* ── Premium Card Styling ── */
         .experience-card {
           position: relative;
-          border: 1px solid var(--border);
-          border-radius: 16px;
-          background: rgba(20, 21, 17, 0.85);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          padding: clamp(1.25rem, 3.5vw, 2.25rem);
+          border: 1px solid rgba(228, 223, 218, 0.14);
+          border-radius: 20px;
+          background: linear-gradient(135deg, rgba(26, 27, 22, 0.95) 0%, rgba(18, 19, 15, 0.98) 100%);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
+          padding: clamp(1.5rem, 3.8vw, 2.5rem);
+          box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.65);
           transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
           overflow: hidden;
         }
 
+        .experience-card::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          width: 3.5px;
+          background: rgba(228, 223, 218, 0.2);
+          transition: background 0.3s ease;
+        }
+
         .experience-card:hover {
-          border-color: rgba(228, 223, 218, 0.4);
-          background: rgba(28, 29, 24, 0.95);
-          box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.7);
+          border-color: rgba(228, 223, 218, 0.38);
+          box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.85), 0 0 25px rgba(224, 101, 96, 0.08);
+        }
+
+        .experience-card:hover::before {
+          background: var(--red);
         }
 
         .exp-card-glow {
           position: absolute;
-          top: -20px;
-          right: -20px;
-          width: 120px;
-          height: 120px;
+          top: -30px;
+          right: -30px;
+          width: 150px;
+          height: 150px;
           border-radius: 50%;
-          background: radial-gradient(circle, rgba(245, 194, 200, 0.08) 0%, transparent 70%);
+          background: radial-gradient(circle, rgba(224, 101, 96, 0.12) 0%, transparent 70%);
           pointer-events: none;
-          opacity: 0;
+          opacity: 0.4;
           transition: opacity 0.3s ease;
         }
 
@@ -419,20 +389,20 @@ export default function Experience() {
 
         .exp-position {
           font-family: var(--font-body);
-          font-size: clamp(1.2rem, 3vw, 1.45rem);
+          font-size: clamp(1.2rem, 3vw, 1.5rem);
           font-weight: 600;
           color: var(--fg);
-          line-height: 1.25;
+          line-name: 1.25;
           margin: 0;
         }
 
         .exp-duration-tag {
           font-family: var(--font-telemetry);
           font-size: 11px;
-          color: var(--steel);
-          padding: 0.2rem 0.6rem;
-          background: rgba(228, 223, 218, 0.05);
-          border: 1px solid var(--border);
+          color: var(--fg);
+          padding: 0.25rem 0.75rem;
+          background: rgba(228, 223, 218, 0.08);
+          border: 1px solid rgba(228, 223, 218, 0.2);
           border-radius: 9999px;
           letter-spacing: 0.04em;
         }
@@ -445,9 +415,9 @@ export default function Experience() {
         }
 
         .exp-company-name {
-          font-size: 1rem;
-          font-weight: 500;
-          color: var(--fg);
+          font-size: 1.05rem;
+          font-weight: 600;
+          color: var(--color-rose-quartz-bloom, #f5c2c8);
         }
 
         .exp-meta-badges {
@@ -474,18 +444,23 @@ export default function Experience() {
         /* ── Quest Highlights ── */
         .exp-achievements-block {
           margin-bottom: 1.5rem;
+          background: rgba(14, 15, 11, 0.75);
+          border: 1px solid rgba(60, 60, 56, 0.8);
+          border-radius: 12px;
+          padding: 1rem 1.25rem;
         }
 
         .exp-rewards-heading {
           font-family: var(--font-telemetry);
           font-size: 11px;
-          color: var(--steel);
+          color: var(--fg);
           margin: 0 0 0.85rem 0;
           display: flex;
           align-items: center;
           gap: 0.45rem;
           text-transform: uppercase;
-          letter-spacing: 0.06em;
+          letter-spacing: 0.08em;
+          font-weight: 600;
         }
 
         .exp-achievements-list {
@@ -502,45 +477,48 @@ export default function Experience() {
           display: flex;
           align-items: flex-start;
           gap: 0.65rem;
-          font-size: 0.92rem;
+          font-size: 0.9rem;
           color: var(--fg-soft);
           line-height: 1.55;
           transition: transform 0.2s ease;
         }
 
-        .exp-bullet-dash {
-          width: 8px;
-          height: 1px;
-          background: var(--steel);
-          margin-top: 0.6rem;
+        .exp-bullet-dot {
+          width: 6px;
+          height: 6px;
+          background: var(--red);
+          border-radius: 50%;
+          margin-top: 0.45rem;
           flex-shrink: 0;
+          box-shadow: 0 0 6px var(--red);
         }
 
         /* ── Technology Tags ── */
         .exp-tech-row {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.4rem;
+          gap: 0.45rem;
           margin-top: auto;
           padding-top: 0.5rem;
         }
 
         .exp-tech-tag {
           font-family: var(--font-telemetry);
-          font-size: 10px;
+          font-size: 10.5px;
           font-weight: 500;
-          color: var(--steel);
-          padding: 0.25rem 0.6rem;
-          border: 1px solid var(--border);
-          border-radius: 4px;
-          background: var(--bg);
+          color: var(--fg);
+          padding: 0.25rem 0.65rem;
+          border: 1px solid rgba(228, 223, 218, 0.18);
+          border-radius: 6px;
+          background: rgba(22, 23, 18, 0.9);
           text-transform: uppercase;
           letter-spacing: 0.05em;
-          transition: border-color 0.2s ease;
+          transition: all 0.2s ease;
         }
 
         .experience-card:hover .exp-tech-tag {
-          border-color: rgba(228, 223, 218, 0.25);
+          border-color: rgba(224, 101, 96, 0.4);
+          background: rgba(30, 31, 25, 0.95);
         }
 
         /* ── Responsive Viewports ── */

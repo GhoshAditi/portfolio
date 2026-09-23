@@ -2,32 +2,39 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import dynamic from 'next/dynamic'
+import connectAnimation from '@/public/Connect.json'
 import { FaLinkedin, FaGithub } from 'react-icons/fa'
 import { HiOutlineEnvelope, HiOutlineArrowTopRightOnSquare, HiOutlineCommandLine } from 'react-icons/hi2'
+
+// Dynamically import Lottie to prevent SSR hydration errors
+const Lottie = dynamic(() => import('lottie-react').then((mod) => mod.Lottie), { 
+  ssr: false,
+  loading: () => <div style={{ width: '100%', height: '100px' }} />
+})
 
 const EASE = [0.16, 1, 0.3, 1] as const
 
 const socialPlatforms = [
   {
     name: "LinkedIn",
-    icon: <FaLinkedin size={22} />,
+    icon: <FaLinkedin size={32} style={{ color: '#0a66c2' }} />,
     url: "https://linkedin.com/in/aditighosh2005",
-    description: "Connect with me professionally and stay updated with my career journey, achievements, and industry insights.",
-    stats: "Professional networking • Career updates"
   },
   {
     name: "GitHub",
-    icon: <FaGithub size={22} />,
+    icon: <FaGithub size={32} style={{ color: '#e4edf1' }} />,
     url: "https://github.com/GhoshAditi",
-    description: "Explore my open source contributions, personal projects, and collaborative development work.",
-    stats: "Open source • Code repositories"
   },
   {
     name: "LeetCode",
-    icon: <HiOutlineCommandLine size={22} />,
-    url: "https://leetcode.com/u/aditi_ghosh668/",
-    description: "Follow my competitive programming journey and algorithmic problem-solving progress.",
-    stats: "Algorithms • Problem solving"
+    icon: <HiOutlineCommandLine size={32} style={{ color: '#ffa116' }} />,
+    url: "http://localhost:3000/#tech5",
+  },
+  {
+    name: "Email",
+    icon: <HiOutlineEnvelope size={32} style={{ color: 'var(--red)' }} />,
+    url: "mailto:aditighosh668@gmail.com",
   }
 ]
 
@@ -41,120 +48,272 @@ export default function Socials() {
   const inView = useInView(ref, { once: true, margin: '-100px' })
 
   return (
-    <section id="socials" ref={ref} className="section">
-      <div className="container">
-        
-        {/* ── Heading ─────────────────────────────────────────── */}
-        <motion.div
-          variants={fadeUp(0)}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          style={{ marginBottom: 'clamp(2.5rem, 8vw, 4.5rem)' }}
-        >
-          <p className="t-label" style={{ marginBottom: '0.75rem' }}>Connect Online</p>
-          <h2 className="t-h2">Connect With Me</h2>
-          <p className="t-body" style={{ marginTop: '1.25rem', fontWeight: 400 }}>
-            Follow my work across multiple platforms. GitHub for open-source, LinkedIn for industry updates, LeetCode for algorithm challenges.
-          </p>
-        </motion.div>
+    <section id="socials" ref={ref} className="ed-connect-stage section">
+      {/* ── Background Vertical Grid Guides ── */}
+      <div className="ed-grid-guides" aria-hidden="true">
+        <span /><span /><span /><span /><span />
+      </div>
 
-        {/* ── Social Platforms Grid ───────────────────────────── */}
-        <div className="socials-grid">
-          {socialPlatforms.map((platform, i) => (
-            <motion.div
-              key={i}
-              variants={fadeUp(0.1 + i * 0.1)}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                border: '1px solid var(--border)',
-                borderRadius: 'var(--r-lg)',
-                background: 'var(--surface)',
-                padding: 'clamp(1.5rem, 4vw, 2rem)',
-                transition: 'border-color var(--dur-std) var(--ease-out-quart)',
-              }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = 'var(--border-hi)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = 'var(--border)')}
-            >
-              <div style={{
-                width: '40px',
-                height: '40px',
-                border: '1px solid var(--border)',
-                borderRadius: 'var(--r-md)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'var(--bg)',
-                color: 'var(--red)',
-                marginBottom: '1.25rem',
-              }}>
-                {platform.icon}
-              </div>
+      {/* ── Left Rail: Section Index ── */}
+      <div className="ed-left-rail" aria-hidden="true">
+        <span className="ed-rail-text">CHAPTER // 08 • NETWORK</span>
+      </div>
 
-              <h3 className="t-h3" style={{ fontSize: 'clamp(1.3rem, 4vw, 1.55rem)', marginBottom: '0.75rem' }}>{platform.name}</h3>
-              <p style={{ fontSize: 'clamp(1rem, 3vw, 1.15rem)', color: 'var(--fg-soft)', lineHeight: 1.6, marginBottom: '1.25rem', flex: 1, fontWeight: 400 }}>
-                {platform.description}
-              </p>
-              
-              <p className="t-label" style={{ marginBottom: '1.5rem', fontWeight: 600 }}>
-                {platform.stats}
-              </p>
-
-              <a
-                href={platform.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cta-ghost"
-                style={{ fontSize: '1rem', padding: '0.6rem', fontWeight: 600 }}
-              >
-                Follow
-                <HiOutlineArrowTopRightOnSquare size={16} />
-              </a>
-            </motion.div>
-          ))}
+      {/* ── Right Rail: Status Indicator ── */}
+      <div className="ed-right-rail" aria-hidden="true">
+        <div className="ed-scroll-indicator">
+          <span className="ed-scroll-label">CONNECT</span>
+          <span className="ed-scroll-line" />
         </div>
+      </div>
 
-        {/* ── Direct Ping CTA ─────────────────────────────────── */}
-        <motion.div
-          variants={fadeUp(0.6)}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          style={{
-            marginTop: 'clamp(2.5rem, 8vw, 3.5rem)',
-            border: '1px solid var(--border)',
-            borderRadius: 'var(--r-lg)',
-            padding: 'clamp(1.5rem, 5vw, 2.5rem)',
-            textAlign: 'center',
-            background: 'var(--bg)',
-          }}
-        >
-          <h3 className="t-h3" style={{ marginBottom: '0.75rem', fontSize: 'clamp(1.4rem, 4vw, 1.8rem)' }}>Direct Ping?</h3>
-          <p className="t-body" style={{ margin: '0 auto 2rem', fontWeight: 400, fontSize: 'clamp(1rem, 3vw, 1.1rem)' }}>
-            Send a direct message for internships, freelance work, or product collaboration.
-          </p>
-          <a href="mailto:aditighosh668@gmail.com" className="cta-primary" style={{ fontWeight: 600, padding: '0.85rem 2rem', fontSize: '1rem' }}>
-            <HiOutlineEnvelope size={18} />
-            Send Email
-          </a>
-        </motion.div>
+      <div className="container ed-connect-container">
+        
+        {/* ── Main Curtain Layout: Let's + Lottie on Left, 2x2 Square Grid on Right ── */}
+        <div className="connect-split-grid">
+          
+          {/* Left Column: Big "Let's" + Lottie Animation */}
+          <motion.div
+            variants={fadeUp(0)}
+            initial="hidden"
+            animate={inView ? 'visible' : 'hidden'}
+            className="connect-left-col"
+          >
+            <div className="connect-badge-wrap">
+              <span className="chip">Connect Online</span>
+            </div>
+
+            <div className="connect-heading-wrapper">
+              <h2 className="t-h2 connect-title-text">
+                Let&apos;s
+              </h2>
+              <div className="connect-lottie-inline">
+                <Lottie src={connectAnimation} loop autoplay />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column: 2x2 Square Grid of Glowing Buttons */}
+          <div className="connect-right-col">
+            <div className="socials-square-grid">
+              {socialPlatforms.map((platform, i) => (
+                <motion.a
+                  key={i}
+                  href={platform.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variants={fadeUp(0.1 + i * 0.1)}
+                  initial="hidden"
+                  animate={inView ? 'visible' : 'hidden'}
+                  whileHover={{ 
+                    y: -5,
+                    scale: 1.02,
+                    transition: { type: 'spring', stiffness: 400, damping: 15 }
+                  }}
+                  className="connect-square-card"
+                >
+                  <div className="connect-card-glow" />
+                  <div className="connect-card-inner">
+                    <div className="connect-icon-box">
+                      {platform.icon}
+                    </div>
+                    <div className="connect-card-bottom">
+                      <h3 className="connect-card-title">{platform.name}</h3>
+                      <HiOutlineArrowTopRightOnSquare size={18} className="connect-external-icon" />
+                    </div>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <style>{`
-        .socials-grid {
+        .ed-connect-stage {
+          position: sticky;
+          top: 0;
+          z-index: 20;
+          min-height: 100vh;
+          min-height: 100svh;
+          display: flex;
+          align-items: center;
+          background: 
+            radial-gradient(circle at 10% 20%, rgba(224, 101, 96, 0.06) 0%, transparent 45%),
+            radial-gradient(circle at 90% 85%, rgba(228, 223, 218, 0.05) 0%, transparent 45%),
+            linear-gradient(135deg, #131410 0%, #1a1b16 50%, #12130f 100%);
+          border-top: 1px solid rgba(60, 60, 56, 0.5);
+          border-bottom: 1px solid rgba(60, 60, 56, 0.5);
+          padding-top: 0;
+          padding-bottom: 0;
+          box-sizing: border-box;
+          overflow: hidden;
+        }
+
+        .ed-connect-container {
+          position: relative;
+          z-index: 2;
+          max-width: 1160px;
+          margin: 0 auto;
+          width: 100%;
+        }
+
+        .connect-split-grid {
           display: grid;
           grid-template-columns: 1fr;
-          gap: clamp(1rem, 3vw, 1.5rem);
+          gap: 3rem;
+          align-items: stretch;
+          min-height: 100vh;
+          min-height: 100svh;
         }
-        @media (min-width: 768px) {
-          .socials-grid { grid-template-columns: repeat(2, 1fr); }
+
+        @media (min-width: 960px) {
+          .connect-split-grid {
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 4rem;
+          }
         }
+
+        .connect-left-col {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-end;
+          text-align: left;
+          width: 100%;
+          padding-bottom: clamp(2rem, 5vw, 5rem);
+        }
+
+        .connect-badge-wrap {
+          margin-bottom: 0.75rem;
+        }
+
+        .connect-heading-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .connect-title-text {
+          font-size: clamp(4.5rem, 9vw, 8rem) !important;
+          line-height: 0.95 !important;
+          margin: 0 !important;
+          letter-spacing: -0.04em;
+          font-weight: 700;
+        }
+
+        .connect-lottie-inline {
+          width: 440px;
+          max-width: 90vw;
+          display: block;
+          margin-left: -0.75rem;
+          margin-top: -0.25rem;
+        }
+
+        .connect-right-col {
+          display: flex;
+          flex-direction: column;
+        }
+
+        /* Keep two social links on each row at the top of the right column. */
+        .socials-square-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 1rem;
+          align-content: start;
+          padding-top: clamp(2rem, 6vw, 6rem);
+        }
+
+        .connect-square-card {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          min-height: 150px;
+          border: 1px solid rgba(228, 223, 218, 0.15);
+          border-radius: 20px;
+          background: rgba(26, 27, 22, 0.9);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          padding: 1.25rem;
+          text-decoration: none;
+          overflow: hidden;
+          box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+          transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .connect-square-card:hover {
+          border-color: rgba(224, 101, 96, 0.4);
+          background: rgba(32, 33, 27, 0.98);
+          box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(224, 101, 96, 0.1);
+        }
+
+        .connect-card-glow {
+          position: absolute;
+          top: -30px;
+          right: -30px;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(224, 101, 96, 0.12) 0%, transparent 70%);
+          pointer-events: none;
+        }
+
+        .connect-card-inner {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          height: 100%;
+          position: relative;
+          z-index: 2;
+        }
+
+        .connect-icon-box {
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          flex-shrink: 0;
+          padding-top: 0.25rem;
+        }
+
+        .connect-card-bottom {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+        }
+
+        .connect-card-title {
+          font-family: var(--font-body);
+          font-size: 1.15rem;
+          font-weight: 600;
+          color: var(--fg);
+          margin: 0;
+        }
+
+        .connect-external-icon {
+          color: var(--steel);
+          transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .connect-square-card:hover .connect-external-icon {
+          color: var(--red);
+          transform: translate(2px, -2px);
+        }
+
         @media (min-width: 1024px) {
-          .socials-grid { grid-template-columns: repeat(3, 1fr); }
+          .ed-connect-stage .ed-left-rail,
+          .ed-connect-stage .ed-right-rail {
+            display: flex;
+          }
+
+          .ed-connect-container {
+            padding-left: 3.5rem;
+            padding-right: 3rem;
+          }
         }
       `}</style>
     </section>
-
   )
 }
