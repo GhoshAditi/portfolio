@@ -1,10 +1,5 @@
-'use client'
-
-import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { useRef } from 'react'
-import { HiOutlineBriefcase, HiOutlineMapPin, HiOutlineCheckBadge } from 'react-icons/hi2'
-
-const EASE = [0.16, 1, 0.3, 1] as const
+import { SectionHead } from '@/components/Sketch'
+import Doodle from '@/components/Doodle'
 
 const experiences = [
   {
@@ -95,450 +90,58 @@ const experiences = [
   }
 ]
 
-const fadeUp = (delay = 0) => ({
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE, delay } },
-})
-
 export default function Experience() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-  const reduced = useReducedMotion()
-
   return (
-    <section id="experience" ref={ref} className="ed-exp-stage section">
-      {/* ── Background Vertical Grid Guides ── */}
-      <div className="ed-grid-guides" aria-hidden="true">
-        <span /><span /><span /><span /><span />
-      </div>
-
-      {/* ── Left Rail: Section Index ── */}
-      <div className="ed-left-rail" aria-hidden="true">
-        <span className="ed-rail-text">CHAPTER // 05 • CAREER</span>
-      </div>
-
-      {/* ── Right Rail: Status Indicator ── */}
-      <div className="ed-right-rail" aria-hidden="true">
-        <div className="ed-scroll-indicator">
-          <span className="ed-scroll-label">ROLES: 0{experiences.length}</span>
-          <span className="ed-scroll-line" />
-        </div>
-      </div>
-
-      <div className="container ed-exp-container">
-        {/* ── Heading ── */}
-        <motion.div
-          variants={fadeUp(0)}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          className="exp-header"
+    <section id="experience" className="section">
+      <div className="container">
+        <SectionHead
+          index="03"
+          note="Startups, open source and student communities — roles that taught me to ship"
+          aside={<Doodle name="coffee" label="Sip the coffee" size={140} says={['sip sip ☕', 'one more commit…', 'powered by caffeine']} />}
         >
-          <div className="exp-badge-wrap">
-            <span className="chip">
-              Career Timeline
-            </span>
-          </div>
-          <h2 className="t-h2">
-            Professional <span style={{ color: 'var(--red)' }}>Journey</span>
-          </h2>
-          <p className="t-body" style={{ marginTop: '0.85rem' }}>
-            Diverse roles spanning web development, cloud infrastructure, and cross-functional collaborations across startups and open-source communities.
-          </p>
-        </motion.div>
+          Where I&apos;ve <em>been</em>
+        </SectionHead>
 
-        {/* ── Timeline Container ── */}
-        <div className="exp-timeline-wrapper">
-          {/* Vertical Track Line */}
-          <motion.div 
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: EASE }}
-            className="exp-spine-line" 
-          />
+        <ol className="exp-list">
+          {experiences.map((exp) => (
+            <li key={exp.company + exp.position} className="exp-item">
+              <div className="exp-meta">
+                <span>{exp.duration}</span>
+                <span>
+                  {exp.location} · {exp.type}
+                </span>
+                {exp.current && <span className="tag exp-now">Now</span>}
+              </div>
 
-          <div className="exp-entries-flow">
-            {experiences.map((exp, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 90 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.65, delay: i * 0.12, ease: EASE }}
-                className="exp-row"
-              >
-                {/* Timeline Dot Node */}
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 + i * 0.12, type: 'spring', stiffness: 220 }}
-                  className={`exp-dot ${exp.current ? 'is-current' : ''}`}
-                />
+              <div>
+                <h3>
+                  {exp.position} <em>at {exp.company}</em>
+                </h3>
+                <p className="exp-desc">{exp.description}</p>
 
-                {/* Main Card */}
-                <motion.div 
-                  whileHover={reduced ? {} : { y: -6, scale: 1.01 }}
-                  transition={{ duration: 0.25 }}
-                  className="experience-card"
-                >
-                  <div className="exp-card-glow" />
+                {exp.achievements.length > 0 && (
+                  <details>
+                    <summary>Highlights</summary>
+                    <ul>
+                      {exp.achievements.map((a) => (
+                        <li key={a}>{a}</li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
 
-                  {/* Header Row */}
-                  <div className="exp-card-header">
-                    <div className="exp-title-row">
-                      <h3 className="exp-position">{exp.position}</h3>
-                      <span className="exp-duration-tag">{exp.duration}</span>
-                    </div>
-
-                    <div className="exp-company-sub">
-                      <span className="exp-company-name">{exp.company}</span>
-                      <div className="exp-meta-badges">
-                        <span className="exp-meta-item">
-                          <HiOutlineMapPin size={14} /> {exp.location}
-                        </span>
-                        <span className="exp-meta-item">
-                          <HiOutlineBriefcase size={14} /> {exp.type}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Summary */}
-                  <p className="exp-description">
-                    {exp.description}
-                  </p>
-
-                  {/* Achievements */}
-                  {exp.achievements.length > 0 && (
-                    <div className="exp-achievements-block">
-                      <p className="exp-rewards-heading">
-                        <HiOutlineCheckBadge size={16} style={{ color: 'var(--red)' }} />
-                        Quest Highlights
-                      </p>
-                      <ul className="exp-achievements-list">
-                        {exp.achievements.map((ach, ai) => (
-                          <motion.li 
-                            key={ai} 
-                            whileHover={reduced ? {} : { x: 4 }}
-                            className="exp-achievement-item"
-                          >
-                            <span className="exp-bullet-dot" />
-                            <span>{ach}</span>
-                          </motion.li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {/* Skills / Tech stack */}
-                  <div className="exp-tech-row">
-                    {exp.technologies.map(tech => (
-                      <span key={tech} className="exp-tech-tag">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                <div className="tag-cloud">
+                  {exp.technologies.map((t) => (
+                    <span key={t} className="tag">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
-
-      <style>{`
-        .ed-exp-stage {
-          position: relative;
-          overflow: hidden;
-          background: 
-            radial-gradient(ellipse at 10% 20%, rgba(224, 101, 96, 0.05) 0%, transparent 50%),
-            radial-gradient(ellipse at 90% 80%, rgba(228, 223, 218, 0.04) 0%, transparent 50%),
-            var(--bg);
-          padding-top: clamp(4.5rem, 8vw, 7rem);
-          padding-bottom: clamp(4.5rem, 8vw, 7rem);
-        }
-
-        .ed-exp-container {
-          position: relative;
-          z-index: 2;
-          max-width: 940px;
-          margin: 0 auto;
-        }
-
-        .exp-header {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-          text-align: left;
-          margin-bottom: clamp(2.5rem, 6vw, 4rem);
-        }
-
-        .exp-badge-wrap {
-          margin-bottom: 0.75rem;
-        }
-
-        /* ── Timeline Track ── */
-        .exp-timeline-wrapper {
-          position: relative;
-        }
-
-        .exp-spine-line {
-          position: absolute;
-          left: 6px;
-          top: 0.8rem;
-          bottom: 1.5rem;
-          width: 2px;
-          background: linear-gradient(180deg, var(--red) 0%, rgba(60, 60, 56, 0.4) 100%);
-          transform-origin: top;
-        }
-
-        .exp-entries-flow {
-          display: flex;
-          flex-direction: column;
-          gap: clamp(1.75rem, 4vw, 2.75rem);
-        }
-
-        .exp-row {
-          position: relative;
-          padding-left: clamp(2rem, 4.5vw, 2.75rem);
-        }
-
-        .exp-dot {
-          position: absolute;
-          left: 6px;
-          top: 1.8rem;
-          width: 12px;
-          height: 12px;
-          border-radius: 50%;
-          background: var(--bg);
-          border: 2px solid var(--steel);
-          transform: translateX(-50%);
-          z-index: 2;
-          box-shadow: 0 0 0 4px rgba(228, 223, 218, 0.04);
-        }
-
-        .exp-dot.is-current {
-          background: var(--red);
-          border-color: #fff;
-          box-shadow: 0 0 16px rgba(224, 101, 96, 0.8), 0 0 0 4px rgba(224, 101, 96, 0.2);
-        }
-
-        /* ── Premium Card Styling ── */
-        .experience-card {
-          position: relative;
-          border: 1px solid rgba(228, 223, 218, 0.14);
-          border-radius: 20px;
-          background: linear-gradient(135deg, rgba(26, 27, 22, 0.95) 0%, rgba(18, 19, 15, 0.98) 100%);
-          backdrop-filter: blur(14px);
-          -webkit-backdrop-filter: blur(14px);
-          padding: clamp(1.5rem, 3.8vw, 2.5rem);
-          box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.65);
-          transition: border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
-          overflow: hidden;
-        }
-
-        .experience-card::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          width: 3.5px;
-          background: rgba(228, 223, 218, 0.2);
-          transition: background 0.3s ease;
-        }
-
-        .experience-card:hover {
-          border-color: rgba(228, 223, 218, 0.38);
-          box-shadow: 0 24px 50px -12px rgba(0, 0, 0, 0.85), 0 0 25px rgba(224, 101, 96, 0.08);
-        }
-
-        .experience-card:hover::before {
-          background: var(--red);
-        }
-
-        .exp-card-glow {
-          position: absolute;
-          top: -30px;
-          right: -30px;
-          width: 150px;
-          height: 150px;
-          border-radius: 50%;
-          background: radial-gradient(circle, rgba(224, 101, 96, 0.12) 0%, transparent 70%);
-          pointer-events: none;
-          opacity: 0.4;
-          transition: opacity 0.3s ease;
-        }
-
-        .experience-card:hover .exp-card-glow {
-          opacity: 1;
-        }
-
-        .exp-card-header {
-          margin-bottom: 1.25rem;
-        }
-
-        .exp-title-row {
-          display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          justify-content: space-between;
-          gap: 0.5rem;
-          margin-bottom: 0.65rem;
-        }
-
-        .exp-position {
-          font-family: var(--font-body);
-          font-size: clamp(1.2rem, 3vw, 1.5rem);
-          font-weight: 600;
-          color: var(--fg);
-          line-name: 1.25;
-          margin: 0;
-        }
-
-        .exp-duration-tag {
-          font-family: var(--font-telemetry);
-          font-size: 11px;
-          color: var(--fg);
-          padding: 0.25rem 0.75rem;
-          background: rgba(228, 223, 218, 0.08);
-          border: 1px solid rgba(228, 223, 218, 0.2);
-          border-radius: 9999px;
-          letter-spacing: 0.04em;
-        }
-
-        .exp-company-sub {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.75rem 1.25rem;
-          align-items: center;
-        }
-
-        .exp-company-name {
-          font-size: 1.05rem;
-          font-weight: 600;
-          color: var(--color-rose-quartz-bloom, #f5c2c8);
-        }
-
-        .exp-meta-badges {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.85rem;
-        }
-
-        .exp-meta-item {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.35rem;
-          font-size: 0.85rem;
-          color: var(--steel);
-        }
-
-        .exp-description {
-          font-size: 0.95rem;
-          color: var(--fg-soft);
-          line-height: 1.6;
-          margin: 0 0 1.5rem 0;
-        }
-
-        /* ── Quest Highlights ── */
-        .exp-achievements-block {
-          margin-bottom: 1.5rem;
-          background: rgba(14, 15, 11, 0.75);
-          border: 1px solid rgba(60, 60, 56, 0.8);
-          border-radius: 12px;
-          padding: 1rem 1.25rem;
-        }
-
-        .exp-rewards-heading {
-          font-family: var(--font-telemetry);
-          font-size: 11px;
-          color: var(--fg);
-          margin: 0 0 0.85rem 0;
-          display: flex;
-          align-items: center;
-          gap: 0.45rem;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          font-weight: 600;
-        }
-
-        .exp-achievements-list {
-          display: flex;
-          flex-direction: column;
-          gap: 0.65rem;
-          padding: 0;
-          margin: 0;
-          list-style: none;
-        }
-
-        .exp-achievement-item {
-          position: relative;
-          display: flex;
-          align-items: flex-start;
-          gap: 0.65rem;
-          font-size: 0.9rem;
-          color: var(--fg-soft);
-          line-height: 1.55;
-          transition: transform 0.2s ease;
-        }
-
-        .exp-bullet-dot {
-          width: 6px;
-          height: 6px;
-          background: var(--red);
-          border-radius: 50%;
-          margin-top: 0.45rem;
-          flex-shrink: 0;
-          box-shadow: 0 0 6px var(--red);
-        }
-
-        /* ── Technology Tags ── */
-        .exp-tech-row {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.45rem;
-          margin-top: auto;
-          padding-top: 0.5rem;
-        }
-
-        .exp-tech-tag {
-          font-family: var(--font-telemetry);
-          font-size: 10.5px;
-          font-weight: 500;
-          color: var(--fg);
-          padding: 0.25rem 0.65rem;
-          border: 1px solid rgba(228, 223, 218, 0.18);
-          border-radius: 6px;
-          background: rgba(22, 23, 18, 0.9);
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-          transition: all 0.2s ease;
-        }
-
-        .experience-card:hover .exp-tech-tag {
-          border-color: rgba(224, 101, 96, 0.4);
-          background: rgba(30, 31, 25, 0.95);
-        }
-
-        /* ── Responsive Viewports ── */
-        @media (min-width: 1024px) {
-          .ed-exp-stage .ed-left-rail,
-          .ed-exp-stage .ed-right-rail {
-            display: flex;
-          }
-
-          .ed-exp-container {
-            padding-left: 3.5rem;
-            padding-right: 3rem;
-          }
-
-          .exp-header {
-            align-items: flex-start;
-            text-align: left;
-          }
-        }
-      `}</style>
     </section>
   )
 }

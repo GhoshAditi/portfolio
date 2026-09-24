@@ -1,28 +1,23 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import { Inter, IBM_Plex_Mono, VT323 } from 'next/font/google'
+import { Fraunces, Manrope } from 'next/font/google'
 import './globals.css'
 import { SITE_URL, siteConfig } from '@/lib/site'
 import LenisProvider from '@/components/LenisProvider'
+import Header from '@/components/Header'
+import Cursor from '@/components/Cursor'
 
-const arbeitContrast = Inter({
+const serif = Fraunces({
   subsets: ['latin'],
-  variable: '--font-arbeit-contrast',
-  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  axes: ['opsz'],
+  variable: '--font-serif',
   display: 'swap',
 })
 
-const arbeitTechnik = IBM_Plex_Mono({
+const sans = Manrope({
   subsets: ['latin'],
-  variable: '--font-arbeit-technik',
-  weight: ['400'],
-  display: 'swap',
-})
-
-const inlineVf = VT323({
-  subsets: ['latin'],
-  variable: '--font-inline-vf',
-  weight: ['400'],
+  variable: '--font-sans',
   display: 'swap',
 })
 
@@ -92,11 +87,11 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className="scroll-smooth" data-theme="dark">
-      <body
-        className={`${arbeitContrast.variable} ${arbeitTechnik.variable} ${inlineVf.variable} antialiased`}
-      >
+    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+      <body>
         <LenisProvider>
+          <Cursor />
+          <Header />
           {children}
         </LenisProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }} />
