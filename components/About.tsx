@@ -400,6 +400,73 @@ export default function About() {
             padding-right: 3rem;
           }
         }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .ed-about-stage {
+            min-height: auto;
+            padding-top: 5rem;
+            padding-bottom: 3rem;
+          }
+
+          .about-grid {
+            gap: 1.5rem;
+          }
+
+          .lottie-character-container {
+            max-width: 320px;
+            height: 280px;
+            margin-top: 0;
+          }
+        }
+
+        @media (max-width: 767px) {
+          .ed-about-stage {
+            height: auto;
+            min-height: 100%;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 8.5rem 0.75rem 1.5rem;
+          }
+
+          .about-heading {
+            font-size: clamp(2.2rem, 11vw, 3rem);
+          }
+
+          .about-header {
+            margin-bottom: 1.5rem;
+          }
+
+          .about-grid {
+            gap: 1.5rem;
+          }
+
+          .about-copy {
+            font-size: 0.95rem;
+            line-height: 1.6;
+          }
+
+          .about-bio-text {
+            gap: 1.4rem;
+          }
+
+          .about-stats-row {
+            width: 100%;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            gap: 0.75rem !important;
+            margin-top: 2.5rem;
+          }
+
+          .stat-label {
+            white-space: normal;
+            font-size: 10px;
+            max-width: 8.5rem;
+          }
+
+          .about-visual-col {
+            display: none;
+          }
+        }
       `}</style>
     </section>
   )

@@ -447,6 +447,96 @@ export default function Services() {
             padding-right: 3rem;
           }
         }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .ed-services-stage {
+            min-height: auto;
+            padding-top: 5rem;
+            padding-bottom: 3rem;
+          }
+
+          .tabs-header-rail {
+            gap: 0.35rem;
+          }
+
+          .service-tab-btn {
+            min-width: 0;
+            flex: 1 1 calc(33.333% - 0.35rem);
+            padding: 0.7rem 0.5rem;
+            font-size: 10px;
+          }
+
+          .service-content-pad {
+            padding: 2rem;
+          }
+
+          .service-content-grid {
+            gap: 2rem;
+          }
+
+          .features-list-panel {
+            width: 240px;
+            padding-left: 1.5rem;
+          }
+        }
+
+        @media (max-width: 767px) {
+          .ed-services-stage {
+            min-height: auto;
+            padding: 4.5rem 0.75rem 3rem;
+          }
+
+          .services-header {
+            margin-bottom: 1rem;
+          }
+
+          .tabs-header-rail {
+            gap: 0.3rem;
+            padding: 0.3rem;
+            margin-bottom: 1rem;
+          }
+
+          .service-tab-btn {
+            min-width: 0;
+            flex: 1 1 calc(50% - 0.3rem);
+            padding: 0.65rem 0.35rem;
+            font-size: 10px;
+            letter-spacing: 0.03em;
+          }
+
+          .service-details-card {
+            min-height: auto;
+          }
+
+          .service-content-pad {
+            padding: 1.5rem;
+          }
+
+          .service-content-grid {
+            gap: 1.75rem;
+          }
+
+          .service-headline-row {
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+          }
+
+          .service-icon-box {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+          }
+
+          .service-card-title {
+            font-size: 1.45rem;
+          }
+
+          .service-card-description {
+            font-size: 0.95rem;
+            line-height: 1.55;
+          }
+        }
       `}</style>
     </section>
   )

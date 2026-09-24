@@ -302,6 +302,51 @@ export default function Socials() {
           transform: translate(2px, -2px);
         }
 
+        @media (max-width: 750px) {
+          .ed-connect-stage {
+            position: relative;
+            min-height: auto;
+            height: auto;
+            align-items: stretch;
+            padding: 2.5rem 0 3rem;
+          }
+
+          .connect-split-grid {
+            min-height: auto;
+            gap: 2rem;
+          }
+
+          .connect-left-col {
+            justify-content: flex-start;
+            padding-bottom: 0;
+          }
+
+          .connect-title-text {
+            font-size: clamp(3.5rem, 17vw, 5rem) !important;
+          }
+
+          .connect-lottie-inline {
+            width: 100%;
+            max-width: 100%;
+            margin-left: -0.35rem;
+          }
+
+          .socials-square-grid {
+            gap: 0.75rem;
+            padding-top: 0;
+          }
+
+          .connect-square-card {
+            min-height: 130px;
+            padding: 1rem;
+            border-radius: 16px;
+          }
+
+          .connect-card-title {
+            font-size: 1rem;
+          }
+        }
+
         @media (min-width: 1024px) {
           .ed-connect-stage .ed-left-rail,
           .ed-connect-stage .ed-right-rail {

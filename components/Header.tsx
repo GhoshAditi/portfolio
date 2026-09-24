@@ -68,7 +68,7 @@ export default function Header() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          padding: '1.5rem 0',
+          padding: '1.5rem 2rem',
           transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
         }}
       >
@@ -81,7 +81,7 @@ export default function Header() {
         }}>
           
           {/* Desktop Navigation */}
-          <div className="desktop-nav-container" style={{ flex: 1, display: 'flex', justifyContent: 'center', pointerEvents: 'auto' }}>
+          <div className="desktop-nav-container" style={{ flex: 1, display: 'flex', justifyContent: 'center', pointerEvents: 'auto', paddingLeft: '140px' }}>
             <NavHeader />
           </div>
 
@@ -167,15 +167,15 @@ export default function Header() {
       </AnimatePresence>
 
       <style>{`
-        @media (min-width: 1025px) {
+        @media (min-width: 1201px) {
           .nav-row-sticky.is-scrolled {
-             padding: 0.75rem 0 !important;
+             padding: 0.75rem 2rem !important;
              background: rgba(var(--bg-rgb), 0.7);
              backdrop-filter: blur(12px);
           }
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
           .brand-block-fixed { padding: 1.25rem 1.5rem !important; }
           .desktop-nav-container { display: none !important; }
           .mobile-hamburger { display: flex !important; }

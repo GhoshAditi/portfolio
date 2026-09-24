@@ -242,6 +242,28 @@ export default function LinkedInPosts() {
           perspective: 1200px;
         }
 
+        @media (max-width: 750px) {
+          .ed-community-stage {
+            position: relative;
+            min-height: auto;
+            height: auto;
+            align-items: stretch;
+            padding: 2.5rem 0 3rem;
+          }
+
+          .community-hero-grid {
+            gap: 1rem;
+          }
+
+          .community-lottie-wrap {
+            max-width: 140px;
+          }
+
+          .community-card {
+            padding: 1rem;
+          }
+        }
+
         @media (min-width: 1024px) {
           .ed-community-stage {
             min-height: 100svh;
