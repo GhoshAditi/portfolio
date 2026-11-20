@@ -34,7 +34,7 @@ export default function Hero() {
         <p className="paren">Full stack engineer focused on performance, product clarity and durable UI systems</p>
 
         <div className="hero-actions">
-          <a className="pill" href="/Aditi_Ghosh_Resume.pdf" target="_blank" rel="noopener noreferrer">
+          <a className="pill" href="/AditiGhoshResume.pdf" target="_blank" rel="noopener noreferrer">
             Open CV
           </a>
           <a className="pill pill--ink" href="#contact">
